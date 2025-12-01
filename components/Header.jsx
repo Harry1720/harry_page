@@ -1,6 +1,7 @@
 import Logo from './Logo'
 import {CiMenuFries} from 'react-icons/ci'
 import { MdFileDownload } from "react-icons/md"
+import Image from 'next/image'
 
 import{
     Sheet,
@@ -26,21 +27,37 @@ const Header = () => {
                     <CiMenuFries/>
                 </SheetTrigger>
                 <SheetContent 
-                    className="bg-primary border-0 flex flex-col justify-between items-center pt-16 pb-20"
+                    className="border-0 flex flex-col justify-between items-center pt-16 pb-20"
                     side="right"
                 >
-                    <SheetHeader>
-                        <SheetTitle><Logo/></SheetTitle>
-                        <SheetDescription className="sr-only">Navigation Menu</SheetDescription>
-                    </SheetHeader>
-                    <NavLinks containerStyles="flex flex-col gap-8 max-w-[100px]"/>
-                    <div>
-                        <button className="btn btn-lg btn-accent mb-16">
-                            <div className='flex items-center gap-3'>
-                                <span>Download CV</span>
-                                <MdFileDownload className="text-xl"/>
-                            </div>
-                        </button>
+                    {/* Background Image with Overlay */}
+                    <div className="absolute inset-0 z-0">
+                        <Image 
+                            src="/image/landmark.png" 
+                            alt="Background"
+                            fill
+                            className="object-cover"
+                            priority
+                        />
+                        {/* Overlay để làm mờ ảnh */}
+                        <div className="absolute inset-0 bg-secondary/80"></div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="relative z-10 flex flex-col h-full items-center justify-between w-full">
+                        <SheetHeader>
+                            <SheetTitle><Logo/></SheetTitle>
+                            <SheetDescription className="sr-only">Navigation Menu</SheetDescription>
+                        </SheetHeader>
+                        <NavLinks containerStyles="flex flex-col gap-8 max-w-[100px]"/>
+                        {/* <div>
+                            <button className="btn btn-lg btn-accent mb-16">
+                                <div className='flex items-center gap-3'>
+                                    <span>Visit My CV</span>
+                                    <MdFileDownload className="text-xl"/>
+                                </div>
+                            </button>
+                        </div> */}
                     </div>
                 </SheetContent>
             </Sheet>

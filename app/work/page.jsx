@@ -21,7 +21,7 @@ const projects=[
     description: "React Native",
     image: "/",
     github:"",
-    link:'/',
+    link:'/contact',
     tech:["React", "TailwindCSS", "Framer Motion"],
   },
   {
@@ -42,7 +42,24 @@ const projects=[
     link:'/',
     tech:["React", "TailwindCSS", "Framer Motion"],
   },
-
+  {
+    id:4,
+    title: "Mobile Book App",
+    description: "React Native",
+    image: "/",
+    github:"",
+    link:'/',
+    tech:["React", "TailwindCSS", "Framer Motion"],
+  },
+  {
+    id:5,
+    title: "Mobile Book App",
+    description: "React Native",
+    image: "/",
+    github:"",
+    link:'/',
+    tech:["React", "TailwindCSS", "Framer Motion"],
+  },
 ]
 
 const WorkPage = () => {
@@ -77,7 +94,6 @@ const WorkPage = () => {
                       <h3 className="h3">{project.title}</h3>
                       {/* technologies */}
                       <div className="xl:mb-4 max-w-[300px] min-h-[130px]">
-                        <p className="mb-4">Technologies Used</p>
                         <ul className="flex flex-wrap gap-4">
                           {project.tech.map((item, index)=>{
                             return(
@@ -93,8 +109,8 @@ const WorkPage = () => {
                         </ul>
                       </div>
                       {/* buttons */}
-                      <div className="flex flex-col sm:flex-row gap-4 items-start">
-                        <Link href={project.link}>
+                      <div className="flex flex-col sm:flex-row gap-4 items-start mb-8">
+                        <Link className={project.link != "/" ? '' : 'hidden'} href={project.link}>
                           <button className="btn btn-sm btn-accent flex gap-2">
                             <MdArrowOutward className="text-xl" />
                             <span>Live Project</span>
@@ -103,7 +119,7 @@ const WorkPage = () => {
                         <Link href={project.github}>
                           <button className="btn btn-sm btn-white flex gap-2">
                             <FaGithub className="text-xl" />
-                            <span>Live Project</span>
+                            <span>GitHub Link</span>
                           </button>
                         </Link>
                       </div>

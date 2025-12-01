@@ -5,23 +5,23 @@ import { usePathname } from 'next/navigation'
 
 const links = [
     {
-        name: "home",
+        name: "Home",
         path: "/"
     },
     {
-        name: "about",
+        name: "About",
         path: "/about"
     },
     {
-        name: "services",
+        name: "Services",
         path: "/services"
     },
     {
-        name: "work",
+        name: "Work",
         path: "/work"
     },
     {
-        name: "contact",
+        name: "Contact",
         path: "/contact"
     },
 ]
@@ -31,18 +31,24 @@ const NavLinks = ({containerStyles}) => {
     return (
         <ul className={containerStyles}>
             {links.map((link,index)=>{
-                {/* check if current link is matched active page */}
                 const isActive = pathname === link.path;
-                {/* set length of each navlinks to set the line under it when it's active */}
-                const charLength = link.name.length;
-                const lineWidth = charLength > 5 ? "after:w-[120%]" : "after:w-[90%]"
                 return (
                     <Link 
                         href={link.path} 
                         key={index}
-                        className={`relative text-lg uppercase text-white 
-                                    ${isActive && `after:content-[''] after:block after:absolute after:left-0 after:top-1/2 ${lineWidth} after:h-[4px] after:bg-accent after:-translate-y-1/2 after:z-0`}`}>
-                            <span className='relative z-10'>{link.name}</span>
+                        className={`relative text-base text-white leading-relaxed
+                                    border-white/10 
+                                    px-4 py-2 rounded-lg
+                                    transition-all duration-300
+                                    group hover:font-bold
+                                    ${isActive && 'bg-accent/50 border-accent shadow-[0_0_20px_rgba(64,196,184,0.5)] font-bold'}`}>
+                        
+                        <span className="relative z-10 flex items-center gap-2 uppercase ">
+                            {link.name}
+                        </span>
+                        
+                        {/* Line animation on hover */}
+                        <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
                     </Link>
                 )
             })}
