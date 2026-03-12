@@ -1,10 +1,11 @@
 import { Sora, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 // components
-import MainNav from "@/components/MainNav"
+import FloatingDock from "@/components/FloatingDock"
+import MobileNav from "@/components/MobileNav"
 import PageTransition from "@/components/PageTransition"
 import RectangleTransition from "@/components/RectangleTransition";
-import Header from "@/components/Header";
+import CustomCursor from "@/components/CustomCursor";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -26,22 +27,22 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${sora.variable} ${jetbrainsMono.variable}`}>
-      <body className="font-primary antialiased">
+      <body className="font-primary antialiased cursor-none">
+        <CustomCursor />
         <RectangleTransition />
         <PageTransition>
-          <div className="flex h-screen">
-            {/* main nav - fixed sidebar */}
-            <div className="hidden 2xl:flex w-[185px] h-screen bg-secondary fixed left-0 top-0">
-              <MainNav/>
-            </div>
-            {/* content area - scrollable */}
-            <div className="w-full 2xl:ml-[285px] overflow-y-auto">
-              <div className="max-w-[1130px] px-[15px] mx-auto">
-                <Header/>
-                <div>{children}</div>
-              </div>
+          {/* Mobile Navigation */}
+          <MobileNav />
+          
+          {/* Main Content */}
+          <div className="w-full min-h-screen">
+            <div className="max-w-[1200px] px-6 md:px-8 mx-auto pt-20 md:pt-8 pb-24">
+              {children}
             </div>
           </div>
+          
+          {/* Floating Dock - Desktop Only */}
+          <FloatingDock />
         </PageTransition>
       </body>
     </html>
