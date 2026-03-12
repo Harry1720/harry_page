@@ -1,6 +1,8 @@
 "use client"
 import { motion } from "framer-motion";
 import { useState } from "react";
+import DateTime from "@/components/DateTime";
+import BackToTop from "@/components/BackToTop";
 
 // swiper
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -66,6 +68,8 @@ const projects=[
 const WorkPage = () => {  
   return (
     <>
+      <DateTime />
+      <BackToTop />
       <motion.section
         initial={{opacity:0}}
         animate={{
