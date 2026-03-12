@@ -40,7 +40,7 @@ const FloatingDock = () => {
     
     // Calculate size based on distance from hovered item
     const getSize = (index) => {
-        if (hoveredIndex === null) return 48; // default 48px (w-12)
+        if (hoveredIndex === null) return 42; // default 48px (w-12)
         const distance = Math.abs(index - hoveredIndex);
         if (distance === 0) return 80; // Hovered item (1.67x)
         if (distance === 1) return 64; // Adjacent items (1.33x)
@@ -49,7 +49,7 @@ const FloatingDock = () => {
     };
     
     const getIconSize = (index) => {
-        if (hoveredIndex === null) return 20;
+        if (hoveredIndex === null) return 18;
         const distance = Math.abs(index - hoveredIndex);
         if (distance === 0) return 32;
         if (distance === 1) return 26;
@@ -68,9 +68,9 @@ const FloatingDock = () => {
     
     return (
         <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 hidden md:block">
-            <nav className="bg-secondary/90 backdrop-blur-xl border border-white/10 rounded-2xl px-6 shadow-2xl transition-all duration-3000">
+            <nav className="bg-secondary/60 backdrop-blur-xl border border-white/10 rounded-2xl px-6 shadow-2xl transition-all duration-3000 py-1.5">
                 <ul 
-                    className="flex items-center gap-4 h-20"
+                    className="flex items-center gap-4 h-12"
                     onMouseLeave={() => setHoveredIndex(null)}
                 >
                     {navItems.map((item, index) => {

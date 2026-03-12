@@ -3,11 +3,10 @@ import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Preloader from "@/components/Preloader";
+import Image from "next/image";
 
 const Home = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [showPreloader, setShowPreloader] = useState(true);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -36,11 +35,25 @@ const Home = () => {
 
   return (
     <>
-      {/* Preloader */}
-      {showPreloader && (
-        <Preloader onComplete={() => setShowPreloader(false)} />
-      )}
-
+      <motion.section
+        initial={{opacity:0}}
+        animate={{
+          opacity:1,
+          transition:{delay:1, duration:0.4, ease:"easeIn"}
+        }}
+      >
+      {/* Background Image - Full Page */}
+        <div className="fixed inset-0 z-0">
+          <Image 
+            src="/image/homeBg.png"
+            alt="Background"
+            fill
+            className="object-cover opacity-60"
+            priority
+            quality={[100,75]}
+          />
+        </div>
+      </motion.section>
       {/* Date and Time - Fixed at top corners - Hidden on mobile */}
       <div className="hidden md:block fixed top-8 left-8 text-white text-lg z-40">
         {formatDate(currentTime)}
@@ -53,7 +66,7 @@ const Home = () => {
         initial={{opacity:0}}
         animate={{
           opacity:1,
-          transition:{delay:0.5, duration:0.4, ease:"easeIn"}
+          transition:{delay:1, duration:0.4, ease:"easeIn"}
         }}
         className="flex flex-col relative xl:mt-29 md: mt-10 overflow-hidden"
       >

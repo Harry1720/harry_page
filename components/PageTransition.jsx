@@ -12,7 +12,7 @@ const PageTransition = ({children}) => {
                 initial={{opacity:1}}
                 animate={{
                     opacity:0,
-                    transition:{delay:0.1, duration:0.2, ease: "easeInOut"}
+                    transition:{delay:0.1, duration:0.8, ease: "easeInOut"}
                 }}
                 className="min-h-screen w-screen fixed top-0 pointer-events-none"
             />

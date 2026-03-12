@@ -28,7 +28,7 @@ const Rectangle = () => {
             animate="animate"
             exit="exit"
             transition={{
-                delay:0,
+                delay:0.5,
                 duration:0.6,
                 ease:[0.63, 0, 0.17, 1]
             }}
@@ -41,24 +41,37 @@ const Rectangle = () => {
             animate="animate"
             exit="exit"
             transition={{
-                delay:0.05,
+                delay:0.6,
                 duration:0.7,
                 ease:[0.63, 0, 0.17, 1]
             }}
             className="fixed top-full w-screen h-screen z-20 bg-[#3c9487]"
         />
 
-                <motion.div 
+        <motion.div 
             variants={rectangleVariants}
             initial="initial"
             animate="animate"
             exit="exit"
             transition={{
-                delay:0.1,
+                delay:0.7,
                 duration:0.8,
                 ease:[0.63, 0, 0.17, 1]
             }}
             className="fixed top-full w-screen h-screen z-10 bg-[#24d1b4]"
+        />
+
+        <motion.div 
+            variants={rectangleVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{
+                delay:0.8,
+                duration:0.9,
+                ease:[0.63, 0, 0.17, 1]
+            }}
+            className="fixed top-full w-screen h-screen z-5 bg-[#ffffff]"
         />
 
     </>

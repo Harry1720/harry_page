@@ -14,8 +14,6 @@ import Image from "next/image";
 import { MdArrowOutward } from "react-icons/md";
 import { FaGithub } from "react-icons/fa";
 
-import Preloader from "@/components/Preloader";
-
 // data
 const projects=[
   {
@@ -65,16 +63,9 @@ const projects=[
   },
 ]
 
-const WorkPage = () => {
-  const [showPreloader, setShowPreloader] = useState(true);
-  
+const WorkPage = () => {  
   return (
     <>
-      {/* Preloader */}
-      {showPreloader && (
-        <Preloader onComplete={() => setShowPreloader(false)} />
-      )}
-
       <motion.section
         initial={{opacity:0}}
         animate={{

@@ -4,7 +4,6 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import Image from "next/image";
 import { useState } from "react";
 import { X, ArrowRight, ArrowLeft } from "lucide-react";
-import Preloader from "@/components/Preloader";
 
 // Data cho Skills
 const skills = [
@@ -200,15 +199,9 @@ const TabNavigation = ({ currentTab, onTabChange }) => {
 const AboutPage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [activeTab, setActiveTab] = useState("skills");
-  const [showPreloader, setShowPreloader] = useState(true);
 
   return (
     <>
-      {/* Preloader */}
-      {showPreloader && (
-        <Preloader onComplete={() => setShowPreloader(false)} />
-      )}
-
       <motion.section
         initial={{opacity:0}}
         animate={{
