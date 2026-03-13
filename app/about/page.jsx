@@ -3,22 +3,61 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
+import { VscVscode } from "react-icons/vsc";
+import {
+  SiBootstrap,
+  SiCss3,
+  SiCplusplus,
+  SiFramer,
+  SiGit,
+  SiGithub,
+  SiHtml5,
+  SiJavascript,
+  SiMongodb,
+  SiMysql,
+  SiNetlify,
+  SiNextdotjs,
+  SiOpenai,
+  SiPostman,
+  SiPython,
+  SiReact,
+  SiSwagger,
+  SiTailwindcss,
+  SiVercel,
+  SiVite,
+} from "react-icons/si";
 import DateTime from "@/components/DateTime";
 import BackToTop from "@/components/BackToTop";
 
 // Data cho Skills
 const skills = [
-  { name: "HTML", icon: "/image/html.svg" },
-  { name: "CSS", icon: "/image/css.svg" },
-  { name: "JavaScript", icon: "/image/js.svg" },
-  { name: "React", icon: "/image/React.svg" },
-  { name: "Next.js", icon: "/image/nextjs.svg" },
-  { name: "Python", icon: "/image/Python.svg" },
-  { name: "Tailwind CSS", icon: "/image/Tailwind.svg"},
-  { name: "Vite", icon: "/image/Vite.svg"},
-  { name: "Git", icon: "/image/Git.svg" },
-  { name: "SQL", icon: "/image/sql.svg" },
-  // { name: "AI", icon: "/image/ai.png" },
+  { name: "HTML", icon: SiHtml5 },
+  { name: "CSS", icon: SiCss3 },
+  { name: "JavaScript", icon: SiJavascript },
+  { name: "React", icon: SiReact },
+  { name: "Next.js", icon: SiNextdotjs },
+  { name: "Python", icon: SiPython },
+  { name: "Tailwind CSS", icon: SiTailwindcss },
+  { name: "Vite", icon: SiVite },
+  { name: "Git", icon: SiGit },
+  { name: "SQL", icon: SiMysql },
+  { name: "C/C++", icon: SiCplusplus },
+  { name: "VS Code", icon: VscVscode },
+  { name: "GitHub", icon: SiGithub },
+  { name: "Netlify", icon: SiNetlify },
+  { name: "Vercel", icon: SiVercel },
+  { name: "MongoDB", icon: SiMongodb },
+  { name: "AI Tools", icon: SiOpenai },
+  { name: "Swagger", icon: SiSwagger },
+  { name: "Postman", icon: SiPostman },
+  { name: "Framer Motion", icon: SiFramer },
+  { name: "Bootstrap", icon: SiBootstrap },
+];
+
+const skillRows = [
+  skills.slice(0, 7),
+  skills.slice(7, 14),
+  skills.slice(14),
 ];
 
 // Data cho Experience
@@ -249,6 +288,44 @@ const TableOfContents = () => {
   );
 };
 
+const SkillMarqueeRow = ({ items, reverse = false, baseDuration = 20 }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const duplicatedItems = [...items, ...items];
+
+  return (
+    <div className="overflow-hidden">
+      <motion.div
+        animate={{ x: reverse ? [-1000, 0] : [0, -1000] }}
+        transition={{
+          x: {
+            repeat: Infinity,
+            repeatType: "loop",
+            ease: "linear",
+            duration: isHovered ? baseDuration * 30 : baseDuration,
+          },
+        }}
+        onHoverStart={() => setIsHovered(true)}
+        onHoverEnd={() => setIsHovered(false)}
+        className="flex w-max gap-5 py-3"
+      >
+        {duplicatedItems.map((skill, index) => {
+          const Icon = skill.icon;
+
+          return (
+            <div
+              key={`${skill.name}-${index}`}
+              className="flex items-center gap-5 rounded-full bg-tertiary px-4 py-2"
+            >
+              <Icon className="text-2xl text-white" />
+              <span className="text-[20px] font-medium text-white/90">{skill.name}</span>
+            </div>
+          );
+        })}
+      </motion.div>
+    </div>
+  );
+};
+
 const AboutPage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -316,38 +393,24 @@ const AboutPage = () => {
             </div>
           </motion.div>
 
-          {/* Skills Section - Grid Layout */}
+          {/* Skills Section - Marquee Rows */}
           <motion.div 
             id="skills"
             initial={{y: 20, opacity: 0}}
             whileInView={{y: 0, opacity: 1}}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="mb-16 bg-secondary/40 backdrop-blur-sm rounded-2xl p-8"
+            className="mb-16 backdrop-blur-sm rounded-2xl p-8"
           >
-            <h3 className="h3 mb-8 text-center">Tech Stack And Tools</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-              {skills.map((skill, index) => (
-                <motion.div
+            <h3 className="h1 mb-8 text-center">Tech Stack And Tools</h3>
+            <div className="space-y-3 -translate-x-60 w-max">
+              {skillRows.map((row, index) => (
+                <SkillMarqueeRow
                   key={index}
-                  initial={{scale:0.5, opacity:0}}
-                  whileInView={{scale:1, opacity:1}}
-                  viewport={{ once: true }}
-                  transition={{delay:index * 0.08, duration:0.3}}
-                  whileHover={{ scale: 1.1, y: -5 }}
-                  className="bg-tertiary hover:bg-accent/20 rounded-xl p-6 flex flex-col items-center justify-center gap-4 transition-all group cursor-default border border-accent/10 hover:border-accent shadow-lg hover:shadow-accent/30"
-                >
-                  <div className="w-16 h-16 relative flex items-center justify-center group-hover:scale-110 transition-transform bg-white/90 rounded-lg">
-                    <Image
-                      src={skill.icon}
-                      alt={skill.name}
-                      width={64}
-                      height={64}
-                      className="object-contain"
-                    />
-                  </div>
-                  <p className="font-medium text-center group-hover:text-accent transition-colors">{skill.name}</p>
-                </motion.div>
+                  items={row}
+                  reverse={index % 2 === 1}
+                  baseDuration={10 + index * 3}
+                />
               ))}
             </div>
           </motion.div>
@@ -361,7 +424,7 @@ const AboutPage = () => {
             transition={{ duration: 0.5 }}
             className="mb-16"
           >
-            <h3 className="h3 mb-8 text-center">My Activities</h3>
+            <h3 className="h1 mb-8 text-center">My Activities</h3>
             <div className="space-y-6">
               {experiences.map((exp, index) => (
                 <motion.div
@@ -413,7 +476,7 @@ const AboutPage = () => {
             transition={{ duration: 0.5 }}
             className="mb-16 bg-secondary/40 backdrop-blur-sm rounded-2xl p-8"
           >
-            <h3 className="h3 mb-12 text-center">Education Journey</h3>
+            <h3 className="h1 mb-12 text-center">Education Journey</h3>
             <div className="relative px-4">
               {/* Horizontal Timeline Line - Hidden on mobile */}
               <div className="hidden lg:block absolute top-1.5 left-0 right-0 h-[2px] bg-accent/30"></div>
@@ -468,7 +531,7 @@ const AboutPage = () => {
             transition={{ duration: 0.5 }}
             className="bg-secondary/40 backdrop-blur-sm rounded-2xl p-8"
           >
-            <h3 className="h3 mb-8 text-center">Things you don&apos;t know about me</h3>
+            <h3 className="h1 mb-8 text-center">Facts about me</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-max">
               {funFacts.map((fact, index) => (
                 <motion.div

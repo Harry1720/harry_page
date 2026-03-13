@@ -3,7 +3,42 @@ import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import Link from "next/link";
 import Image from "next/image";
+import {
+  FaFacebookF,
+  FaGithub,
+  FaInstagram,
+  FaLinkedinIn,
+  FaTelegramPlane,
+} from "react-icons/fa";
 import DateTime from "@/components/DateTime";
+
+const socialLinks = [
+  {
+    name: "GitHub",
+    href: "https://github.com/your-username",
+    icon: FaGithub,
+  },
+  {
+    name: "LinkedIn",
+    href: "https://linkedin.com/in/your-profile",
+    icon: FaLinkedinIn,
+  },
+  {
+    name: "Facebook",
+    href: "https://facebook.com/your-profile",
+    icon: FaFacebookF,
+  },
+  {
+    name: "Instagram",
+    href: "https://instagram.com/your-profile",
+    icon: FaInstagram,
+  },
+  {
+    name: "Telegram",
+    href: "https://t.me/your-username",
+    icon: FaTelegramPlane,
+  },
+];
 
 const Home = () => {
   return (
@@ -61,21 +96,41 @@ const Home = () => {
               I create functional, scalable, and user-friendly applications to solve real problems
             </p>
 
-            {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link 
-                href="/about"
-                className="px-8 py-4 bg-white text-secondary font-semibold rounded-lg hover:bg-accent transition-all text-center"
-              >
-                View My Resume
-              </Link>
-              <Link 
-                href="/work"
-                className="px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:text-accent hover:border-accent transition-all text-center"
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link 
+                  href="/about"
+                  className="px-8 py-4 bg-white text-secondary font-semibold rounded-lg hover:bg-accent transition-all text-center"
+                >
+                  View My Resume
+                </Link>
+                <Link 
+                  href="/work"
+                  className="px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:text-accent hover:border-accent transition-all text-center"
 
-              >
-                View My Work
-              </Link>
+                >
+                  View My Work
+                </Link>
+              </div>
+
+              <div className="flex items-center justify-center gap-4 sm:ml-10 lg:ml-16 xl:ml-24 sm:justify-start sm:pl-4">
+                {socialLinks.map((item) => {
+                  const Icon = item.icon;
+
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={item.name}
+                      className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white text-black transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:bg-accent hover:text-secondary"
+                    >
+                      <Icon className="text-lg" />
+                    </Link>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
