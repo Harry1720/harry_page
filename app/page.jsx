@@ -57,7 +57,7 @@ const Home = () => {
             src="/image/homeBg.png"
             alt="Background"
             fill
-            className="object-cover opacity-60"
+            className="object-cover opacity-35"
             priority
             quality={[100,75]}
           />
@@ -81,7 +81,7 @@ const Home = () => {
               <span className="text-white">HARRY</span>
             </h1>
             
-            <h2 className="text-2xl md:text-5xl xl:text-7xl font-bold text-white/60 mb-6">
+            <h2 className="text-2xl md:text-5xl xl:text-7xl font-bold text-white/60 mb-6 h-8 md:h-12 xl:h-[4.5rem]">
               <TypeAnimation 
                 sequence={["WEB DEVELOPER", 2000, "FRONT-END DEVELOPER", 2000]}
                 wrapper="span"
@@ -97,7 +97,7 @@ const Home = () => {
             </p>
 
             <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 xl:mt-3">
                 <Link 
                   href="/about"
                   className="px-8 py-4 bg-white text-secondary font-semibold rounded-lg hover:bg-accent transition-all text-center"
@@ -113,7 +113,7 @@ const Home = () => {
                 </Link>
               </div>
 
-              <div className="flex items-center justify-center gap-4 sm:ml-10 lg:ml-16 xl:ml-24 sm:justify-start sm:pl-4">
+              <div className="flex items-center justify-center gap-4 sm:ml-10 lg:ml-16 xl:ml-24 sm:justify-start sm:pl-4 xl:mt-3">
                 {socialLinks.map((item) => {
                   const Icon = item.icon;
 
@@ -135,7 +135,7 @@ const Home = () => {
           </div>
 
           {/* Right Side - Stats */}
-          <div className="flex xl:flex-col gap-8 xl:gap-12 justify-center xl:justify-start xl:pt-8 xl:ml-0">
+          <div className="flex xl:flex-col gap-8 xl:gap-16 justify-center xl:justify-start xl:ml-0">
             <div className="text-center xl:text-right">
               <div className="text-4xl md:text-5xl xl:text-6xl font-bold text-accent mb-2">3+</div>
               <div className="text-sm md:text-base text-white/60">Years of Experience</div>

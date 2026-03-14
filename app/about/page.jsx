@@ -340,7 +340,7 @@ const AboutPage = () => {
           opacity:1,
           transition:{delay:1.5, duration:0.4, ease:"easeIn"}
         }}
-        className="min-h-screen py-12 2xl:py-24"
+        className="min-h-screen py-12 2xl:py-24 overflow-hidden"
       >
         <div className="container mx-auto">
           {/* Hero Section - About Me */}
@@ -400,10 +400,10 @@ const AboutPage = () => {
             whileInView={{y: 0, opacity: 1}}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="mb-16 backdrop-blur-sm rounded-2xl p-8"
+            className="relative left-1/2 right-1/2 -mx-[50vw] w-screen mb-16 backdrop-blur-sm rounded-2xl p-6 md:p-8"
           >
             <h3 className="h1 mb-8 text-center">Tech Stack And Tools</h3>
-            <div className="space-y-3 -translate-x-60 w-max">
+            <div className="space-y-3 w-full px-2 md:px-6">
               {skillRows.map((row, index) => (
                 <SkillMarqueeRow
                   key={index}
@@ -415,57 +415,6 @@ const AboutPage = () => {
             </div>
           </motion.div>
 
-          {/* Experience Section */}
-          <motion.div 
-            id="activities"
-            initial={{y: 20, opacity: 0}}
-            whileInView={{y: 0, opacity: 1}}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mb-16"
-          >
-            <h3 className="h1 mb-8 text-center">My Activities</h3>
-            <div className="space-y-6">
-              {experiences.map((exp, index) => (
-                <motion.div
-                  key={index}
-                  initial={{x: -50, opacity:0}}
-                  whileInView={{x:0, opacity:1}}
-                  viewport={{ once: true }}
-                  transition={{delay:index * 0.2, duration:0.5}}
-                  whileHover={{x: 8}}
-                  className="bg-gradient-to-r from-secondary/60 to-secondary/30 backdrop-blur-sm rounded-2xl overflow-hidden hover:from-secondary/80 transition-all group border border-accent/10"
-                >
-                  <div className="flex flex-col lg:flex-row gap-0">
-                    {/* Image */}
-                    <div 
-                      className="lg:w-2/5 h-64 lg:h-auto relative bg-tertiary cursor-pointer overflow-hidden flex-shrink-0"
-                      onClick={() => setSelectedImage({ src: exp.image, alt: exp.title })}
-                    >
-                      <Image
-                        src={exp.image || "/placeholder.svg"}
-                        alt={exp.title}
-                        fill
-                        className="object-cover group-hover:scale-125 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent group-hover:from-black/10 transition-all" />
-                    </div>
-                    
-                    {/* Content */}
-                    <div className="lg:w-3/5 p-8 lg:p-10 flex flex-col justify-center relative">
-                      <div className="absolute top-0 right-0 w-1 h-16 bg-gradient-to-b from-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                      <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-4 gap-2">
-                        <h3 className="h4 text-accent group-hover:translate-x-2 transition-transform">{exp.title}</h3>
-                        <span className="text-white/50 text-sm font-mono">{exp.period}</span>
-                      </div>
-                      <p className="text-accent/80 font-semibold mb-2">{exp.company}</p>
-                      <p className="text-white/70 leading-relaxed">{exp.description}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
 
           {/* Education Section - Horizontal Timeline with Hover */}
           <motion.div 
@@ -521,6 +470,59 @@ const AboutPage = () => {
               </div>
             </div>
           </motion.div>
+          
+          {/* Experience Section */}
+          <motion.div 
+            id="activities"
+            initial={{y: 20, opacity: 0}}
+            whileInView={{y: 0, opacity: 1}}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-16"
+          >
+            <h3 className="h1 mb-8 text-center">My Activities</h3>
+            <div className="space-y-6">
+              {experiences.map((exp, index) => (
+                <motion.div
+                  key={index}
+                  initial={{x: -50, opacity:0}}
+                  whileInView={{x:0, opacity:1}}
+                  viewport={{ once: true }}
+                  transition={{delay:index * 0.2, duration:0.5}}
+                  whileHover={{x: 8}}
+                  className="bg-gradient-to-r from-secondary/60 to-secondary/30 backdrop-blur-sm rounded-2xl overflow-hidden hover:from-secondary/80 transition-all group border border-accent/10"
+                >
+                  <div className="flex flex-col lg:flex-row gap-0">
+                    {/* Image */}
+                    <div 
+                      className="lg:w-2/5 h-64 lg:h-auto relative bg-tertiary cursor-pointer overflow-hidden flex-shrink-0"
+                      onClick={() => setSelectedImage({ src: exp.image, alt: exp.title })}
+                    >
+                      <Image
+                        src={exp.image || "/placeholder.svg"}
+                        alt={exp.title}
+                        fill
+                        className="object-cover group-hover:scale-125 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent group-hover:from-black/10 transition-all" />
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="lg:w-3/5 p-8 lg:p-10 flex flex-col justify-center relative">
+                      <div className="absolute top-0 right-0 w-1 h-16 bg-gradient-to-b from-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-4 gap-2">
+                        <h3 className="h4 text-accent group-hover:translate-x-2 transition-transform">{exp.title}</h3>
+                        <span className="text-white/50 text-sm font-mono">{exp.period}</span>
+                      </div>
+                      <p className="text-accent/80 font-semibold mb-2">{exp.company}</p>
+                      <p className="text-white/70 leading-relaxed">{exp.description}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
 
           {/* Fun Facts Section */}
           <motion.div 
