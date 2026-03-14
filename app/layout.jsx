@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
           
           {/* Main Content */}
           <div className="w-full min-h-screen">
-            <div className="max-w-[1200px] px-6 md:px-8 mx-auto pt-20 md:pt-8 pb-24">
+            <div className="px-6 md:px-10 mx-auto pt-20 md:pt-8 pb-24">
               {children}
             </div>
           </div>

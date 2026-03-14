@@ -113,7 +113,7 @@ const Home = () => {
                 </Link>
               </div>
 
-              <div className="flex items-center justify-center gap-4 sm:ml-10 lg:ml-16 xl:ml-24 sm:justify-start sm:pl-4 xl:mt-3">
+              <div className="flex items-center justify-center gap-4 sm:ml-10 lg:ml-16 xl:ml-40 sm:justify-start sm:pl-4 xl:mt-3">
                 {socialLinks.map((item) => {
                   const Icon = item.icon;
 

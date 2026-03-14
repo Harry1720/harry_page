@@ -1,7 +1,7 @@
 "use client"
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { X } from "lucide-react";
 import { VscVscode } from "react-icons/vsc";
 import {
@@ -76,6 +76,13 @@ const experiences = [
     description: "A donated-book library for children in remote mountainous areas.",
     image: "/image/gdsc.jpg"
   },
+  {
+    title: "Physics Teaching Assistant (Grade 11–12)",
+    period: "2022-2024",
+    description: "Assisted the teacher in explaining physics concepts and guiding Grade 11–12 students through problem-solving.",
+    image: "/image/PhysicsAssist.png"
+  },
+  
 ];
 
 // Data cho Education
@@ -102,32 +109,60 @@ const education = [
     school: "Ho Chi Minh City University of Transport",
     degree: "Study for future...",
     period: "2022 - 2026",
-    image: "/image/uth.png"
+    image: "/image/UTH2.jpg"
   },
 ];
 
 // Data cho Fun Facts
 const funFacts = [
+    {
+    title: "Night City Images Collector",
+    description: "I enjoy gazing at the city lights at night and often collect photos of it taken from different locations.",
+    image: "/image/dark_city.jpg"
+  },
   {
+    title: "Academic Milestones",
+    description: "I ranked first in my class in the grade 10 entrance exam, and scored 9/10 in Physics in the national high school graduation exam.",
+    image: "/image/ts10.png"
+  },
+  {
+    title: "Coding Muzik",
+    description: "Listening to heartfelt sad songs when studying and coding.",
+    image: "/image/sadsong.png"
+  },
+  {
+    title: "TV Show Lover",
+    description: "Love watching old TV programs, for instance: The Price Is Right, Wheel of Fortune, Road to mount Olympia..., especially national versions, and I also have done the homemade wheel of TPIR and WOF too.",
+    image: "/image/wheel.png"
+  },
+  {
+    title: "Course Materials",
     description: "I regularly create lecture notes for my subjects and share them both with my classmates and on my GitHub repository named 'Course Materials'.",
     image: "/image/courses_material.png"
   },
   {
-    description: "I ranked first in my class in the grade 10 entrance exam, and scored 9/10 in Physics in the national high school graduation exam.",
-    image: "/image/DDDH.jpg"
-  },
-  {
-    description: "Listening to heartfelt sad songs when studying and coding.",
-    image: "/image/sad_song.jpg"
-  },
-  {
-    description: "Love watching old TV programs, for instance: The Price Is Right, Wheel of Fortune, Road to mount Olympia..., especially national versions, and I also have done the homemade wheel of TPIR and WOF too.",
-    image: "/image/wheel.jpg"
-  },
-  {
+    title: "Good Handwriting",
     description: "I enjoy gazing at the city lights at night and often collect photos of it taken from different locations.",
     image: "/image/dark_city.jpg"
-  },
+  },  
+];
+
+
+const wordCloudItems = [
+  { text: "HCM At Night", factIndex: 0, size: "text-lg", tone: "text-violet-200", weight: "font-semibold" },
+  { text: "Course Materials", factIndex: 4, size: "text-3xl", tone: "text-accent", weight: "font-extrabold" },
+  { text: "Open Sharing", factIndex: 4, size: "text-lg", tone: "text-white/80", weight: "font-medium" },
+  { text: "Physics 9/10", factIndex: 1, size: "text-xl", tone: "text-amber-200", weight: "font-semibold" },
+  { text: "Exam Spirit", factIndex: 1, size: "text-base", tone: "text-white/70", weight: "font-medium" },
+  { text: "Sad Songs", factIndex: 2, size: "text-2xl", tone: "text-fuchsia-200", weight: "font-bold" },
+  { text: "Focus Mode", factIndex: 2, size: "text-lg", tone: "text-cyan-200", weight: "font-semibold" },
+  { text: "Homemade Wheel", factIndex: 3, size: "text-base", tone: "text-white/75", weight: "font-medium" },
+  { text: "Late-night Coding", factIndex: 2, size: "text-base", tone: "text-white/70", weight: "font-medium" },
+  { text: "Study Notes", factIndex: 4, size: "text-xl", tone: "text-emerald-200", weight: "font-semibold" },
+  { text: "Gameshow Fan", factIndex: 3, size: "text-2xl", tone: "text-orange-200", weight: "font-bold" },
+  { text: "Top Rank", factIndex: 1, size: "text-2xl", tone: "text-sky-200", weight: "font-bold" },
+  { text: "City Lights", factIndex: 0, size: "text-3xl", tone: "text-teal-200", weight: "font-extrabold" },
+  { text: "Urban Frames", factIndex: 0, size: "text-base", tone: "text-white/75", weight: "font-medium" },
 ];
 
 // Component Modal xem ảnh
@@ -328,19 +363,127 @@ const SkillMarqueeRow = ({ items, reverse = false, baseDuration = 20 }) => {
 
 const AboutPage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [activeFactIndex, setActiveFactIndex] = useState(0);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [isFunFactsInView, setIsFunFactsInView] = useState(false);
+  const funFactsRef = useRef(null);
+
+  const cloudLayout = useMemo(() => {
+    const basePositions = [
+      { x: 20, y: 14 },
+      { x: 46, y: 10 },
+      { x: 71, y: 14 },
+      { x: 31, y: 30 },
+      { x: 58, y: 28 },
+      { x: 83, y: 34 },
+      { x: 18, y: 43 },
+      { x: 46, y: 48 },
+      { x: 70, y: 45 },
+      { x: 28, y: 62 },
+      { x: 55, y: 64 },
+      { x: 80, y: 62 },
+      { x: 22, y: 80 },
+      { x: 48, y: 84 },
+      { x: 73, y: 80 },
+    ];
+
+    return wordCloudItems.map((item, index) => {
+      const base = basePositions[index % basePositions.length];
+      const jitterX = ((index * 17) % 9) - 4;
+      const jitterY = ((index * 23) % 11) - 5;
+      const rotation = ((index * 13) % 13) - 6;
+
+      return {
+        ...item,
+        style: {
+          left: `${base.x + jitterX}%`,
+          top: `${base.y + jitterY}%`,
+          transform: `translate(-50%, -50%) rotate(${rotation}deg)`,
+        },
+      };
+    });
+  }, []);
+
+  useEffect(() => {
+    const query = window.matchMedia("(hover: none), (pointer: coarse)");
+    const updateInteractionMode = () => setIsTouchDevice(query.matches);
+
+    updateInteractionMode();
+
+    if (query.addEventListener) {
+      query.addEventListener("change", updateInteractionMode);
+    } else {
+      query.addListener(updateInteractionMode);
+    }
+
+    return () => {
+      if (query.removeEventListener) {
+        query.removeEventListener("change", updateInteractionMode);
+      } else {
+        query.removeListener(updateInteractionMode);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const target = funFactsRef.current;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsFunFactsInView(entry.isIntersecting);
+      },
+      {
+        threshold: 0.35,
+      }
+    );
+
+    observer.observe(target);
+
+    return () => {
+      observer.unobserve(target);
+      observer.disconnect();
+    };
+  }, []);
+
+  const activeFact = funFacts[activeFactIndex];
+
+  const handleWordHover = (factIndex) => {
+    if (!isTouchDevice) {
+      setActiveFactIndex(factIndex);
+    }
+  };
+
+  const handleWordSelect = (factIndex) => {
+    setActiveFactIndex(factIndex);
+  };
+
+  const showFunFactsBackground = isFunFactsInView && Boolean(activeFact?.image);
 
   return (
     <>
       <DateTime />
       <BackToTop />
       <TableOfContents />
+
+      <div
+        aria-hidden="true"
+        className={`pointer-events-none fixed inset-0 z-0 transition-opacity duration-500 ${showFunFactsBackground ? "opacity-100" : "opacity-0"}`}
+      >
+        <div
+          className="absolute inset-0 bg-cover bg-center scale-105"
+          style={{ backgroundImage: `url(${activeFact.image})` }}
+        />
+        <div className="absolute inset-0 bg-primary/70" />
+      </div>
+
       <motion.section
         initial={{opacity:0}}
         animate={{
           opacity:1,
           transition:{delay:1.5, duration:0.4, ease:"easeIn"}
         }}
-        className="min-h-screen py-12 2xl:py-24 overflow-hidden"
+        className="relative z-10 min-h-screen py-12 2xl:py-24 overflow-hidden"
       >
         <div className="container mx-auto">
           {/* Hero Section - About Me */}
@@ -423,7 +566,7 @@ const AboutPage = () => {
             whileInView={{y: 0, opacity: 1}}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="mb-16 bg-secondary/40 backdrop-blur-sm rounded-2xl p-8"
+            className="mb-16 mt-32 bg-secondary/40 backdrop-blur-sm rounded-2xl p-8"
           >
             <h3 className="h1 mb-12 text-center">Education Journey</h3>
             <div className="relative px-4">
@@ -478,7 +621,7 @@ const AboutPage = () => {
             whileInView={{y: 0, opacity: 1}}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="mb-16"
+            className="mb-16 mt-40"
           >
             <h3 className="h1 mb-8 text-center">My Activities</h3>
             <div className="space-y-6">
@@ -527,45 +670,83 @@ const AboutPage = () => {
           {/* Fun Facts Section */}
           <motion.div 
             id="funfacts"
+            ref={funFactsRef}
             initial={{y: 20, opacity: 0}}
             whileInView={{y: 0, opacity: 1}}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-secondary/40 backdrop-blur-sm rounded-2xl p-8"
+            className="mt-40 xl:-mb-35"
           >
-            <h3 className="h1 mb-8 text-center">Facts about me</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-max">
-              {funFacts.map((fact, index) => (
+            <div className="p-2 sm:p-4">
+              <h3 className="h1 mb-2 text-center">Facts about me</h3>
+              <p className="text-center text-white/65 text-sm mb-8">
+                {isTouchDevice ? "Tap a word to reveal its story" : "Hover a word to reveal its story"}
+              </p>
+
+              <div className="grid grid-cols-1 xl:grid-cols-[1.45fr_1fr] gap-6 lg:gap-8 items-stretch">
+                <div className="relative min-h-[420px] lg:min-h-[520px] rounded-2xl  bg-gradient-to-br from-tertiary/65 via-primary/35 to-secondary/65 overflow-hidden">
+                  <div className="absolute -top-16 -left-12 w-56 h-56 bg-accent/15 blur-3xl rounded-full" />
+                  <div className="absolute bottom-8 right-8 w-52 h-52 bg-cyan-300/10 blur-3xl rounded-full" />
+                  <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, rgba(255,255,255,.45) 1px, transparent 0)", backgroundSize: "18px 18px" }} />
+
+                  <div className="absolute inset-0 p-4 sm:p-6">
+                    {cloudLayout.map((item, index) => {
+                      const isActive = item.factIndex === activeFactIndex;
+
+                      return (
+                        <button
+                          key={`${item.text}-${index}`}
+                          type="button"
+                          onMouseEnter={() => handleWordHover(item.factIndex)}
+                          onFocus={() => handleWordHover(item.factIndex)}
+                          onClick={() => handleWordSelect(item.factIndex)}
+                          className={`absolute whitespace-nowrap rounded-full px-3 py-1 transition-all duration-200 ${item.size} ${item.tone} ${item.weight} ${isActive ? "bg-accent/25 ring-1 ring-accent/70 shadow-lg shadow-accent/20" : "bg-black/20 hover:bg-black/35"}`}
+                          style={item.style}
+                          aria-label={`Show fact: ${item.text}`}
+                        >
+                          {item.text}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
                 <motion.div
-                  key={index}
-                  initial={{scale:0.8, opacity:0}}
-                  whileInView={{scale:1, opacity:1}}
-                  viewport={{ once: true }}
-                  transition={{delay:index * 0.12, duration:0.4, type: "spring"}}
-                  className="bg-gradient-to-br from-tertiary to-tertiary/60 rounded-2xl overflow-hidden group cursor-pointer transition-all border border-accent/10 hover:border-accent/50"
+                  key={activeFact.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35 }}
+                  className="rounded-2xl border border-accent/20 bg-gradient-to-b from-secondary/70 to-tertiary/70 overflow-hidden h-full"
                 >
-                  <div className="flex flex-col h-full">
-                    {/* Image */}
-                    <div 
-                      className="relative h-40 overflow-hidden flex-shrink-0"
-                      onClick={() => setSelectedImage({ src: fact.image, alt: fact.description })}
-                    >
-                      <Image
-                        src={fact.image || "/placeholder.svg"}
-                        alt={fact.description}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all" />
-                    </div>
-                    
-                    {/* Content */}
-                    <div className="p-6 flex-1 flex items-center">
-                      <p className="text-white/85 leading-relaxed text-sm">{fact.description}</p>
+                  <div
+                    className="relative h-64 md:h-72 cursor-pointer"
+                    onClick={() => setSelectedImage({ src: activeFact.image, alt: activeFact.title })}
+                  >
+                    <Image
+                      src={activeFact.image}
+                      alt={activeFact.title}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                    <div className="absolute bottom-4 left-4 right-4">
+                      {/* <p className="text-xs uppercase tracking-wider text-white/70 mb-1">Current Highlight</p> */}
+                      <h4 className="text-white text-2xl font-bold leading-tight">{activeFact.title}</h4>
                     </div>
                   </div>
+
+                  <div className="p-6 md:p-7">
+                    <p className="text-white/85 leading-relaxed text-[15px]">{activeFact.description}</p>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedImage({ src: activeFact.image, alt: activeFact.title })}
+                      className="mt-5 text-sm text-accent font-semibold hover:text-white transition-colors"
+                    >
+                      View full image
+                    </button>
+                  </div>
                 </motion.div>
-              ))}
+              </div>
             </div>
           </motion.div>
         </div>
