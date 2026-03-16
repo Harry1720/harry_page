@@ -118,12 +118,12 @@ const funFacts = [
     {
     title: "Night City Images Collector",
     description: "I enjoy gazing at the city lights at night and often collect photos of it taken from different locations.",
-    image: "/image/dark_city.jpg"
+    image: "/image/HCM_night.png"
   },
   {
     title: "Academic Milestones",
     description: "I ranked first in my class in the grade 10 entrance exam, and scored 9/10 in Physics in the national high school graduation exam.",
-    image: "/image/ts10.png"
+    image: "/image/rank.png"
   },
   {
     title: "Coding Muzik",
@@ -139,17 +139,12 @@ const funFacts = [
     title: "Course Materials",
     description: "I regularly create lecture notes for my subjects and share them both with my classmates and on my GitHub repository named 'Course Materials'.",
     image: "/image/courses_material.png"
-  },
-  {
-    title: "Good Handwriting",
-    description: "I enjoy gazing at the city lights at night and often collect photos of it taken from different locations.",
-    image: "/image/dark_city.jpg"
-  },  
+  }
 ];
 
 
 const wordCloudItems = [
-  { text: "HCM At Night", factIndex: 0, size: "text-lg", tone: "text-violet-200", weight: "font-semibold" },
+  { text: "HCMC At Night", factIndex: 0, size: "text-lg", tone: "text-violet-200", weight: "font-semibold" },
   { text: "Course Materials", factIndex: 4, size: "text-3xl", tone: "text-accent", weight: "font-extrabold" },
   { text: "Open Sharing", factIndex: 4, size: "text-lg", tone: "text-white/80", weight: "font-medium" },
   { text: "Physics 9/10", factIndex: 1, size: "text-xl", tone: "text-amber-200", weight: "font-semibold" },
@@ -471,7 +466,7 @@ const AboutPage = () => {
         className={`pointer-events-none fixed inset-0 z-0 transition-opacity duration-500 ${showFunFactsBackground ? "opacity-100" : "opacity-0"}`}
       >
         <div
-          className="absolute inset-0 bg-cover bg-center scale-105"
+          className="absolute inset-0 bg-cover bg-center scale-105 blur-sm"
           style={{ backgroundImage: `url(${activeFact.image})` }}
         />
         <div className="absolute inset-0 bg-primary/70" />
@@ -737,13 +732,13 @@ const AboutPage = () => {
 
                   <div className="p-6 md:p-7">
                     <p className="text-white/85 leading-relaxed text-[15px]">{activeFact.description}</p>
-                    <button
+                    {/* <button
                       type="button"
                       onClick={() => setSelectedImage({ src: activeFact.image, alt: activeFact.title })}
                       className="mt-5 text-sm text-accent font-semibold hover:text-white transition-colors"
                     >
                       View full image
-                    </button>
+                    </button> */}
                   </div>
                 </motion.div>
               </div>
