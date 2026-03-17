@@ -28,6 +28,7 @@ import {
 } from "react-icons/si";
 import DateTime from "@/components/DateTime";
 import BackToTop from "@/components/BackToTop";
+import TerminalAbout from "@/components/TerminalAbout";
 
 // Data cho Skills
 const skills = [
@@ -115,7 +116,7 @@ const education = [
 
 // Data cho Fun Facts
 const funFacts = [
-    {
+  {
     title: "Night City Images Collector",
     description: "I enjoy gazing at the city lights at night and often collect photos of it taken from different locations.",
     image: "/image/HCM_night.png"
@@ -139,25 +140,38 @@ const funFacts = [
     title: "Course Materials",
     description: "I regularly create lecture notes for my subjects and share them both with my classmates and on my GitHub repository named 'Course Materials'.",
     image: "/image/courses_material.png"
+  },
+  {
+    title: "Good Handwriting",
+    description: "People often comment on my clean and precise handwriting and my ability to organize notes effectively.",
+    image: '/image/note_ing.png',
+  },
+  {
+    title: "Introvert Person",
+    description: "I am naturally introverted, so I often recharge by working quietly, observing carefully, and focusing deeply on the details of what I build.",
+    image: "/image/introvert.png",
   }
 ];
 
 
 const wordCloudItems = [
-  { text: "HCMC At Night", factIndex: 0, size: "text-lg", tone: "text-violet-200", weight: "font-semibold" },
-  { text: "Course Materials", factIndex: 4, size: "text-3xl", tone: "text-accent", weight: "font-extrabold" },
-  { text: "Open Sharing", factIndex: 4, size: "text-lg", tone: "text-white/80", weight: "font-medium" },
-  { text: "Physics 9/10", factIndex: 1, size: "text-xl", tone: "text-amber-200", weight: "font-semibold" },
-  { text: "Exam Spirit", factIndex: 1, size: "text-base", tone: "text-white/70", weight: "font-medium" },
-  { text: "Sad Songs", factIndex: 2, size: "text-2xl", tone: "text-fuchsia-200", weight: "font-bold" },
-  { text: "Focus Mode", factIndex: 2, size: "text-lg", tone: "text-cyan-200", weight: "font-semibold" },
-  { text: "Homemade Wheel", factIndex: 3, size: "text-base", tone: "text-white/75", weight: "font-medium" },
+  { text: "Introvert Guy", factIndex: 6, size: "text-3xl", tone: "text-rose-200", weight: "font-black" },
+  { text: "HCMC At Night", factIndex: 0, size: "text-base", tone: "text-violet-200", weight: "font-semibold" },
+  { text: "Course Materials", factIndex: 4, size: "text-2xl", tone: "text-accent", weight: "font-black" },
+  { text: "Open Sharing", factIndex: 4, size: "text-xl", tone: "text-white/80", weight: "font-semibold" },
+  { text: "Physics", factIndex: 1, size: "text-2xl", tone: "text-amber-200", weight: "font-bold" },
+  { text: "Exam Spirit", factIndex: 1, size: "text-xl", tone: "text-white/70", weight: "font-medium" },
+  { text: "Good Handwriting", factIndex: 5, size: "text-3xl", tone: "text-lime-200", weight: "font-extrabold" },
+  { text: "Music Coding", factIndex: 2, size: "text-xl", tone: "text-fuchsia-200", weight: "font-black" },
+  { text: "Focus Mode", factIndex: 2, size: "text-2xl", tone: "text-cyan-200", weight: "font-semibold" },
+  { text: "Homemade Wheel", factIndex: 3, size: "text-sm", tone: "text-white/75", weight: "font-medium" },
+  { text: "Gameshow Fan", factIndex: 3, size: "text-3xl", tone: "text-orange-200", weight: "font-black" },
   { text: "Late-night Coding", factIndex: 2, size: "text-base", tone: "text-white/70", weight: "font-medium" },
-  { text: "Study Notes", factIndex: 4, size: "text-xl", tone: "text-emerald-200", weight: "font-semibold" },
-  { text: "Gameshow Fan", factIndex: 3, size: "text-2xl", tone: "text-orange-200", weight: "font-bold" },
+  { text: "Study Notes", factIndex: 4, size: "text-2xl", tone: "text-emerald-200", weight: "font-bold" },
   { text: "Top Rank", factIndex: 1, size: "text-2xl", tone: "text-sky-200", weight: "font-bold" },
-  { text: "City Lights", factIndex: 0, size: "text-3xl", tone: "text-teal-200", weight: "font-extrabold" },
-  { text: "Urban Frames", factIndex: 0, size: "text-base", tone: "text-white/75", weight: "font-medium" },
+  { text: "City Lights", factIndex: 0, size: "text-3xl", tone: "text-teal-200", weight: "font-black" },
+  { text: "Neat Notes", factIndex: 5, size: "text-base", tone: "text-white/75", weight: "font-medium" },
+  { text: "Quiet Focus", factIndex: 6, size: "text-xl", tone: "text-cyan-100", weight: "font-semibold" },
 ];
 
 // Component Modal xem ảnh
@@ -183,15 +197,15 @@ const ImageModal = ({ src, alt, onClose }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4"
+      className="fixed inset-0 z-100 flex items-center justify-center bg-black/90 p-4"
       onClick={onClose}
     >
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 text-white hover:text-accent transition-colors z-[101]"
+        className="absolute top-4 right-4 z-101 text-white transition-colors hover:text-accent"
         aria-label="Close modal"
       >
-        <X size={32} />
+        <X size={32} className="xl:m-12 mt-20"/>
       </button>
       <motion.div
         initial={{ scale: 0.8 }}
@@ -291,7 +305,7 @@ const TableOfContents = () => {
                     backgroundColor: activeSection === section.id ? '#40c4b8' : 'rgba(255, 255, 255, 0.4)'
                   }}
                   transition={{ duration: 0.1 }}
-                  className={`h-[2px] rounded-full`}
+                  className="h-0.5 rounded-full"
                 />
               </div>
               
@@ -364,40 +378,40 @@ const AboutPage = () => {
   const funFactsRef = useRef(null);
 
   const cloudLayout = useMemo(() => {
-    const basePositions = [
-      { x: 20, y: 14 },
-      { x: 46, y: 10 },
-      { x: 71, y: 14 },
-      { x: 31, y: 30 },
-      { x: 58, y: 28 },
-      { x: 83, y: 34 },
-      { x: 18, y: 43 },
-      { x: 46, y: 48 },
-      { x: 70, y: 45 },
-      { x: 28, y: 62 },
-      { x: 55, y: 64 },
-      { x: 80, y: 62 },
-      { x: 22, y: 80 },
-      { x: 48, y: 84 },
-      { x: 73, y: 80 },
+    const layoutSlots = [
+      { x: 18, y: 12, rotate: -6 },
+      { x: 50, y: 10, rotate: 4 },
+      { x: 82, y: 14, rotate: -8 },
+      { x: 28, y: 25, rotate: 6 },
+      { x: 72, y: 26, rotate: -5 },
+      { x: 15, y: 40, rotate: -8 },
+      { x: 50, y: 42, rotate: 5 },
+      { x: 85, y: 40, rotate: -6 },
+      { x: 30, y: 56, rotate: 7 },
+      { x: 70, y: 58, rotate: -5 },
+      { x: 20, y: 72, rotate: -7 },
+      { x: 50, y: 75, rotate: 6 },
+      { x: 82, y: 73, rotate: -4 },
+      { x: 35, y: 88, rotate: 5 },
+      { x: 65, y: 90, rotate: -6 },
+      { x: 50, y: 26, rotate: -4 },
+      { x: 50, y: 58, rotate: 4 },
     ];
 
     return wordCloudItems.map((item, index) => {
-      const base = basePositions[index % basePositions.length];
-      const jitterX = ((index * 17) % 9) - 4;
-      const jitterY = ((index * 23) % 11) - 5;
-      const rotation = ((index * 13) % 13) - 6;
+      const slot = layoutSlots[index % layoutSlots.length];
 
       return {
         ...item,
         style: {
-          left: `${base.x + jitterX}%`,
-          top: `${base.y + jitterY}%`,
-          transform: `translate(-50%, -50%) rotate(${rotation}deg)`,
+          left: `${slot.x}%`,
+          top: `${slot.y}%`,
+          transform: `translate(-50%, -50%) rotate(${slot.rotate}deg)`,
+          zIndex: item.factIndex === activeFactIndex ? 10 : 1,
         },
       };
     });
-  }, []);
+  }, [activeFactIndex]);
 
   useEffect(() => {
     const query = window.matchMedia("(hover: none), (pointer: coarse)");
@@ -486,49 +500,9 @@ const AboutPage = () => {
             initial={{y: -20, opacity: 0}}
             animate={{y: 0, opacity: 1}}
             transition={{delay: 0.2}}
-            className="mb-16 rounded-3xl overflow-hidden border border-accent/10"
+            className="mb-16"
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-              {/* Left Side - Gradient Background */}
-              <div className="bg-gradient-to-br from-secondary/80 to-tertiary/60 backdrop-blur-sm p-8 md:p-12 flex flex-col justify-center">
-                <h2 className="h2 mb-6">
-                  About <span className="text-accent">Me</span>
-                </h2>
-                <div className="space-y-4 text-white/80">
-                  <p className="text-lg">
-                    I&apos;m a passionate <span className="text-accent font-semibold">Frontend Developer</span> who loves crafting beautiful and intuitive user interfaces.
-                  </p>
-                  <div className="space-y-3 pl-4">
-                    <div className="flex items-start gap-3">
-                      <span className="text-accent mt-1 text-xl">▹</span>
-                      <span>Building responsive & accessible web applications</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <span className="text-accent mt-1 text-xl">▹</span>
-                      <span>Transforming designs into pixel-perfect code</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <span className="text-accent mt-1 text-xl">▹</span>
-                      <span>Creating smooth animations and interactions</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Right Side - Key Info Cards */}
-              <div className="bg-secondary/50 backdrop-blur-sm p-8 md:p-12 flex flex-col justify-center gap-6">
-                <div className="space-y-2">
-                  <p className="text-white/60 uppercase text-sm font-semibold tracking-wider">Currently Learning</p>
-                  <p className="text-lg text-accent font-semibold">Advanced React Patterns, TypeScript, Web Performance Optimization & Modern CSS</p>
-                </div>
-                <div className="border-t border-white/10 pt-6">
-                  <p className="text-white/80 italic leading-relaxed">
-                    <span className="text-accent font-semibold">&quot;First, solve the problem. Then, write the code.&quot;</span>
-                    <span className="block text-sm text-white/60 mt-2">— John Johnson</span>
-                  </p>
-                </div>
-              </div>
-            </div>
+            <TerminalAbout />
           </motion.div>
 
           {/* Skills Section - Marquee Rows */}
@@ -670,7 +644,7 @@ const AboutPage = () => {
             whileInView={{y: 0, opacity: 1}}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="mt-40 xl:-mb-35"
+            className="mt-40 xl:-mb-25"
           >
             <div className="p-2 sm:p-4">
               <h3 className="h1 mb-2 text-center">Facts about me</h3>
@@ -680,9 +654,9 @@ const AboutPage = () => {
 
               <div className="grid grid-cols-1 xl:grid-cols-[1.45fr_1fr] gap-6 lg:gap-8 items-stretch">
                 <div className="relative min-h-[420px] lg:min-h-[520px] rounded-2xl  bg-gradient-to-br from-tertiary/65 via-primary/35 to-secondary/65 overflow-hidden">
-                  <div className="absolute -top-16 -left-12 w-56 h-56 bg-accent/15 blur-3xl rounded-full" />
+                  <div className="absolute -top-16 -left-12 w-56 h-56 bg-accent/15 blur-xl rounded-full" />
                   <div className="absolute bottom-8 right-8 w-52 h-52 bg-cyan-300/10 blur-3xl rounded-full" />
-                  <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, rgba(255,255,255,.45) 1px, transparent 0)", backgroundSize: "18px 18px" }} />
+                  <div className="absolute inset-0 opacity-20 mt-2" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, rgb(255,255,255) 1.5px, transparent 0)", backgroundSize: "18px 18px" }} />
 
                   <div className="absolute inset-0 p-4 sm:p-6">
                     {cloudLayout.map((item, index) => {
@@ -695,7 +669,7 @@ const AboutPage = () => {
                           onMouseEnter={() => handleWordHover(item.factIndex)}
                           onFocus={() => handleWordHover(item.factIndex)}
                           onClick={() => handleWordSelect(item.factIndex)}
-                          className={`absolute whitespace-nowrap rounded-full px-3 py-1 transition-all duration-200 ${item.size} ${item.tone} ${item.weight} ${isActive ? "bg-accent/25 ring-1 ring-accent/70 shadow-lg shadow-accent/20" : "bg-black/20 hover:bg-black/35"}`}
+                          className={`absolute whitespace-nowrap rounded-full px-3 py-1 transition-all duration-200 hover:z-20 ${item.size} ${item.tone} ${item.weight} ${isActive ? "bg-accent/25 ring-1 ring-accent/70 shadow-lg shadow-accent/20 z-20 scale-105" : "bg-black/20 hover:bg-black/35"}`}
                           style={item.style}
                           aria-label={`Show fact: ${item.text}`}
                         >
@@ -724,9 +698,17 @@ const AboutPage = () => {
                       className="object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+
+                    {/* Label "Current Highlight" - Ghim ở góc trên cùng bên phải */}
+                    <div className="absolute top-4 right-4">
+                      <p className="text-xs tracking-wider text-white/80 font-semibold bg-black/40 px-3 py-1.5 rounded-full backdrop-blur-sm">
+                        Tap picture to view
+                      </p>
+                    </div>
+
+                    {/* Title - Giữ nguyên ở vị trí dưới cùng */}
                     <div className="absolute bottom-4 left-4 right-4">
-                      {/* <p className="text-xs uppercase tracking-wider text-white/70 mb-1">Current Highlight</p> */}
-                      <h4 className="text-white text-2xl font-bold leading-tight">{activeFact.title}</h4>
+                      <h4 className="text-white uppercase text-2xl font-bold leading-tight">{activeFact.title}</h4>
                     </div>
                   </div>
 

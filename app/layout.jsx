@@ -35,6 +35,9 @@ export default function RootLayout({ children }) {
           <MobileNav />
           
           {/* Main Content */}
+          <div className="absolute z-[0] w-[100%] h-[60%] -right-[50%] rounded-full blue__gradient fixed"></div>
+          <div className="absolute z-[0] w-[100%] h-[60%] right-[50%] rounded-full blue__gradient fixed"></div>
+
           <div className="w-full min-h-screen">
             <div className="px-6 md:px-10 mx-auto pt-20 md:pt-8 pb-24">
               {children}
