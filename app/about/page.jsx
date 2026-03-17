@@ -1,6 +1,7 @@
 "use client"
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useEffect, useMemo, useRef } from "react";
 import { X } from "lucide-react";
 import { VscVscode } from "react-icons/vsc";
@@ -29,6 +30,7 @@ import {
 import DateTime from "@/components/DateTime";
 import BackToTop from "@/components/BackToTop";
 import TerminalAbout from "@/components/TerminalAbout";
+import DesignCredit from "@/components/DesignCredit";
 
 // Data cho Skills
 const skills = [
@@ -173,6 +175,8 @@ const wordCloudItems = [
   { text: "Neat Notes", factIndex: 5, size: "text-base", tone: "text-white/75", weight: "font-medium" },
   { text: "Quiet Focus", factIndex: 6, size: "text-xl", tone: "text-cyan-100", weight: "font-semibold" },
 ];
+
+const mobileChipTilts = [-8, 6, -5, 7, -6, 4, -7, 5, -4, 8, -6, 5, -5, 6, -7, 4, -6];
 
 // Component Modal xem ảnh
 const ImageModal = ({ src, alt, onClose }) => {
@@ -495,6 +499,39 @@ const AboutPage = () => {
         className="relative z-10 min-h-screen py-12 2xl:py-24 overflow-hidden"
       >
         <div className="container mx-auto">
+          <div className="relative overflow-hidden -mt-20">
+            <motion.div
+              className="flex whitespace-nowrap"
+              animate={{ x: [0, -1920] }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            >
+              {[...Array(8)].map((_, i) => (
+                <div key={i} className="flex items-center shrink-0">
+                  <h2
+                    className="text-[66px] sm:text-[96px] md:text-[132px] lg:text-[180px] font-extrabold uppercase text-amber-50/50 select-none pr-8"
+                    style={{ WebkitTextStroke: "2px rgba(255,255,255,0.6)" }}
+                  >
+                    About Harry Dev
+                  </h2>
+                  <span className="text-[66px] sm:text-[96px] md:text-[132px] lg:text-[180px] font-extrabold uppercase text-amber-50/30 select-none pr-8 shrink-0">
+                    .
+                  </span>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          <div className=" space-y-3">
+            <p className="font-mono text-[13px] text-white/70 uppercase tracking-[0.1em]">
+              A curated collection of my works
+            </p>
+            <div className="w-full h-[1px] bg-white/40 mb-20" />
+          </div>
+
           {/* Hero Section - About Me */}
           <motion.div 
             initial={{y: -20, opacity: 0}}
@@ -644,7 +681,7 @@ const AboutPage = () => {
             whileInView={{y: 0, opacity: 1}}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="mt-40 xl:-mb-25"
+            className="mt-40 mb-8 xl:-mb-25"
           >
             <div className="p-2 sm:p-4">
               <h3 className="h1 mb-2 text-center">Facts about me</h3>
@@ -653,12 +690,32 @@ const AboutPage = () => {
               </p>
 
               <div className="grid grid-cols-1 xl:grid-cols-[1.45fr_1fr] gap-6 lg:gap-8 items-stretch">
-                <div className="relative min-h-[420px] lg:min-h-[520px] rounded-2xl  bg-gradient-to-br from-tertiary/65 via-primary/35 to-secondary/65 overflow-hidden">
+                <div className="relative min-h-[420px] lg:min-h-[520px] rounded-2xl bg-gradient-to-br from-tertiary/65 via-primary/35 to-secondary/65 overflow-hidden">
                   <div className="absolute -top-16 -left-12 w-56 h-56 bg-accent/15 blur-xl rounded-full" />
                   <div className="absolute bottom-8 right-8 w-52 h-52 bg-cyan-300/10 blur-3xl rounded-full" />
                   <div className="absolute inset-0 opacity-20 mt-2" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, rgb(255,255,255) 1.5px, transparent 0)", backgroundSize: "18px 18px" }} />
 
-                  <div className="absolute inset-0 p-4 sm:p-6">
+                  <div className="relative z-10 flex flex-wrap gap-2 p-4 sm:p-6 md:hidden">
+                    {wordCloudItems.map((item, index) => {
+                      const isActive = item.factIndex === activeFactIndex;
+                      const tilt = mobileChipTilts[index % mobileChipTilts.length];
+
+                      return (
+                        <button
+                          key={`mobile-${item.text}-${index}`}
+                          type="button"
+                          onClick={() => handleWordSelect(item.factIndex)}
+                          className={`rounded-full px-3 py-1.5 transition-all duration-200 text-sm sm:text-base ${item.tone} ${item.weight} ${isActive ? "bg-accent/25 ring-1 ring-accent/70 shadow-lg shadow-accent/20" : "bg-black/20"}`}
+                          style={{ transform: `rotate(${tilt}deg)` }}
+                          aria-label={`Show fact: ${item.text}`}
+                        >
+                          {item.text}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  <div className="absolute inset-0 p-4 sm:p-6 hidden md:block">
                     {cloudLayout.map((item, index) => {
                       const isActive = item.factIndex === activeFactIndex;
 
@@ -708,12 +765,20 @@ const AboutPage = () => {
 
                     {/* Title - Giữ nguyên ở vị trí dưới cùng */}
                     <div className="absolute bottom-4 left-4 right-4">
-                      <h4 className="text-white uppercase text-2xl font-bold leading-tight">{activeFact.title}</h4>
+                      <h4 className="text-white upper2case text-2xl font-bold leading-tight">{activeFact.title}</h4>
                     </div>
                   </div>
 
                   <div className="p-6 md:p-7">
                     <p className="text-white/85 leading-relaxed text-[15px]">{activeFact.description}</p>
+                    {activeFact.title === "Course Materials" && (
+                      <Link
+                        href="/services"
+                        className="inline-flex mt-5 items-center gap-2 rounded-full border border-accent/40 bg-accent/15 px-4 py-2 text-sm font-semibold text-accent hover:bg-accent hover:text-primary transition-colors"
+                      >
+                        View Courses Materials
+                      </Link>
+                    )}
                     {/* <button
                       type="button"
                       onClick={() => setSelectedImage({ src: activeFact.image, alt: activeFact.title })}
@@ -737,6 +802,9 @@ const AboutPage = () => {
           />
         )}
       </motion.section>
+      <div className="relative z-20 pb-16 md:pb-0">
+        <DesignCredit />
+      </div>
     </>
   )
 }

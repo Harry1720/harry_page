@@ -70,7 +70,7 @@ const TerminalAbout = () => {
             <span className="h-3 w-3 rounded-full bg-emerald-400 shadow-sm shadow-emerald-400/40" />
           </div>
           <div className="flex-1 text-center font-mono text-[11px] uppercase tracking-[0.28em] text-white/45 sm:text-xs">
-            harry@portfolio: ~/about
+            harry@dev: ~/about
           </div>
         </div>
       </div>
