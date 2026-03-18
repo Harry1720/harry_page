@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Link from "next/link"
 import { usePathname } from 'next/navigation'
 import { GoHome, GoPersonFill } from "react-icons/go"
-import { MdWork, MdDesignServices } from "react-icons/md"
+import { MdCode, MdLibraryBooks } from "react-icons/md"
 import { RiContactsBook3Fill } from "react-icons/ri"
 
 const navItems = [
@@ -13,19 +13,19 @@ const navItems = [
         icon: GoHome
     },
     {
-        name: "About",
+        name: "About Me",
         path: "/about",
         icon: GoPersonFill
     },
     {
-        name: "Services",
-        path: "/services",
-        icon: MdDesignServices
+        name: "Projects",
+        path: "/work",
+        icon: MdCode
     },
     {
-        name: "Work",
-        path: "/work",
-        icon: MdWork
+        name: "Study Notes",
+        path: "/materials",
+        icon: MdLibraryBooks
     },
     {
         name: "Contact",

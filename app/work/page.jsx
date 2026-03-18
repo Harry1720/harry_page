@@ -1,6 +1,6 @@
 "use client"
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DateTime from "@/components/DateTime";
 import BackToTop from "@/components/BackToTop";
 import DesignCredit from "@/components/DesignCredit";
@@ -8,119 +8,86 @@ import Link from "next/link";
 import Image from "next/image";
 import { MdArrowOutward } from "react-icons/md";
 import { FaGithub } from "react-icons/fa";
-import { X } from "lucide-react";
+import { X, ExternalLink } from "lucide-react";
+
+const moreProjects = "https://github.com/Harry1720?tab=repositories";
 
 // data
 const projects = [
   {
     id: 1,
     code: "01",
-    title: "TRAVLO",
+    title: "Car Sales & Management Web",
     // year: "2025",
-    summary: "Accessible Travel for people with special needs",
+    // summary: "Accessible Travel for people with special needs",
     description:
-      "A travel booking platform designed with accessibility-first UX for users with mobility and sensory constraints.",
-    image: "/image/note_ing.png",
-    github: "",
-    link: "/contact",
-    teamSize: 3,
-    bg: "bg-[#5072C9]",
-    tech: ["Next.js", "TailwindCSS", "Accessibility"],
+      "This is a web-based car management system for VinFast dealerships, providing functionality for car browsing, deposits, and administration.",
+    image: "/image/car_management.png",
+    github: "https://github.com/Harry1720/Car-Management",
+    link: "https://carharrycoder.netlify.app/",
+    teamSize: 5,
+    tech: ["React.js", "CSS", "Vite", "Cloudinary"],
   },
   {
     id: 2,
     code: "02",
-    title: "SANORA",
+    title: "VietNam Travel Guide",
     // year: "2025",
-    summary: "Website Design for a premium safety wear brand",
+    // summary: "Website Design for a premium safety wear brand",
     description:
-      "Modern editorial product showcase focused on clear hierarchy, high trust, and conversion-oriented CTAs.",
-    image: "/image/note_ing.png",
-    github: "",
+      "A comprehensive Vietnam travel guide website designed to be a trusted companion for travelers, enabling them to easily discover destinations and share their experiences through blogs while exploring and enjoying journeys across the country.",
+    image: "/image/travel.png",
+    github: "https://github.com/Harry1720/Vietnam-Travel-Guide",
     link: "/",
-    teamSize: 1,
-    bg: "bg-[#D8D0BD]",
-    tech: ["TypeScript", "Next.js", "UI/UX"],
+    teamSize: 5,
+    tech: ["HTML5", "CSS3", "JavaScript", "jQuery", "PHP", "MySQL", "Cloudinary"],
   },
   {
     id: 3,
     code: "03",
-    title: "FACTORY FLOW",
+    title: "Disaster Warning",
     // year: "2024",
     // summary: "Factory Management System",
     description:
-      "Production monitoring dashboard for tracking machine uptime, operator workflows, and maintenance schedules.",
-    image: "/image/note_ing.png",
-    github: "",
+      "A comprehensive Disaster Warning System designed to predict, manage, and alert users about natural hazards, consisting of three main components—AI, Backend, and Frontend—with real-time user tracking and map-based location visualization.",
+    image: "/image/disaster.png",
+    github: "https://github.com/Harry1720/DisasterWarning",
     link: "/",
-    teamSize: 5,
-    bg: "bg-[#A6BF77]",
-    tech: ["React", "Charts", "Node.js"],
+    teamSize: 6,
+    tech: ["React", "TypeScript", "Vite", "Leaflet", "MUI", "Ant Design", "Chart.js", "Java Spring Boot", "ModelMapper", "Mail Service", "Python", "Cloudinary", "Swagger"],
   },
   {
     id: 4,
     code: "04",
-    title: "AGODA",
+    title: "Auto-reply Email With LLM & RAG",
     // year: "2024",
     // summary: "Re-design for the AGODA Website",
     description:
-      "A bold, modular redesign experiment for booking experience with clearer pricing blocks and mobile-first speed.",
-    image: "/image/note_ing.png",
-    github: "",
+      "Developed a smart email assistant system utilizing Large Language Models and Retrieval-Augmented Generation to automatically generate personalized reply drafts by analyzing and learning writing styles from the user's sent email history.",
+    image: "/image/mail_LLM.png",
+    github: "https://github.com/Harry1720/AppLLM_AutoReplyEmail_FE",
     link: "/",
     teamSize: 2,
-    bg: "bg-[#EC515A]",
-    tech: ["Design System", "Figma to Code", "Next.js"],
-  },
-  {
-    id: 5,
-    code: "05",
-    title: "BALANCIFY",
-    // year: "2023",
-    // summary: "Work-life balance, simplified and smart",
-    description:
-      "A personal productivity app with routines, reflection journals, and progress insights for healthier work rhythm.",
-    image: "/image/note_ing.png",
-    github: "",
-    link: "/",
-    teamSize: 4,
-    bg: "bg-[#7A90D8]",
-    tech: ["TypeScript", "Next.js", "CMS"],
-  },
-  {
-    id: 6,
-    code: "05",
-    title: "BALANCIFY",
-    // year: "2023",
-    // summary: "Work-life balance, simplified and smart",
-    description:
-      "A personal productivity app with routines, reflection journals, and progress insights for healthier work rhythm.",
-    image: "/image/note_ing.png",
-    github: "",
-    link: "/",
-    teamSize: 4,
-    bg: "bg-[#7A90D8]",
-    tech: ["TypeScript", "Next.js", "CMS"],
-  },
-  {
-    id: 7,
-    code: "05",
-    title: "BALANCIFY",
-    // year: "2023",
-    // summary: "Work-life balance, simplified and smart",
-    description:
-      "A personal productivity app with routines, reflection journals, and progress insights for healthier work rhythm.",
-    image: "/image/note_ing.png",
-    github: "",
-    link: "/",
-    teamSize: 4,
-    bg: "bg-[#7A90D8]",
-    tech: ["TypeScript", "Next.js", "CMS"],
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Python", "FastAPI", "Swagger", "Uvicorn", "Supabase", "pgvector", "Llama 3.3 70B", "Groq API", "HuggingFace", "LangChain", "LangGraph", "Gmail API", "Google OAuth 2.0", "JWT",],
   },
 ];
 
 const WorkPage = () => {
   const [activeProject, setActiveProject] = useState(null);
+
+  useEffect(() => {
+    if (!activeProject) return;
+
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setActiveProject(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [activeProject]);
 
   return (
     <>
@@ -151,7 +118,7 @@ const WorkPage = () => {
                     className="text-[66px] sm:text-[96px] md:text-[132px] lg:text-[180px] font-extrabold uppercase text-amber-50/50 select-none pr-8"
                     style={{ WebkitTextStroke: "2px rgba(255,255,255,0.6)" }}
                   >
-                    OUR PROJECTS
+                    PROJECTS
                   </h2>
                   <span className="text-[66px] sm:text-[96px] md:text-[132px] lg:text-[180px] font-extrabold uppercase text-amber-50/30 select-none pr-8 shrink-0">
                     .
@@ -165,10 +132,23 @@ const WorkPage = () => {
             <p className="font-mono text-[13px] text-white/70 uppercase tracking-[0.1em]">
               A curated collection of my works
             </p>
-            <div className="w-full h-[1px] bg-white/40 mb-20" />
+            <div className="w-full h-[1px] bg-white/40 mb-10" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          <div className="mb-10 flex justify-end relative z-40 pointer-events-auto">
+            <a
+              href={moreProjects}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex h-10 w-fit items-center gap-2 rounded-full border border-accent/40 bg-accent/15 px-4 font-mono text-xs text-accent transition-colors hover:bg-accent hover:text-primary sm:h-11 sm:text-sm"
+            >
+              View all projects
+              <ExternalLink size={14} />
+            </a>            
+          </div>
+
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 clear-both">
             {projects.map((project) => (
               <button
                 key={project.id}
@@ -254,8 +234,10 @@ const WorkPage = () => {
                   <div className="flex flex-wrap gap-3 mb-6">
                     {activeProject.link !== "/" && (
                       <Link
-                        className="btn btn-sm btn-accent gap-2 h-[50px]!"
+                        className="btn btn-sm btn-accent gap-2 h-[50px]! transition-all hover:-translate-y-1"
                         href={activeProject.link}
+                        target="_blank"
+                        rel="noreferrer"
                       >
                         <MdArrowOutward className="text-xl" />
                         <span>Live Project</span>
@@ -264,7 +246,7 @@ const WorkPage = () => {
 
                     {activeProject.github && (
                       <Link
-                        className="btn btn-sm btn-white gap-2 h-[50px]!"
+                        className="btn btn-sm btn-white gap-2 h-[50px]! transition-all hover:-translate-y-1"
                         href={activeProject.github}
                         target="_blank"
                         rel="noreferrer"
@@ -275,7 +257,7 @@ const WorkPage = () => {
                     )}
                   </div>
 
-                  <p className="text-[17px] md:text-[24px] text-white/92 leading-relaxed mb-6 max-w-4xl">
+                  <p className="text-[17px] md:text-[20px] text-white/92 leading-relaxed mb-6 max-w-4xl">
                     {activeProject.description}
                   </p>
 
@@ -284,7 +266,7 @@ const WorkPage = () => {
                     {activeProject.tech.map((item) => (
                       <li
                         key={item}
-                        className="h-10 px-5 rounded-full border border-white/35 bg-black/35 text-white flex items-center"
+                        className="h-10 px-5 rounded-full border border-white/35 bg-black/35 text-white flex items-center transition-all hover:-translate-y-1"
                       >
                         {item}
                       </li>

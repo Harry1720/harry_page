@@ -4,13 +4,14 @@ import Link from "next/link"
 import { usePathname } from 'next/navigation'
 import { RiMenu3Fill } from "react-icons/ri"
 import { IoClose } from "react-icons/io5"
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa"
 import Logo from './Logo'
 
 const navItems = [
+    { name: "Home", path: "/" },
     { name: "About", path: "/about" },
-    { name: "Collection", path: "/services" },
     { name: "Projects", path: "/work" },
-    { name: "Approach", path: "/" },
+    { name: "Study Notes", path: "/materials" },
     { name: "Contact", path: "/contact" },
 ]
 
@@ -99,17 +100,44 @@ const MobileNav = () => {
                     </div>
 
                     {/* Footer Info */}
-                    {/* <div className="pb-8 grid grid-cols-2 gap-8 text-white/60 text-sm">
-                        <div>
-                            <p className="mb-2 text-white/40 uppercase text-xs">News</p>
-                            <p>Showroom</p>
+                    <div className="py-8 border-t border-white/50 px-1">
+                        <div className="grid grid-cols-2 gap-2 items-center">
+                            {/* Left Column - Brand */}
+                            <div>
+                                <p className="text-xl font-semibold text-white mb-2">Harry Dev</p>
+                                <p className="text-white/60 text-sm">Building things for the web</p>
+                            </div>
+
+                            {/* Right Column - Social Links */}
+                            <div className="flex gap-4 justify-end">
+                                <a 
+                                    href="https://github.com" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="text-white/70 hover:text-accent transition-colors text-2xl"
+                                    aria-label="GitHub"
+                                >
+                                    <FaGithub />
+                                </a>
+                                <a 
+                                    href="https://linkedin.com" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="text-white/70 hover:text-accent transition-colors text-2xl"
+                                    aria-label="LinkedIn"
+                                >
+                                    <FaLinkedin />
+                                </a>
+                                <a 
+                                    href="mailto:sales@fluid.glass" 
+                                    className="text-white/70 hover:text-accent transition-colors text-2xl"
+                                    aria-label="Email"
+                                >
+                                    <FaEnvelope />
+                                </a>
+                            </div>
                         </div>
-                        <div>
-                            <p className="mb-2 text-white/40 uppercase text-xs">Contact</p>
-                            <p>020 8156 7290</p>
-                            <p>sales@fluid.glass</p>
-                        </div>
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </div>

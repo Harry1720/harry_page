@@ -17,27 +17,27 @@ import DesignCredit from "@/components/DesignCredit";
 const socialLinks = [
   {
     name: "GitHub",
-    href: "https://github.com/",
+    href: "https://github.com/Harry1720",
     icon: SiGithub,
   },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/",
+    href: "https://www.linkedin.com/in/harrydevbaohuynh/",
     icon: SiLinkedin,
   },
   {
     name: "Facebook",
-    href: "https://facebook.com/",
+    href: "https://www.facebook.com/harry4717/",
     icon: SiFacebook,
   },
-  {
-    name: "Instagram",
-    href: "https://instagram.com/",
-    icon: SiInstagram,
-  },
+  // {
+  //   name: "Instagram",
+  //   href: "https://instagram.com/",
+  //   icon: SiInstagram,
+  // },
   {
     name: "Telegram",
-    href: "https://t.me/",
+    href: "https://t.me/Harry1724",
     icon: SiTelegram,
   },
 ];
@@ -84,7 +84,7 @@ const ContactPage = () => {
 
           <div className=" space-y-3">
             <p className="font-mono text-[13px] text-white/70 uppercase tracking-[0.1em]">
-              A curated collection of my works
+              Have a question or want to work together? Give me a connection and your feelings. I&apos;d love to hear from you
             </p>
             <div className="w-full h-[1px] bg-white/40 mb-20" />
           </div>
@@ -104,12 +104,12 @@ const ContactPage = () => {
             </div>
 
             <div className="p-5 md:p-8 lg:p-10">
-                <div className=" space-y-3 mb-15">
+                {/* <div className=" space-y-3 mb-15">
                 <h1 className="h1">Get in Touch</h1>
                 <p className="text-lg text-white/70">
                     Have a question or want to work together? Give me a connection and your feelings. I&apos;d love to hear from you.
                 </p>
-                </div>
+                </div> */}
 
                 <div className="grid grid-cols-1 gap-7 xl:grid-cols-[1fr_1.28fr]">
                 <div className="space-y-5">

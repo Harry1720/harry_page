@@ -26,6 +26,7 @@ import {
   SiTailwindcss,
   SiVercel,
   SiVite,
+  SiAndroidstudio
 } from "react-icons/si";
 import DateTime from "@/components/DateTime";
 import BackToTop from "@/components/BackToTop";
@@ -46,6 +47,7 @@ const skills = [
   { name: "SQL", icon: SiMysql },
   { name: "C/C++", icon: SiCplusplus },
   { name: "VS Code", icon: VscVscode },
+  { name: "Android Studio", icon: SiAndroidstudio },
   { name: "GitHub", icon: SiGithub },
   { name: "Netlify", icon: SiNetlify },
   { name: "Vercel", icon: SiVercel },
@@ -70,7 +72,7 @@ const experiences = [
     company: "Ho Chi Minh City University of Transport",
     period: "2025 - Present",
     description: "A study on neural network models for modeling lane-changing behavior and providing decision-making support for drivers.",
-    image: "/image/nn.jpg"
+    image: "/image/NCKH.png"
   },
   {
     title: "Top 20 Idea Round of the GDSC Vietnam Hackathon",
@@ -527,7 +529,7 @@ const AboutPage = () => {
 
           <div className=" space-y-3">
             <p className="font-mono text-[13px] text-white/70 uppercase tracking-[0.1em]">
-              A curated collection of my works
+              Explore unexpected & weird things about me
             </p>
             <div className="w-full h-[1px] bg-white/40 mb-20" />
           </div>
@@ -773,10 +775,10 @@ const AboutPage = () => {
                     <p className="text-white/85 leading-relaxed text-[15px]">{activeFact.description}</p>
                     {activeFact.title === "Course Materials" && (
                       <Link
-                        href="/services"
+                        href="/materials"
                         className="inline-flex mt-5 items-center gap-2 rounded-full border border-accent/40 bg-accent/15 px-4 py-2 text-sm font-semibold text-accent hover:bg-accent hover:text-primary transition-colors"
                       >
-                        View Courses Materials
+                        View My Study Materials
                       </Link>
                     )}
                     {/* <button

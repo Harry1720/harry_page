@@ -82,16 +82,16 @@ const TerminalAbout = () => {
               About Me
             </p>
             <h2 className="h2 max-w-lg">
-              A quiet builder who likes turning ideas into clean, usable interfaces.
+              From early curiosity to crafting digital experiences
             </h2>
           </div>
 
           <div className="space-y-3 text-white/72">
             <p>
-              I focus on frontend work that feels calm, precise, and easy to navigate.
+              My childhood fascination with exploring computers and mobile devices naturally evolved into a lifelong passion for Information Technology.
             </p>
             <p>
-              My current direction combines interface craft with research-driven thinking, especially in projects where clarity and structure matter.
+              I found myself drawn to web development. I simply enjoy building practical, visually appealing websites with a focus on UI/UX, aiming to create digital spaces that feel calm, precise, and easy to navigate.
             </p>
           </div>
 
@@ -99,7 +99,7 @@ const TerminalAbout = () => {
             <div className="rounded-2xl border border-white/10 bg-black/20 p-4 backdrop-blur-md">
               <p className="mb-1 font-mono text-[11px] uppercase tracking-[0.28em] text-white/45">Current Focus</p>
               <p className="text-sm leading-relaxed text-white/82">
-                Advanced React patterns, modern CSS systems, and interface performance.
+                Refining core coding skills, deepening UI/UX knowledge, exploring modern web technologies.
               </p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-black/20 p-4 backdrop-blur-md">

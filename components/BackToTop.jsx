@@ -36,7 +36,7 @@ const BackToTop = () => {
           exit={{ opacity: 0, scale: 0.5 }}
           transition={{ duration: 0.3 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 p-3 bg-accent text-white rounded-full shadow-lg hover:bg-accent/90 hover:scale-110 transition-all group"
+          className="fixed bottom-8 right-8 z-30 p-3 bg-accent text-white rounded-full shadow-lg hover:bg-accent/90 hover:scale-110 transition-all group"
           aria-label="Back to top"
         >
           <ArrowUp size={30} />

@@ -1,10 +1,24 @@
 'use client'
 
 import { AnimatePresence, motion } from "framer-motion";
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 const PageTransition = ({children}) => {
     const pathname=usePathname();
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            window.dispatchEvent(
+                new CustomEvent("app-route-change", {
+                    detail: { pathname },
+                })
+            );
+        }, 0);
+
+        return () => clearTimeout(timer);
+    }, [pathname]);
+
   return (
     <AnimatePresence>
         <div key={pathname}>

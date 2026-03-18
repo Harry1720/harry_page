@@ -1,4 +1,5 @@
 "use client"
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import Link from "next/link";
@@ -6,41 +7,92 @@ import Image from "next/image";
 import {
   FaFacebookF,
   FaGithub,
-  FaInstagram,
   FaLinkedinIn,
   FaTelegramPlane,
+  FaEnvelope
 } from "react-icons/fa";
 import DateTime from "@/components/DateTime";
 
 const socialLinks = [
   {
     name: "GitHub",
-    href: "https://github.com/your-username",
+    href: "https://github.com/Harry1720",
     icon: FaGithub,
   },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/in/your-profile",
+    href: "https://www.linkedin.com/in/harrydevbaohuynh/",
     icon: FaLinkedinIn,
   },
   {
+    name: "Mail",
+    href: "mailto:baohuynh4107@gmail.com",
+    icon: FaEnvelope,
+  },
+  {
     name: "Facebook",
-    href: "https://facebook.com/your-profile",
+    href: "https://www.facebook.com/harry4717/",
     icon: FaFacebookF,
   },
-  {
-    name: "Instagram",
-    href: "https://instagram.com/your-profile",
-    icon: FaInstagram,
-  },
+  // {
+  //   name: "Instagram",
+  //   href: "https://instagram.com/your-profile",
+  //   icon: FaInstagram,
+  // },
   {
     name: "Telegram",
-    href: "https://t.me/your-username",
+    href: "https://t.me/Harry1724",
     icon: FaTelegramPlane,
   },
 ];
 
+const AnimatedStatValue = ({ finalValue, generateRandom, trigger, duration = 2000, intervalMs = 80, startDelay = 1500 }) => {
+  const [value, setValue] = useState(finalValue);
+
+  useEffect(() => {
+    let interval;
+    let timeout;
+
+    const delayTimer = setTimeout(() => {
+      setValue(generateRandom());
+
+      interval = setInterval(() => {
+        setValue(generateRandom());
+      }, intervalMs);
+
+      timeout = setTimeout(() => {
+        clearInterval(interval);
+        setValue(finalValue);
+      }, duration);
+    }, startDelay);
+
+    return () => {
+      clearTimeout(delayTimer);
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
+  }, [duration, finalValue, generateRandom, intervalMs, startDelay, trigger]);
+
+  return <span className="block w-[4ch] mx-auto xl:ml-auto xl:mr-0 text-center xl:text-right tabular-nums">{value}</span>;
+};
+
 const Home = () => {
+  const [statsTrigger, setStatsTrigger] = useState(1);
+
+  useEffect(() => {
+    const handleRouteChange = (event) => {
+      if (event.detail?.pathname === "/") {
+        setStatsTrigger((prev) => prev + 1);
+      }
+    };
+
+    window.addEventListener("app-route-change", handleRouteChange);
+
+    return () => {
+      window.removeEventListener("app-route-change", handleRouteChange);
+    };
+  }, []);
+
   return (
     <>
       <DateTime />
@@ -70,7 +122,7 @@ const Home = () => {
           opacity:1,
           transition:{delay:1, duration:0.4, ease:"easeIn"}
         }}
-        className="flex flex-col relative xl:mt-29 md: mt-10 overflow-hidden"
+        className="flex flex-col relative xl:mt-29 md:mt-25 mt-30 overflow-hidden"
       >
         {/* Main Content */}
         <div className="flex-1 flex flex-col xl:flex-row items-center xl:items-start gap-18">
@@ -93,7 +145,7 @@ const Home = () => {
             </h2>
 
             <p className="text-base md:text-lg text-white/80 max-w-3xl mb-8 xl:mb-12">
-              I create functional, scalable, and user-friendly applications to solve real problems
+              Building stable and visually engaging websites, focusing on seamless functionality and practical UI/UX
             </p>
 
             <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
@@ -137,18 +189,36 @@ const Home = () => {
           {/* Right Side - Stats */}
           <div className="flex xl:flex-col gap-8 xl:gap-16 justify-center xl:justify-start xl:ml-0">
             <div className="text-center xl:text-right">
-              <div className="text-4xl md:text-5xl xl:text-6xl font-bold text-accent mb-2">3+</div>
-              <div className="text-sm md:text-base text-white/60">Years of Experience</div>
+              <div className="text-4xl md:text-5xl xl:text-6xl font-bold text-accent mb-2">
+                <AnimatedStatValue
+                  finalValue="100%"
+                  generateRandom={() => `${Math.floor(Math.random() * 100)}%`}
+                  trigger={statsTrigger}
+                />
+              </div>
+              <div className="text-sm md:text-base text-white/60">Ready to Work</div>
             </div>
             
             <div className="text-center xl:text-right">
-              <div className="text-4xl md:text-5xl xl:text-6xl font-bold text-accent mb-2">7+</div>
-              <div className="text-sm md:text-base text-white/60">Completed Projects</div>
+              <div className="text-4xl md:text-5xl xl:text-6xl font-bold text-accent mb-2">
+                <AnimatedStatValue
+                  finalValue="7+"
+                  generateRandom={() => `${Math.floor(Math.random() * 9) + 1}+`}
+                  trigger={statsTrigger}
+                />
+              </div>
+              <div className="text-sm md:text-base text-white/60">Projects</div>
             </div>
             
             <div className="text-center xl:text-right">
-              <div className="text-4xl md:text-5xl xl:text-6xl font-bold text-accent mb-2">10K+</div>
-              <div className="text-sm md:text-base text-white/60">Hours Worked</div>
+              <div className="text-4xl md:text-5xl xl:text-6xl font-bold text-accent mb-2">
+                <AnimatedStatValue
+                  finalValue="300+"
+                  generateRandom={() => `${Math.floor(Math.random() * 1000) + 2}+`}
+                  trigger={statsTrigger}
+                />
+              </div>
+              <div className="text-sm md:text-base text-white/60">GitHub Contribution</div>
             </div>
           </div>
         </div>
