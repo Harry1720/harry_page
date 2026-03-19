@@ -1,14 +1,26 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useI18n } from "@/components/LanguageProvider";
 import Image from "next/image";
 
 const LanguageSwitcher = () => {
+  const [scrolled, setScrolled] = useState(false);
   const { locale, setLocale, t } = useI18n();
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const bgClass = scrolled
+    ? " backdrop-blur-md py-0.5 px-0.5 rounded-full transition-all duration-300"
+    : "transition-all duration-300";
+
   return (
-    <div className="fixed top-3 right-4 z-[60] md:top-8 md:right-[50%] md:translate-x-1/2">
-      <div className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-black/40 p-1 backdrop-blur-sm">
+    <div className={`hidden md:block fixed top-8 right-62 z-40 ${bgClass}`}>
+      <div className="inline-flex items-center gap-1 rounded-full border border-white/20 p-1">
         <span className="sr-only">{t.languageSwitcher.label}</span>
         <button
           type="button"

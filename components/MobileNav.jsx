@@ -5,13 +5,14 @@ import { usePathname } from 'next/navigation'
 import { RiMenu3Fill } from "react-icons/ri"
 import { IoClose } from "react-icons/io5"
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa"
+import Image from 'next/image'
 import Logo from './Logo'
 import { useI18n } from './LanguageProvider'
 
 const MobileNav = () => {
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
-    const { t } = useI18n();
+    const { locale, setLocale, t } = useI18n();
     const navItems = [
         { name: t.nav.home, path: "/" },
         { name: t.nav.about, path: "/about" },
@@ -51,8 +52,48 @@ const MobileNav = () => {
             >
                 <div className="container mx-auto px-6 h-full flex flex-col">
                     {/* Close Button */}
-                    <div className="flex justify-end pt-6">
-                        <button 
+                    <div className="flex items-center justify-between pt-6">
+                        <div className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-black/40 p-1 backdrop-blur-sm">
+                            <span className="sr-only">{t.languageSwitcher.label}</span>
+                            <button
+                                type="button"
+                                onClick={() => setLocale("vi")}
+                                className={`rounded-full px-3 py-1 text-xs font-semibold transition-colors ${
+                                    locale === "vi" ? "bg-accent text-primary" : "text-white/75 hover:text-white"
+                                }`}
+                                aria-pressed={locale === "vi"}
+                                aria-label="Vietnamese"
+                            >
+                                <Image
+                                    src="https://flagcdn.com/w20/vn.png"
+                                    alt="VN"
+                                    width={20}
+                                    height={13}
+                                    className="inline-block w-4 rounded-sm"
+                                    unoptimized
+                                />
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => setLocale("en")}
+                                className={`rounded-full px-3 py-1 text-xs font-semibold transition-colors ${
+                                    locale === "en" ? "bg-accent text-primary" : "text-white/75 hover:text-white"
+                                }`}
+                                aria-pressed={locale === "en"}
+                                aria-label="English"
+                            >
+                                <Image
+                                    src="https://flagcdn.com/w20/gb.png"
+                                    alt="EN"
+                                    width={20}
+                                    height={10}
+                                    className="inline-block w-4 rounded-sm"
+                                    unoptimized
+                                />
+                            </button>
+                        </div>
+
+                        <button
                             onClick={closeMenu}
                             className="text-white text-4xl hover:text-accent transition-colors"
                             aria-label="Close menu"
