@@ -26,14 +26,14 @@ export const messages = {
       gmt: "(GMT+7)",
     },
     home: {
-      introPrefix: "TÔI LÀ",
-      introPostfix: "HARRY",
+      introPrefix: "I'm",
+      introPostfix: "Bảo",
       role1: "LẬP TRÌNH VIÊN WEBSITE",
       role2: "LẬP TRÌNH VIÊN FRONT-END",
     //   roles: ["LẬP TRÌNH VIÊN WEB", 2000, "LẬP TRÌNH VIÊN FRONT-END", 2000],
       description:
-        "Tên 'trên giấy tờ' là Huỳnh Nguyễn Quốc Bảo. Tôi thích xây dựng các website hoạt động tốt và ấn tượng, tập trung vào sự mượt mà cùng trải nghiệm mang tính thực tiễn cao",
-      viewResume: "Em gửi CV ạ!",
+        "Chào bạn, mình là Bảo (còn gọi là Harry). Mình đam mê việc xây dựng các website mượt mà, sống động và mang lại trải nghiệm tuyệt vời nhất cho người dùng",
+      viewResume: "CV của mình",
       viewWork: "Dự án đã làm",
       stats: {
         ready: "Tinh thần làm việc",
@@ -259,7 +259,7 @@ export const messages = {
         "Nếu bạn có câu hỏi, nhắn nhủ hoặc muốn hợp tác, hãy kết nối với mình. Mình rất vui được lắng nghe và sẽ trả lời bạn sớm nhất có thể.",
       contactInfo: "Thông tin liên hệ",
       formHint: "Điền đầy đủ thông tin và lời nhắn, mình sẽ phản hồi.",
-      connectWithMe: "Thông tin liên hệ",
+      connectWithMe: "Kết nối với mình",
       email: "Email",
       phone: "Điện thoại",
       location: "Nơi cư trú",
@@ -269,6 +269,10 @@ export const messages = {
       message: "Nội dung bạn muốn viểt",
       yourMessage: "Tin nhắn của bạn",
       sendMessage: "Gửi tin nhắn",
+      sending: "Đang gửi tin nhắn...",
+      successMessage: "Đã gửi thành công. Mình sẽ phản hồi bạn sớm nhất.",
+      errorMessage: "Không thể gửi lúc này. Vui lòng thử lại sau.",
+      missingAccessKey: "Chưa cấu hình Web3Forms Access Key. Vui lòng thêm WEB3FORMS_ACCESS_KEY (hoặc NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY) vào file .env.local.",
       closeProjectModal: "Đóng cửa sổ dự án",
     },
     materials: {
@@ -313,13 +317,13 @@ export const messages = {
       gmt: "(GMT+7)",
     },
     home: {
-      introPrefix: "I'M",
-      introPostfix: "HARRY",
+      introPrefix: "I'm",
+      introPostfix: "Harry",
       role1: "WEB DEVELOPER",
       role2: "FRONT-END DEVELOPER",
     //   roles: ["WEB DEVELOPER", 2000, "FRONT-END DEVELOPER", 2000],
       description:
-        "My 'origignal' name is Huỳnh Nguyễn Quốc Bảo. I like building stable and visually engaging websites, focusing on seamless functionality and practical UI/UX.",
+        "Hi, my name is Harry (aka Bảo). I am passionate about building smooth, vibrant websites that deliver exceptional user experiences",
       viewResume: "View My Resume",
       viewWork: "View My Work",
       stats: {
@@ -556,6 +560,10 @@ export const messages = {
       message: "Message",
       yourMessage: "Your Message",
       sendMessage: "Send Message",
+      sending: "Sending message...",
+      successMessage: "Message sent successfully. I will get back to you soon.",
+      errorMessage: "Unable to send right now. Please try again later.",
+      missingAccessKey: "Web3Forms Access Key is not configured. Add WEB3FORMS_ACCESS_KEY (or NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY) to .env.local.",
       closeProjectModal: "Close project modal",
     },
     materials: {

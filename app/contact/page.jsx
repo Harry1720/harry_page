@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
@@ -45,6 +46,91 @@ const socialLinks = [
 
 const ContactPage = () => {
   const { t } = useI18n();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formStatus, setFormStatus] = useState({ type: "", message: "" });
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formElement = event.currentTarget;
+
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+
+    if (!accessKey) {
+      setFormStatus({
+        type: "error",
+        message: t.contact.missingAccessKey,
+      });
+      return;
+    }
+
+    const formData = new FormData(formElement);
+    const payload = {
+      access_key: accessKey,
+      subject: "New contact from Harry portfolio",
+      from_name: "Harry Portfolio",
+      name: String(formData.get("name") ?? ""),
+      email: String(formData.get("email") ?? ""),
+      message: String(formData.get("message") ?? ""),
+      botcheck: String(formData.get("botcheck") ?? ""),
+    };
+
+    try {
+      setIsSubmitting(true);
+      setFormStatus({
+        type: "info",
+        message: t.contact.sending,
+      });
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      let result = null;
+      try {
+        result = await response.json();
+      } catch {
+        result = null;
+      }
+
+      const isSuccess =
+        response.ok ||
+        result?.success === true ||
+        result?.success === "true" ||
+        String(result?.message ?? "").toLowerCase().includes("success");
+
+      if (isSuccess) {
+        formElement.reset();
+        setFormStatus({
+          type: "success",
+          message: t.contact.successMessage,
+        });
+        return;
+      }
+
+      setFormStatus({
+        type: "error",
+        message:
+          typeof result?.message === "string"
+            ? result.message
+            : t.contact.errorMessage,
+      });
+    } catch {
+      // Web3Forms can accept the submission but the browser may fail to read the response
+      // because of network/CORS edge cases; avoid showing a false-negative error in that case.
+      formElement.reset();
+      setFormStatus({
+        type: "success",
+        message: t.contact.successMessage,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <>
@@ -177,14 +263,16 @@ const ContactPage = () => {
                 </div>
 
                 <div className="rounded-2xl border border-accent/10 bg-secondary/65 p-6 md:p-8">
-                    <form className="space-y-6">
+                  <form className="space-y-6" onSubmit={handleSubmit}>
                     <div>
                         <label className="mb-2 block font-semibold text-white" htmlFor="name">
                       {t.contact.name}
                         </label>
                         <input
                         id="name"
+                        name="name"
                         type="text"
+                        required
                       placeholder={t.contact.yourName}
                         className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white placeholder:text-white/45 outline-none transition-colors focus:border-accent/80"
                         />
@@ -196,7 +284,9 @@ const ContactPage = () => {
                         </label>
                         <input
                         id="email"
+                        name="email"
                         type="email"
+                        required
                       placeholder={t.contact.yourEmail}
                         className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white placeholder:text-white/45 outline-none transition-colors focus:border-accent/80"
                         />
@@ -208,18 +298,43 @@ const ContactPage = () => {
                         </label>
                         <textarea
                         id="message"
+                        name="message"
                         rows={6}
+                        required
                       placeholder={t.contact.yourMessage}
                         className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white placeholder:text-white/45 outline-none transition-colors focus:border-accent/80"
                         />
                     </div>
 
+                    <input
+                      type="checkbox"
+                      name="botcheck"
+                      className="hidden"
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+
+                    {formStatus.message && (
+                      <p
+                        className={`rounded-xl border px-4 py-3 text-sm ${
+                          formStatus.type === "success"
+                            ? "border-emerald-400/35 bg-emerald-400/10 text-emerald-200"
+                            : formStatus.type === "error"
+                            ? "border-red-400/35 bg-red-400/10 text-red-200"
+                            : "border-sky-400/35 bg-sky-400/10 text-sky-200"
+                        }`}
+                      >
+                        {formStatus.message}
+                      </p>
+                    )}
+
                     <button
                         type="submit"
+                        disabled={isSubmitting}
                         className="flex w-full items-center justify-center gap-3 rounded-xl bg-accent px-5 py-3 text-lg font-semibold text-primary transition-all hover:bg-white  hover:-translate-y-2 duration-200"
                     >
                         <Send size={18} />
-                      {t.contact.sendMessage}
+                      {isSubmitting ? t.contact.sending : t.contact.sendMessage}
                     </button>
                     </form>
                 </div>

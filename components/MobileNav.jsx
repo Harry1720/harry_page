@@ -171,7 +171,7 @@ const MobileNav = () => {
                                     <FaLinkedin />
                                 </a>
                                 <a 
-                                    href="mailto:sales@fluid.glass" 
+                                    href="mailto:baohuynh4107@gmail.com" 
                                     className="text-white/70 hover:text-accent transition-colors text-2xl"
                                     aria-label="Email"
                                 >

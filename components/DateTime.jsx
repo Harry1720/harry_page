@@ -53,16 +53,16 @@ const DateTime = () => {
   };
 
   const bgClass = scrolled
-    ? "bg-black/40 backdrop-blur-md px-3 py-1 rounded-lg transition-all duration-300"
+    ? "bg-black/40 backdrop-blur-md px-3 rounded-lg transition-all duration-300"
     : "transition-all duration-300";
 
   return (
     <>
       {/* Date and Time - Fixed at top corners - Hidden on mobile */}
-      <div className={`hidden md:block fixed top-8 left-8 text-white text-lg z-40 ${bgClass}`}>
+      <div className={`hidden md:block fixed top-7.75 left-8 text-white text-lg z-40 ${bgClass}`}>
         {formatDate(currentTime)}
       </div>
-      <div className={`hidden md:block fixed top-8 right-8 text-white text-lg font-mono z-40 ${bgClass}`}>
+      <div className={`hidden md:block fixed top-7.75 right-8 text-white text-lg font-mono z-40 ${bgClass}`}>
         {formatTime(currentTime)} {t.datetime.gmt}
       </div>
     </>

@@ -15,12 +15,12 @@ const LanguageSwitcher = () => {
   }, []);
 
   const bgClass = scrolled
-    ? " backdrop-blur-md py-0.5 px-0.5 rounded-full transition-all duration-300"
+    ? " backdrop-blur-md rounded-full transition-all duration-300"
     : "transition-all duration-300";
 
   return (
-    <div className={`hidden md:block fixed top-8 right-62 z-40 ${bgClass}`}>
-      <div className="inline-flex items-center gap-1 rounded-full border border-white/20 p-1">
+    <div className={`hidden md:block fixed top-7.75 right-62 z-40 ${bgClass}`}>
+      <div className="inline-flex items-center gap-1 rounded-full border border-white/20">
         <span className="sr-only">{t.languageSwitcher.label}</span>
         <button
           type="button"
