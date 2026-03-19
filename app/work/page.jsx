@@ -19,6 +19,15 @@ const WorkPage = () => {
   const projects = t.workData.projects;
 
   useEffect(() => {
+    document.title = `${t.page.titleProjects} | Harry's Portfolio`;
+
+    const descriptionTag = document.querySelector('meta[name="description"]');
+    if (descriptionTag) {
+      descriptionTag.setAttribute("content", t.page.descriptionProjects);
+    }
+  }, [t.page.descriptionProjects, t.page.titleProjects]);
+
+  useEffect(() => {
     if (!activeProject) return;
 
     const handleEscape = (event) => {

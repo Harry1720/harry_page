@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
@@ -48,6 +48,15 @@ const ContactPage = () => {
   const { t } = useI18n();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formStatus, setFormStatus] = useState({ type: "", message: "" });
+
+  useEffect(() => {
+    document.title = `${t.page.titleContact} | Harry's Portfolio`;
+
+    const descriptionTag = document.querySelector('meta[name="description"]');
+    if (descriptionTag) {
+      descriptionTag.setAttribute("content", t.page.descriptionContact);
+    }
+  }, [t.page.descriptionContact, t.page.titleContact]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -172,10 +181,10 @@ const ContactPage = () => {
           </div>
 
           <div className=" space-y-3">
-            <p className="font-mono text-[13px] text-white/70 uppercase tracking-[0.1em]">
+            <p className="font-mono text-[13px] text-white/70 uppercase tracking-widest">
               {t.contact.subtitle}
             </p>
-            <div className="w-full h-[1px] bg-white/40 mb-20" />
+            <div className="w-full h-px bg-white/40 mb-20" />
           </div>
 
           <div className="space-y-6 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm ">

@@ -82,6 +82,15 @@ const Home = () => {
   const { t, locale } = useI18n();
 
   useEffect(() => {
+    document.title = `${t.page.titleHome} | Harry's Portfolio`;
+
+    const descriptionTag = document.querySelector('meta[name="description"]');
+    if (descriptionTag) {
+      descriptionTag.setAttribute("content", t.page.descriptionHome);
+    }
+  }, [t.page.descriptionHome, t.page.titleHome]);
+
+  useEffect(() => {
     const handleRouteChange = (event) => {
       if (event.detail?.pathname === "/") {
         setStatsTrigger((prev) => prev + 1);

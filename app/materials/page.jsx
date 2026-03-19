@@ -79,6 +79,15 @@ const CoursesPage = () => {
   const [loadError, setLoadError] = useState("");
 
   useEffect(() => {
+    document.title = `${t.page.titleMaterials} | Harry's Portfolio`;
+
+    const descriptionTag = document.querySelector('meta[name="description"]');
+    if (descriptionTag) {
+      descriptionTag.setAttribute("content", t.page.descriptionMaterials);
+    }
+  }, [t.page.descriptionMaterials, t.page.titleMaterials]);
+
+  useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
     check();
     window.addEventListener("resize", check);

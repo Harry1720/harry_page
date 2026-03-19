@@ -59,10 +59,16 @@ const DateTime = () => {
   return (
     <>
       {/* Date and Time - Fixed at top corners - Hidden on mobile */}
-      <div className={`hidden md:block fixed top-7.75 left-8 text-white text-lg z-40 ${bgClass}`}>
+      <div 
+        suppressHydrationWarning
+        className={`hidden md:block fixed top-7.75 left-8 text-white text-lg z-40 ${bgClass}`}
+      >
         {formatDate(currentTime)}
       </div>
-      <div className={`hidden md:block fixed top-7.75 right-8 text-white text-lg font-mono z-40 ${bgClass}`}>
+      <div 
+        suppressHydrationWarning
+        className={`hidden md:block fixed top-7.75 right-8 text-white text-lg font-mono z-40 ${bgClass}`}
+      >
         {formatTime(currentTime)} {t.datetime.gmt}
       </div>
     </>

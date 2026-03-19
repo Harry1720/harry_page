@@ -268,6 +268,16 @@ const SkillMarqueeRow = ({ items, reverse = false, baseDuration = 20 }) => {
 const AboutPage = () => {
   const { t } = useI18n();
   const { experiences, education, funFacts, wordCloudItems } = t.aboutData;
+
+  useEffect(() => {
+    document.title = `${t.page.titleAbout} | Harry's Portfolio`;
+
+    const descriptionTag = document.querySelector('meta[name="description"]');
+    if (descriptionTag) {
+      descriptionTag.setAttribute("content", t.page.descriptionAbout);
+    }
+  }, [t.page.descriptionAbout, t.page.titleAbout]);
+
   const [selectedImage, setSelectedImage] = useState(null);
   const [activeFactIndex, setActiveFactIndex] = useState(0);
   const [isTouchDevice, setIsTouchDevice] = useState(false);

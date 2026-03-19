@@ -8,6 +8,18 @@ export const messages = {
       vi: "VI",
       en: "EN",
     },
+    page: {
+      titleHome: "Trang chủ",
+      descriptionHome: "Trang chủ portfolio của Harry Dev. Xem các dự án và kỹ năng của tôi.",
+      titleAbout: "Về Bảo",
+      descriptionAbout: "Tìm hiểu thêm về hành trình, kỹ năng của Bảo Huỳnh (Harry).",
+      titleMaterials: "Tài liệu Bảo soạn",
+      descriptionMaterials: "Xem các tài liệu, tài nguyên để nâng cao kỹ năng & kiến thức của bạn.",
+      titleProjects: "Các dự án",
+      descriptionProjects: "Xem bộ sưu tập các dự án của tôi với các đồng đội của tôi.",
+      titleContact: "Liên hệ Bảo",
+      descriptionContact: "Kết nối với tôi để thảo luận, trò chuyện, góp ý, cộng tác, kết nối hoặc chỉ để nói lời chào.",
+    },
     nav: {
       home: "Trang chủ",
       about: "Harry là ai?",
@@ -26,13 +38,13 @@ export const messages = {
       gmt: "(GMT+7)",
     },
     home: {
-      introPrefix: "I'm",
+      introPrefix: "Mình là",
       introPostfix: "Bảo",
       role1: "LẬP TRÌNH VIÊN WEBSITE",
       role2: "LẬP TRÌNH VIÊN FRONT-END",
     //   roles: ["LẬP TRÌNH VIÊN WEB", 2000, "LẬP TRÌNH VIÊN FRONT-END", 2000],
       description:
-        "Chào bạn, mình là Bảo (còn gọi là Harry). Mình đam mê việc xây dựng các website mượt mà, sống động và mang lại trải nghiệm tuyệt vời nhất cho người dùng",
+        "Mình có tên khác là Harry. Mình đam mê việc xây dựng các website mượt mà, sống động và mang lại trải nghiệm tuyệt vời nhất cho người dùng",
       viewResume: "CV của mình",
       viewWork: "Dự án đã làm",
       stats: {
@@ -298,6 +310,18 @@ export const messages = {
       label: "Language",
       vi: "VI",
       en: "EN",
+    },
+    page: {
+      titleHome: "Home",
+      descriptionHome: "Home page of Harry Dev's portfolio. Check out my projects and skills.",
+      titleAbout: "About Harry",
+      descriptionAbout: "Learn more about Bao Huynh's (Harry's) journey and skills.",
+      titleMaterials: "Harry's Notes",
+      descriptionMaterials: "Explore materials and resources to enhance your skills & knowledge.",
+      titleProjects: "Projects",
+      descriptionProjects: "Check out the collection of projects I've built with my teammates.",
+      titleContact: "Contact",
+      descriptionContact: "Connect with me to discuss, chat, give feedback, collaborate, or just say hello.",
     },
     nav: {
       home: "Home",
