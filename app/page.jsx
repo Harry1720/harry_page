@@ -12,6 +12,7 @@ import {
   FaEnvelope
 } from "react-icons/fa";
 import DateTime from "@/components/DateTime";
+import { useI18n } from "@/components/LanguageProvider";
 
 const socialLinks = [
   {
@@ -78,6 +79,7 @@ const AnimatedStatValue = ({ finalValue, generateRandom, trigger, duration = 200
 
 const Home = () => {
   const [statsTrigger, setStatsTrigger] = useState(1);
+  const { t, locale } = useI18n();
 
   useEffect(() => {
     const handleRouteChange = (event) => {
@@ -129,13 +131,14 @@ const Home = () => {
           {/* Left Side - Name and Title */}
           <div className=" w-full">
             <h1 className="text-5xl md:text-8xl xl:text-[150px] font-bold mb-6">
-              <span className="text-white/40">I&apos;M </span>
-              <span className="text-white">HARRY</span>
+              <span className="text-white/40">{t.home.introPrefix} </span>
+              <span className="text-white">{t.home.introPostfix}</span>
             </h1>
             
             <h2 className="text-2xl md:text-5xl xl:text-7xl font-bold text-white/60 mb-6 h-8 md:h-12 xl:h-[4.5rem]">
               <TypeAnimation 
-                sequence={["WEB DEVELOPER", 2000, "FRONT-END DEVELOPER", 2000]}
+                key={locale}
+                sequence={[`${t.home.role1}`, 2000, `${t.home.role2}`, 2000]}
                 wrapper="span"
                 speed={40}
                 className="text-accent"
@@ -145,7 +148,7 @@ const Home = () => {
             </h2>
 
             <p className="text-base md:text-lg text-white/80 max-w-3xl mb-8 xl:mb-12">
-              Building stable and visually engaging websites, focusing on seamless functionality and practical UI/UX
+              {t.home.description}
             </p>
 
             <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
@@ -154,14 +157,14 @@ const Home = () => {
                   href="/about"
                   className="px-8 py-4 bg-white text-secondary font-semibold rounded-lg hover:bg-accent transition-all text-center"
                 >
-                  View My Resume
+                  {t.home.viewResume}
                 </Link>
                 <Link 
                   href="/work"
                   className="px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:text-accent hover:border-accent transition-all text-center"
 
                 >
-                  View My Work
+                  {t.home.viewWork}
                 </Link>
               </div>
 
@@ -196,7 +199,7 @@ const Home = () => {
                   trigger={statsTrigger}
                 />
               </div>
-              <div className="text-sm md:text-base text-white/60">Ready to Work</div>
+              <div className="text-sm md:text-base text-white/60">{t.home.stats.ready}</div>
             </div>
             
             <div className="text-center xl:text-right">
@@ -207,7 +210,7 @@ const Home = () => {
                   trigger={statsTrigger}
                 />
               </div>
-              <div className="text-sm md:text-base text-white/60">Projects</div>
+              <div className="text-sm md:text-base text-white/60">{t.home.stats.projects}</div>
             </div>
             
             <div className="text-center xl:text-right">
@@ -218,7 +221,7 @@ const Home = () => {
                   trigger={statsTrigger}
                 />
               </div>
-              <div className="text-sm md:text-base text-white/60">GitHub Contribution</div>
+              <div className="text-sm md:text-base text-white/60">{t.home.stats.github}</div>
             </div>
           </div>
         </div>

@@ -32,6 +32,7 @@ import DateTime from "@/components/DateTime";
 import BackToTop from "@/components/BackToTop";
 import TerminalAbout from "@/components/TerminalAbout";
 import DesignCredit from "@/components/DesignCredit";
+import { useI18n } from "@/components/LanguageProvider";
 
 // Data cho Skills
 const skills = [
@@ -63,119 +64,6 @@ const skillRows = [
   skills.slice(0, 7),
   skills.slice(7, 14),
   skills.slice(14),
-];
-
-// Data cho Experience
-const experiences = [
-  {
-    title: "Scientific Research",
-    company: "Ho Chi Minh City University of Transport",
-    period: "2025 - Present",
-    description: "A study on neural network models for modeling lane-changing behavior and providing decision-making support for drivers.",
-    image: "/image/NCKH.png"
-  },
-  {
-    title: "Top 20 Idea Round of the GDSC Vietnam Hackathon",
-    company: "Google Developer Student Clubs HCMC",
-    period: "2023",
-    description: "A donated-book library for children in remote mountainous areas.",
-    image: "/image/gdsc.jpg"
-  },
-  {
-    title: "Physics Teaching Assistant (Grade 11–12)",
-    period: "2022-2024",
-    description: "Assisted the teacher in explaining physics concepts and guiding Grade 11–12 students through problem-solving.",
-    image: "/image/PhysicsAssist.png"
-  },
-  
-];
-
-// Data cho Education
-const education = [
-  {
-    school: "Chi Lang Primary School",
-    period: "2010 - 2015",
-    degree: "Where I began my learning journey...",
-    image: "/image/clang.jpg"
-  },
-  {
-    school: "Quang Trung Secondary School",
-    degree: "The place where my passion was born...",
-    period: "2015 - 2019",
-    image: "/image/qt.jpg"
-  },
-  {
-    school: "Phu Nhuan High School",
-    period: "2019 - 2022",
-    degree: "The place where I dreamed and experienced many joy and sadness...",
-    image: "/image/pn.jpg"
-  },
-  {
-    school: "Ho Chi Minh City University of Transport",
-    degree: "Study for future...",
-    period: "2022 - 2026",
-    image: "/image/UTH2.jpg"
-  },
-];
-
-// Data cho Fun Facts
-const funFacts = [
-  {
-    title: "Night City Images Collector",
-    description: "I enjoy gazing at the city lights at night and often collect photos of it taken from different locations.",
-    image: "/image/HCM_night.png"
-  },
-  {
-    title: "Academic Milestones",
-    description: "I ranked first in my class in the grade 10 entrance exam, and scored 9/10 in Physics in the national high school graduation exam.",
-    image: "/image/rank.png"
-  },
-  {
-    title: "Coding Muzik",
-    description: "Listening to heartfelt sad songs when studying and coding.",
-    image: "/image/sadsong.png"
-  },
-  {
-    title: "TV Show Lover",
-    description: "Love watching old TV programs, for instance: The Price Is Right, Wheel of Fortune, Road to mount Olympia..., especially national versions, and I also have done the homemade wheel of TPIR and WOF too.",
-    image: "/image/wheel.png"
-  },
-  {
-    title: "Course Materials",
-    description: "I regularly create lecture notes for my subjects and share them both with my classmates and on my GitHub repository named 'Course Materials'.",
-    image: "/image/courses_material.png"
-  },
-  {
-    title: "Good Handwriting",
-    description: "People often comment on my clean and precise handwriting and my ability to organize notes effectively.",
-    image: '/image/note_ing.png',
-  },
-  {
-    title: "Introvert Person",
-    description: "I am naturally introverted, so I often recharge by working quietly, observing carefully, and focusing deeply on the details of what I build.",
-    image: "/image/introvert.png",
-  }
-];
-
-
-const wordCloudItems = [
-  { text: "Introvert Guy", factIndex: 6, size: "text-3xl", tone: "text-rose-200", weight: "font-black" },
-  { text: "HCMC At Night", factIndex: 0, size: "text-base", tone: "text-violet-200", weight: "font-semibold" },
-  { text: "Course Materials", factIndex: 4, size: "text-2xl", tone: "text-accent", weight: "font-black" },
-  { text: "Open Sharing", factIndex: 4, size: "text-xl", tone: "text-white/80", weight: "font-semibold" },
-  { text: "Physics", factIndex: 1, size: "text-2xl", tone: "text-amber-200", weight: "font-bold" },
-  { text: "Exam Spirit", factIndex: 1, size: "text-xl", tone: "text-white/70", weight: "font-medium" },
-  { text: "Good Handwriting", factIndex: 5, size: "text-3xl", tone: "text-lime-200", weight: "font-extrabold" },
-  { text: "Music Coding", factIndex: 2, size: "text-xl", tone: "text-fuchsia-200", weight: "font-black" },
-  { text: "Focus Mode", factIndex: 2, size: "text-2xl", tone: "text-cyan-200", weight: "font-semibold" },
-  { text: "Homemade Wheel", factIndex: 3, size: "text-sm", tone: "text-white/75", weight: "font-medium" },
-  { text: "Gameshow Fan", factIndex: 3, size: "text-3xl", tone: "text-orange-200", weight: "font-black" },
-  { text: "Late-night Coding", factIndex: 2, size: "text-base", tone: "text-white/70", weight: "font-medium" },
-  { text: "Study Notes", factIndex: 4, size: "text-2xl", tone: "text-emerald-200", weight: "font-bold" },
-  { text: "Top Rank", factIndex: 1, size: "text-2xl", tone: "text-sky-200", weight: "font-bold" },
-  { text: "City Lights", factIndex: 0, size: "text-3xl", tone: "text-teal-200", weight: "font-black" },
-  { text: "Neat Notes", factIndex: 5, size: "text-base", tone: "text-white/75", weight: "font-medium" },
-  { text: "Quiet Focus", factIndex: 6, size: "text-xl", tone: "text-cyan-100", weight: "font-semibold" },
 ];
 
 const mobileChipTilts = [-8, 6, -5, 7, -6, 4, -7, 5, -4, 8, -6, 5, -5, 6, -7, 4, -6];
@@ -230,16 +118,17 @@ const ImageModal = ({ src, alt, onClose }) => {
   );
 };
 
-// Sections data for Table of Contents
-const sections = [
-  { id: "skills", label: "Tech Stack And Tools" },
-  { id: "activities", label: "My Activities" },
-  { id: "education", label: "Education Journey" },
-  { id: "funfacts", label: "Fun Facts" }
+const getSections = (t) => [
+  { id: "skills", label: t.about.sections.skills },
+  { id: "activities", label: t.about.sections.activities },
+  { id: "education", label: t.about.sections.education },
+  { id: "funfacts", label: t.about.sections.funfacts },
 ];
 
 // Component Table of Contents
 const TableOfContents = () => {
+  const { t } = useI18n();
+  const sections = useMemo(() => getSections(t), [t]);
   const [activeSection, setActiveSection] = useState("");
   const [isHovered, setIsHovered] = useState(false);
 
@@ -260,7 +149,7 @@ const TableOfContents = () => {
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [sections]);
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -292,7 +181,7 @@ const TableOfContents = () => {
             animate={{ opacity: 1, x: 0 }}
             className="text-white text-xl mb-4 font-bold"
           >
-            Contents
+            {t.about.tocTitle}
           </motion.p>
         )}
         <nav className="space-y-3">
@@ -377,6 +266,8 @@ const SkillMarqueeRow = ({ items, reverse = false, baseDuration = 20 }) => {
 };
 
 const AboutPage = () => {
+  const { t } = useI18n();
+  const { experiences, education, funFacts, wordCloudItems } = t.aboutData;
   const [selectedImage, setSelectedImage] = useState(null);
   const [activeFactIndex, setActiveFactIndex] = useState(0);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
@@ -393,7 +284,7 @@ const AboutPage = () => {
       { x: 15, y: 40, rotate: -8 },
       { x: 50, y: 42, rotate: 5 },
       { x: 85, y: 40, rotate: -6 },
-      { x: 30, y: 56, rotate: 7 },
+      { x: 25, y: 56, rotate: 7 },
       { x: 70, y: 58, rotate: -5 },
       { x: 20, y: 72, rotate: -7 },
       { x: 50, y: 75, rotate: 6 },
@@ -417,7 +308,7 @@ const AboutPage = () => {
         },
       };
     });
-  }, [activeFactIndex]);
+  }, [activeFactIndex, wordCloudItems]);
 
   useEffect(() => {
     const query = window.matchMedia("(hover: none), (pointer: coarse)");
@@ -517,7 +408,7 @@ const AboutPage = () => {
                     className="text-[66px] sm:text-[96px] md:text-[132px] lg:text-[180px] font-extrabold uppercase text-amber-50/50 select-none pr-8"
                     style={{ WebkitTextStroke: "2px rgba(255,255,255,0.6)" }}
                   >
-                    About Harry Dev
+                    {t.about.marquee}
                   </h2>
                   <span className="text-[66px] sm:text-[96px] md:text-[132px] lg:text-[180px] font-extrabold uppercase text-amber-50/30 select-none pr-8 shrink-0">
                     .
@@ -529,7 +420,7 @@ const AboutPage = () => {
 
           <div className=" space-y-3">
             <p className="font-mono text-[13px] text-white/70 uppercase tracking-[0.1em]">
-              Explore unexpected & weird things about me
+              {t.about.subtitle}
             </p>
             <div className="w-full h-[1px] bg-white/40 mb-20" />
           </div>
@@ -553,7 +444,7 @@ const AboutPage = () => {
             transition={{ duration: 0.5 }}
             className="relative left-1/2 right-1/2 -mx-[50vw] w-screen mb-16 backdrop-blur-sm rounded-2xl p-6 md:p-8"
           >
-            <h3 className="h1 mb-8 text-center">Tech Stack And Tools</h3>
+            <h3 className="h1 mb-8 text-center">{t.about.skillsTitle}</h3>
             <div className="space-y-3 w-full px-2 md:px-6">
               {skillRows.map((row, index) => (
                 <SkillMarqueeRow
@@ -576,7 +467,7 @@ const AboutPage = () => {
             transition={{ duration: 0.5 }}
             className="mb-16 mt-32 bg-secondary/40 backdrop-blur-sm rounded-2xl p-8"
           >
-            <h3 className="h1 mb-12 text-center">Education Journey</h3>
+            <h3 className="h1 mb-12 text-center">{t.about.educationTitle}</h3>
             <div className="relative px-4">
               {/* Horizontal Timeline Line - Hidden on mobile */}
               <div className="hidden lg:block absolute top-1.5 left-0 right-0 h-[2px] bg-accent/30"></div>
@@ -631,7 +522,7 @@ const AboutPage = () => {
             transition={{ duration: 0.5 }}
             className="mb-16 mt-40"
           >
-            <h3 className="h1 mb-8 text-center">My Activities</h3>
+            <h3 className="h1 mb-8 text-center">{t.about.activitiesTitle}</h3>
             <div className="space-y-6">
               {experiences.map((exp, index) => (
                 <motion.div
@@ -686,9 +577,9 @@ const AboutPage = () => {
             className="mt-40 mb-8 xl:-mb-25"
           >
             <div className="p-2 sm:p-4">
-              <h3 className="h1 mb-2 text-center">Facts about me</h3>
+              <h3 className="h1 mb-2 text-center">{t.about.funFactsTitle}</h3>
               <p className="text-center text-white/65 text-sm mb-8">
-                {isTouchDevice ? "Tap a word to reveal its story" : "Hover a word to reveal its story"}
+                {isTouchDevice ? t.about.funFactsHintTap : t.about.funFactsHintHover}
               </p>
 
               <div className="grid grid-cols-1 xl:grid-cols-[1.45fr_1fr] gap-6 lg:gap-8 items-stretch">
@@ -761,7 +652,7 @@ const AboutPage = () => {
                     {/* Label "Current Highlight" - Ghim ở góc trên cùng bên phải */}
                     <div className="absolute top-4 right-4">
                       <p className="text-xs tracking-wider text-white/80 font-semibold bg-black/40 px-3 py-1.5 rounded-full backdrop-blur-sm">
-                        Tap picture to view
+                        {t.about.tapImage}
                       </p>
                     </div>
 
@@ -773,12 +664,12 @@ const AboutPage = () => {
 
                   <div className="p-6 md:p-7">
                     <p className="text-white/85 leading-relaxed text-[15px]">{activeFact.description}</p>
-                    {activeFact.title === "Course Materials" && (
+                    {activeFactIndex === 4 && (
                       <Link
                         href="/materials"
                         className="inline-flex mt-5 items-center gap-2 rounded-full border border-accent/40 bg-accent/15 px-4 py-2 text-sm font-semibold text-accent hover:bg-accent hover:text-primary transition-colors"
                       >
-                        View My Study Materials
+                        {t.about.viewMaterials}
                       </Link>
                     )}
                     {/* <button

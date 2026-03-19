@@ -6,6 +6,8 @@ import MobileNav from "@/components/MobileNav"
 import PageTransition from "@/components/PageTransition"
 import RectangleTransition from "@/components/RectangleTransition";
 import CustomCursor from "@/components/CustomCursor";
+import { LanguageProvider } from "@/components/LanguageProvider";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -28,25 +30,28 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${sora.variable} ${jetbrainsMono.variable}`}>
       <body className="font-primary antialiased cursor-none">
-        <CustomCursor />
-        <RectangleTransition />
-        <PageTransition>
-          {/* Mobile Navigation */}
-          <MobileNav />
-          
-          {/* Main Content */}
-          <div className="fixed z-0 w-full h-[60%] -right-[50%] rounded-full blue__gradient"></div>
-          <div className="fixed z-0 w-full h-[60%] right-[50%] rounded-full blue__gradient"></div>
+        <LanguageProvider>
+          <CustomCursor />
+          <RectangleTransition />
+          <PageTransition>
+            <LanguageSwitcher />
+            {/* Mobile Navigation */}
+            <MobileNav />
 
-          <div className="w-full min-h-screen">
-            <div className="px-6 md:px-10 mx-auto pt-20 md:pt-8 pb-24">
-              {children}
+            {/* Main Content */}
+            <div className="fixed z-0 w-full h-[60%] -right-[50%] rounded-full blue__gradient"></div>
+            <div className="fixed z-0 w-full h-[60%] right-[50%] rounded-full blue__gradient"></div>
+
+            <div className="w-full min-h-screen">
+              <div className="px-6 md:px-10 mx-auto pt-20 md:pt-8 pb-24">
+                {children}
+              </div>
             </div>
-          </div>
-          
-          {/* Floating Dock - Desktop Only */}
-          <FloatingDock />
-        </PageTransition>
+
+            {/* Floating Dock - Desktop Only */}
+            <FloatingDock />
+          </PageTransition>
+        </LanguageProvider>
       </body>
     </html>
   );

@@ -2,32 +2,34 @@
 import React from 'react'
 import Link from "next/link"
 import { usePathname } from 'next/navigation'
-
-const links = [
-    {
-        name: "Home",
-        path: "/"
-    },
-    {
-        name: "About",
-        path: "/about"
-    },
-    {
-        name: "Courses",
-        path: "/services"
-    },
-    {
-        name: "Work",
-        path: "/work"
-    },
-    {
-        name: "Contact",
-        path: "/contact"
-    },
-]
+import { useI18n } from './LanguageProvider'
 
 const NavLinks = ({containerStyles}) => {
     const pathname = usePathname();
+    const { t } = useI18n();
+    const links = [
+        {
+            name: t.nav.home,
+            path: "/"
+        },
+        {
+            name: t.nav.about,
+            path: "/about"
+        },
+        {
+            name: t.nav.materials,
+            path: "/materials"
+        },
+        {
+            name: t.nav.projects,
+            path: "/work"
+        },
+        {
+            name: t.nav.contact,
+            path: "/contact"
+        },
+    ]
+
     return (
         <ul className={containerStyles}>
             {links.map((link,index)=>{

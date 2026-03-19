@@ -9,71 +9,14 @@ import Image from "next/image";
 import { MdArrowOutward } from "react-icons/md";
 import { FaGithub } from "react-icons/fa";
 import { X, ExternalLink } from "lucide-react";
+import { useI18n } from "@/components/LanguageProvider";
 
 const moreProjects = "https://github.com/Harry1720?tab=repositories";
 
-// data
-const projects = [
-  {
-    id: 1,
-    code: "01",
-    title: "Car Sales & Management Web",
-    // year: "2025",
-    // summary: "Accessible Travel for people with special needs",
-    description:
-      "This is a web-based car management system for VinFast dealerships, providing functionality for car browsing, deposits, and administration.",
-    image: "/image/car_management.png",
-    github: "https://github.com/Harry1720/Car-Management",
-    link: "https://carharrycoder.netlify.app/",
-    teamSize: 5,
-    tech: ["React.js", "CSS", "Vite", "Cloudinary"],
-  },
-  {
-    id: 2,
-    code: "02",
-    title: "VietNam Travel Guide",
-    // year: "2025",
-    // summary: "Website Design for a premium safety wear brand",
-    description:
-      "A comprehensive Vietnam travel guide website designed to be a trusted companion for travelers, enabling them to easily discover destinations and share their experiences through blogs while exploring and enjoying journeys across the country.",
-    image: "/image/travel.png",
-    github: "https://github.com/Harry1720/Vietnam-Travel-Guide",
-    link: "/",
-    teamSize: 5,
-    tech: ["HTML5", "CSS3", "JavaScript", "jQuery", "PHP", "MySQL", "Cloudinary"],
-  },
-  {
-    id: 3,
-    code: "03",
-    title: "Disaster Warning",
-    // year: "2024",
-    // summary: "Factory Management System",
-    description:
-      "A comprehensive Disaster Warning System designed to predict, manage, and alert users about natural hazards, consisting of three main components—AI, Backend, and Frontend—with real-time user tracking and map-based location visualization.",
-    image: "/image/disaster.png",
-    github: "https://github.com/Harry1720/DisasterWarning",
-    link: "/",
-    teamSize: 6,
-    tech: ["React", "TypeScript", "Vite", "Leaflet", "MUI", "Ant Design", "Chart.js", "Java Spring Boot", "ModelMapper", "Mail Service", "Python", "Cloudinary", "Swagger"],
-  },
-  {
-    id: 4,
-    code: "04",
-    title: "Auto-reply Email With LLM & RAG",
-    // year: "2024",
-    // summary: "Re-design for the AGODA Website",
-    description:
-      "Developed a smart email assistant system utilizing Large Language Models and Retrieval-Augmented Generation to automatically generate personalized reply drafts by analyzing and learning writing styles from the user's sent email history.",
-    image: "/image/mail_LLM.png",
-    github: "https://github.com/Harry1720/AppLLM_AutoReplyEmail_FE",
-    link: "/",
-    teamSize: 2,
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Python", "FastAPI", "Swagger", "Uvicorn", "Supabase", "pgvector", "Llama 3.3 70B", "Groq API", "HuggingFace", "LangChain", "LangGraph", "Gmail API", "Google OAuth 2.0", "JWT",],
-  },
-];
-
 const WorkPage = () => {
   const [activeProject, setActiveProject] = useState(null);
+  const { t } = useI18n();
+  const projects = t.workData.projects;
 
   useEffect(() => {
     if (!activeProject) return;
@@ -118,7 +61,7 @@ const WorkPage = () => {
                     className="text-[66px] sm:text-[96px] md:text-[132px] lg:text-[180px] font-extrabold uppercase text-amber-50/50 select-none pr-8"
                     style={{ WebkitTextStroke: "2px rgba(255,255,255,0.6)" }}
                   >
-                    PROJECTS
+                    {t.work.marquee}
                   </h2>
                   <span className="text-[66px] sm:text-[96px] md:text-[132px] lg:text-[180px] font-extrabold uppercase text-amber-50/30 select-none pr-8 shrink-0">
                     .
@@ -130,7 +73,7 @@ const WorkPage = () => {
 
           <div className=" space-y-3">
             <p className="font-mono text-[13px] text-white/70 uppercase tracking-[0.1em]">
-              A curated collection of my works
+              {t.work.subtitle}
             </p>
             <div className="w-full h-[1px] bg-white/40 mb-10" />
           </div>
@@ -142,7 +85,7 @@ const WorkPage = () => {
               rel="noreferrer"
               className="inline-flex h-10 w-fit items-center gap-2 rounded-full border border-accent/40 bg-accent/15 px-4 font-mono text-xs text-accent transition-colors hover:bg-accent hover:text-primary sm:h-11 sm:text-sm"
             >
-              View all projects
+              {t.work.viewAll}
               <ExternalLink size={14} />
             </a>            
           </div>
@@ -214,7 +157,7 @@ const WorkPage = () => {
                 type="button"
                 className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full border border-white/25 bg-black/45 text-white flex items-center justify-center hover:bg-black/70 transition-colors"
                 onClick={() => setActiveProject(null)}
-                aria-label="Close project modal"
+                aria-label={t.contact.closeProjectModal}
               >
                 <X size={18} />
               </button>
@@ -227,7 +170,7 @@ const WorkPage = () => {
                   <div className="flex items-center gap-6 mb-4">
                     {/* <p className="text-white/80 text-[22px]">{activeProject.year}</p> */}
                     <p className="text-white/80 text-[22px]">
-                      Team size: {activeProject.teamSize}
+                      {t.work.teamSize}: {activeProject.teamSize}
                     </p>
                   </div>
 
@@ -240,7 +183,7 @@ const WorkPage = () => {
                         rel="noreferrer"
                       >
                         <MdArrowOutward className="text-xl" />
-                        <span>Live Project</span>
+                        <span>{t.work.liveProject}</span>
                       </Link>
                     )}
 
@@ -252,7 +195,7 @@ const WorkPage = () => {
                         rel="noreferrer"
                       >
                         <FaGithub className="text-xl" />
-                        <span>GitHub Link</span>
+                        <span>{t.work.github}</span>
                       </Link>
                     )}
                   </div>
@@ -261,7 +204,7 @@ const WorkPage = () => {
                     {activeProject.description}
                   </p>
 
-                  <p className="text-white/90 text-[20px] font-semibold mb-3">Tech Stack:</p>
+                  <p className="text-white/90 text-[20px] font-semibold mb-3">{t.work.techStack}</p>
                   <ul className="flex flex-wrap gap-3">
                     {activeProject.tech.map((item) => (
                       <li

@@ -5,38 +5,39 @@ import { usePathname } from 'next/navigation'
 import { GoHome, GoPersonFill } from "react-icons/go"
 import { MdCode, MdLibraryBooks } from "react-icons/md"
 import { RiContactsBook3Fill } from "react-icons/ri"
-
-const navItems = [
-    {
-        name: "Home",
-        path: "/",
-        icon: GoHome
-    },
-    {
-        name: "About Me",
-        path: "/about",
-        icon: GoPersonFill
-    },
-    {
-        name: "Projects",
-        path: "/work",
-        icon: MdCode
-    },
-    {
-        name: "Study Notes",
-        path: "/materials",
-        icon: MdLibraryBooks
-    },
-    {
-        name: "Contact",
-        path: "/contact",
-        icon: RiContactsBook3Fill
-    },
-]
+import { useI18n } from './LanguageProvider'
 
 const FloatingDock = () => {
     const pathname = usePathname();
     const [hoveredIndex, setHoveredIndex] = useState(null);
+    const { t } = useI18n();
+    const navItems = [
+        {
+            name: t.nav.home,
+            path: "/",
+            icon: GoHome
+        },
+        {
+            name: t.nav.aboutMe,
+            path: "/about",
+            icon: GoPersonFill
+        },
+        {
+            name: t.nav.projects,
+            path: "/work",
+            icon: MdCode
+        },
+        {
+            name: t.nav.studyNotes,
+            path: "/materials",
+            icon: MdLibraryBooks
+        },
+        {
+            name: t.nav.contact,
+            path: "/contact",
+            icon: RiContactsBook3Fill
+        },
+    ]
     
     // Calculate size based on distance from hovered item
     const getSize = (index) => {

@@ -6,18 +6,19 @@ import { RiMenu3Fill } from "react-icons/ri"
 import { IoClose } from "react-icons/io5"
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa"
 import Logo from './Logo'
-
-const navItems = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Projects", path: "/work" },
-    { name: "Study Notes", path: "/materials" },
-    { name: "Contact", path: "/contact" },
-]
+import { useI18n } from './LanguageProvider'
 
 const MobileNav = () => {
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
+    const { t } = useI18n();
+    const navItems = [
+        { name: t.nav.home, path: "/" },
+        { name: t.nav.about, path: "/about" },
+        { name: t.nav.projects, path: "/work" },
+        { name: t.nav.studyNotes, path: "/materials" },
+        { name: t.nav.contact, path: "/contact" },
+    ]
 
     const toggleMenu = () => setIsOpen(!isOpen);
     const closeMenu = () => setIsOpen(false);
@@ -101,11 +102,11 @@ const MobileNav = () => {
 
                     {/* Footer Info */}
                     <div className="py-8 border-t border-white/50 px-1">
-                        <div className="grid grid-cols-2 gap-2 items-center">
+                        <div className="grid grid-cols-2 gap-1 items-center">
                             {/* Left Column - Brand */}
                             <div>
                                 <p className="text-xl font-semibold text-white mb-2">Harry Dev</p>
-                                <p className="text-white/60 text-sm">Building things for the web</p>
+                                <p className="text-white/60 text-sm">{t.nav.mobileTagline}</p>
                             </div>
 
                             {/* Right Column - Social Links */}

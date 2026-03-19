@@ -5,6 +5,7 @@ import DateTime from "@/components/DateTime";
 import BackToTop from "@/components/BackToTop";
 import DesignCredit from "@/components/DesignCredit";
 import { ArrowUpRight, X, ExternalLink, FileText } from "lucide-react";
+import { useI18n } from "@/components/LanguageProvider";
 
 const categories = ["All", "IT Subjects", "Other Subjects", "Supplementary"];
 const fullMaterialsUrl = "https://github.com/Harry1720/Courses_Material";
@@ -36,7 +37,7 @@ const CourseRow = ({ course, index, onOpen }) => (
             {course.format}
           </span>
           <span aria-hidden="true">•</span>
-          <span>{course.pages} Pages</span>
+          <span>{course.pages} {course.pageLabel}</span>
         </div>
       </div>
     </div>
@@ -69,6 +70,7 @@ const CourseRow = ({ course, index, onOpen }) => (
 
 // ─── Page ──────────────────────────────────────────────────────────────────────
 const CoursesPage = () => {
+  const { t, locale } = useI18n();
   const [activeDoc, setActiveDoc] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [activeCategory, setActiveCategory] = useState("All");
@@ -87,7 +89,7 @@ const CoursesPage = () => {
     const loadCourses = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch("/api/materials", { cache: "no-store" });
+        const response = await fetch(`/api/materials?lang=${locale}`, { cache: "no-store" });
 
         if (!response.ok) {
           throw new Error("Failed to fetch materials");
@@ -97,7 +99,7 @@ const CoursesPage = () => {
         setCourses(payload.courses || []);
         setLoadError("");
       } catch {
-        setLoadError("Could not load materials. Please try again.");
+        setLoadError(t.materials.loadError);
         setCourses([]);
       } finally {
         setIsLoading(false);
@@ -105,7 +107,7 @@ const CoursesPage = () => {
     };
 
     loadCourses();
-  }, []);
+  }, [locale, t.materials.loadError]);
 
   const handleOpen = (doc) => {
     if (isMobile) {
@@ -120,8 +122,24 @@ const CoursesPage = () => {
   };
 
   const filteredCourses = courses.filter(
-    (item) => activeCategory === "All" || item.category === activeCategory
+    (item) =>
+      activeCategory === "All" ||
+      item.categoryKey === activeCategory ||
+      item.category === activeCategory
   );
+
+  const localizedCategories = {
+    All: t.materials.all,
+    "IT Subjects": t.materials.itSubjects,
+    "Other Subjects": t.materials.otherSubjects,
+    Supplementary: t.materials.supplementary,
+  };
+
+  const filteredCoursesWithLabels = filteredCourses.map((course) => ({
+    ...course,
+    category: course.category || localizedCategories[course.categoryKey] || localizedCategories[course.category] || course.category,
+    pageLabel: t.materials.pages,
+  }));
 
   return (
     <>
@@ -150,7 +168,7 @@ const CoursesPage = () => {
                     className="text-[66px] sm:text-[96px] md:text-[132px] lg:text-[180px] font-extrabold uppercase text-amber-50/50 select-none pr-8"
                     style={{ WebkitTextStroke: "2px rgba(255,255,255,0.6)" }}
                   >
-                    STUDY NOTES & MATERIALS
+                    {t.materials.marquee}
                   </h2>
                   <span className="text-[66px] sm:text-[96px] md:text-[132px] lg:text-[180px] font-extrabold uppercase text-amber-50/30 select-none pr-8 shrink-0">
                     .
@@ -163,7 +181,7 @@ const CoursesPage = () => {
           {/* ── Sub-heading ── */}
           <div className="space-y-3">
             <p className="font-mono text-[13px] text-white/70 uppercase tracking-widest">
-              A personal archive of course materials & notes
+              {t.materials.subtitle}
             </p>
             <div className="w-full h-px bg-white/40 mb-8" />
           </div>
@@ -185,7 +203,7 @@ const CoursesPage = () => {
                           : "border border-white/20 text-white/60 hover:border-accent hover:text-white"
                       }`}
                     >
-                      {category}
+                      {localizedCategories[category] || category}
                     </button>
                   );
                 })}
@@ -197,7 +215,7 @@ const CoursesPage = () => {
                 rel="noreferrer"
                 className="inline-flex w-fit items-center gap-2 rounded-full border border-accent/40 bg-accent/15 px-4 py-2 font-mono text-xs text-accent transition-colors hover:bg-accent hover:text-primary sm:text-sm"
               >
-                View full materials
+                {t.materials.viewFull}
                 <ExternalLink size={14} />
               </a>
             </div>
@@ -207,7 +225,7 @@ const CoursesPage = () => {
           <div className="w-full border-t border-white/10">
             {isLoading && (
               <div className="px-4 sm:px-6 py-8 text-white/60 font-mono text-sm">
-                Loading materials...
+                {t.materials.loading}
               </div>
             )}
 
@@ -219,12 +237,12 @@ const CoursesPage = () => {
 
             {!isLoading && !loadError && filteredCourses.length === 0 && (
               <div className="px-4 sm:px-6 py-8 text-white/60 font-mono text-sm">
-                No materials found for this category.
+                {t.materials.empty}
               </div>
             )}
 
             <AnimatePresence mode="popLayout">
-              {filteredCourses.map((course, i) => (
+              {filteredCoursesWithLabels.map((course, i) => (
                 <CourseRow
                   key={course.id}
                   course={course}
@@ -267,16 +285,16 @@ const CoursesPage = () => {
                     target="_blank"
                     rel="noreferrer"
                     className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/20 text-white/70 hover:text-accent hover:border-accent/50 transition-colors text-sm font-mono"
-                    title="Open in Google Drive"
+                    title={t.materials.openGoogleDriveTitle}
                   >
                     <ExternalLink size={14} />
-                    <span className="hidden sm:inline">Open in Drive</span>
+                    <span className="hidden sm:inline">{t.materials.openInDrive}</span>
                   </a>
                   <button
                     type="button"
                     onClick={() => setActiveDoc(null)}
                     className="w-9 h-9 rounded-full border border-white/20 bg-white/5 text-white flex items-center justify-center hover:bg-white/15 transition-colors"
-                    aria-label="Close document viewer"
+                    aria-label={t.materials.closeViewer}
                   >
                     <X size={17} />
                   </button>

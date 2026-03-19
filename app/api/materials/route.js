@@ -6,6 +6,32 @@ import * as XLSX from "xlsx";
 const dataDir = path.join(process.cwd(), "data");
 const sourceCandidates = ["materials.xlsx", "materials.csv"];
 
+const getCell = (row, candidates) => {
+  for (const key of candidates) {
+    if (row[key] !== undefined && row[key] !== null && String(row[key]).trim() !== "") {
+      return String(row[key]).trim();
+    }
+  }
+
+  return "";
+};
+
+const getLocalizedField = (row, baseName, locale, fallback = "") => {
+  if (locale === "vi") {
+    return (
+      getCell(row, [`${baseName}_vi`, `${baseName}Vi`]) ||
+      getCell(row, [baseName]) ||
+      fallback
+    );
+  }
+
+  return (
+    getCell(row, [`${baseName}_en`, `${baseName}En`]) ||
+    getCell(row, [baseName]) ||
+    fallback
+  );
+};
+
 const pickSourceFile = async () => {
   for (const fileName of sourceCandidates) {
     const filePath = path.join(dataDir, fileName);
@@ -21,7 +47,7 @@ const pickSourceFile = async () => {
   return null;
 };
 
-const normalizeCourse = (row, fallbackId) => {
+const normalizeCourse = (row, fallbackId, locale) => {
   const id = Number(row.id) || fallbackId;
   const pages = Number(row.pages) || 0;
   const tags = String(row.tags || "")
@@ -32,8 +58,9 @@ const normalizeCourse = (row, fallbackId) => {
   return {
     id,
     code: String(row.code || id),
-    title: String(row.title || "Untitled"),
-    category: String(row.category || "Other Subjects"),
+    title: getLocalizedField(row, "title", locale, "Untitled"),
+    categoryKey: String(row.category || "Other Subjects"),
+    category: getLocalizedField(row, "category", locale, "Other Subjects"),
     format: String(row.format || "PDF"),
     pages,
     tags,
@@ -42,8 +69,10 @@ const normalizeCourse = (row, fallbackId) => {
   };
 };
 
-export async function GET() {
+export async function GET(request) {
   try {
+    const rawLang = request.nextUrl.searchParams.get("lang") || "en";
+    const locale = rawLang.toLowerCase().startsWith("vi") ? "vi" : "en";
     const source = await pickSourceFile();
 
     if (!source) {
@@ -63,9 +92,9 @@ export async function GET() {
       defval: "",
     });
 
-    const courses = rows.map((row, index) => normalizeCourse(row, index + 1));
+    const courses = rows.map((row, index) => normalizeCourse(row, index + 1, locale));
 
-    return NextResponse.json({ courses, source: source.fileName });
+    return NextResponse.json({ courses, source: source.fileName, locale });
   } catch (error) {
     return NextResponse.json(
       { message: "Failed to load materials", details: error.message },

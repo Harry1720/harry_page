@@ -1,42 +1,53 @@
+import { useI18n } from "@/components/LanguageProvider";
+
 const terminalLines = [
     {
         key: 'full_name',
+        keyLabelPath: 'terminalAbout.lines1.fullname',
         value: 'Huỳnh Nguyễn Quốc Bảo (Harry)',
         type: 'string',
     },
     {
         key: 'date_of_birth',
+        keyLabelPath: 'terminalAbout.lines1.dateofbirth',
         value: '17.07.2004',
         type: 'string',
     },
     {
         key: 'nationality',
-        value: 'Vietnamese',
+      keyLabelPath: 'terminalAbout.lines1.nationality',
+      value: 'terminalAbout.lines.nationality',
         type: 'string',
     },
     {
         key: 'home',
-        value: 'Hồ Chí Minh City',
+      keyLabelPath: 'terminalAbout.lines1.home',
+      value: 'terminalAbout.lines.home',
         type: 'string',
     },
     {
         key: 'major',
-        value: 'Information Technology',
+      keyLabelPath: 'terminalAbout.lines1.major',
+      value: 'terminalAbout.lines.major',
         type: 'string',
     },
     {
         key: 'role',
-        value: 'Frontend Developer',
+      keyLabelPath: 'terminalAbout.lines1.role',
+      value: 'terminalAbout.lines.role',
         type: 'string',
     },
     {
         key: 'foreign_language',
-        value: 'English',
+      keyLabelPath: 'terminalAbout.lines1.language',
+      value: 'terminalAbout.lines.language',
         type: 'string',
     },
 ];
 
-const renderValue = (line) => {
+const resolvePath = (obj, path) => path.split(".").reduce((acc, key) => acc?.[key], obj);
+
+const renderValue = (line, t) => {
   if (line.type === 'array') {
     return (
       <>
@@ -52,10 +63,21 @@ const renderValue = (line) => {
     );
   }
 
-  return <span className="text-amber-200">&quot;{line.value}&quot;</span>;
+  const translatedValue = line.value.startsWith("terminalAbout.")
+    ? resolvePath(t, line.value)
+    : line.value;
+
+  return <span className="text-amber-200">&quot;{translatedValue}&quot;</span>;
+};
+
+const renderKey = (line, t) => {
+  const translatedKey = line.keyLabelPath ? resolvePath(t, line.keyLabelPath) : undefined;
+  return translatedKey || line.key;
 };
 
 const TerminalAbout = () => {
+  const { t } = useI18n();
+
   return (
     <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-2xl backdrop-blur-lg">
       <div className="absolute inset-0 bg-linear-to-br from-white/10 via-transparent to-accent/10" />
@@ -79,33 +101,33 @@ const TerminalAbout = () => {
         <div className="space-y-5">
           <div className="space-y-3">
             <p className="font-mono text-xs uppercase tracking-[0.34em] text-accent/80">
-              About Me
+              {t.terminalAbout.titleTag}
             </p>
             <h2 className="h2 max-w-lg">
-              From early curiosity to crafting digital experiences
+              {t.terminalAbout.title}
             </h2>
           </div>
 
           <div className="space-y-3 text-white/72">
             <p>
-              My childhood fascination with exploring computers and mobile devices naturally evolved into a lifelong passion for Information Technology.
+              {t.terminalAbout.paragraph1}
             </p>
             <p>
-              I found myself drawn to web development. I simply enjoy building practical, visually appealing websites with a focus on UI/UX, aiming to create digital spaces that feel calm, precise, and easy to navigate.
+              {t.terminalAbout.paragraph2}
             </p>
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="rounded-2xl border border-white/10 bg-black/20 p-4 backdrop-blur-md">
-              <p className="mb-1 font-mono text-[11px] uppercase tracking-[0.28em] text-white/45">Current Focus</p>
+              <p className="mb-1 font-mono text-[11px] uppercase tracking-[0.28em] text-white/45">{t.terminalAbout.currentFocus}</p>
               <p className="text-sm leading-relaxed text-white/82">
-                Refining core coding skills, deepening UI/UX knowledge, exploring modern web technologies.
+                {t.terminalAbout.currentFocusDesc}
               </p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-black/20 p-4 backdrop-blur-md">
-              <p className="mb-1 font-mono text-[11px] uppercase tracking-[0.28em] text-white/45">Work Style</p>
+              <p className="mb-1 font-mono text-[11px] uppercase tracking-[0.28em] text-white/45">{t.terminalAbout.workStyle}</p>
               <p className="text-sm leading-relaxed text-white/82">
-                Thoughtful execution, careful detail, and smooth user-facing interactions.
+                {t.terminalAbout.workStyleDesc}
               </p>
             </div>
           </div>
@@ -126,7 +148,7 @@ const TerminalAbout = () => {
           <div className="space-y-2 p-6 font-mono text-sm text-gray-300 md:text-[15px]">
             <p>
               <span className="text-teal-300">const</span>{' '}
-              <span className="text-sky-300">profile</span>{' '}
+              <span className="text-sky-300">harry_information</span>{' '}
               <span className="text-white/75">=</span>{' '}
               <span className="text-white/85">{'{'}</span>
             </p>
@@ -134,9 +156,9 @@ const TerminalAbout = () => {
             <div className="space-y-2 pl-5">
               {terminalLines.map((line, index) => (
                 <p key={line.key} className="leading-relaxed wrap-break-word">
-                  <span className="text-sky-300">&quot;{line.key}&quot;</span>
+                  <span className="text-sky-300">&quot;{renderKey(line, t)}&quot;</span>
                   <span className="text-white/65">: </span>
-                  {renderValue(line)}
+                  {renderValue(line, t)}
                   {index < terminalLines.length - 1 ? <span className="text-white/55">,</span> : null}
                 </p>
               ))}

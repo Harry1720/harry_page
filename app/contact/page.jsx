@@ -13,6 +13,7 @@ import {
 import DateTime from "@/components/DateTime";
 import BackToTop from "@/components/BackToTop";
 import DesignCredit from "@/components/DesignCredit";
+import { useI18n } from "@/components/LanguageProvider";
 
 const socialLinks = [
   {
@@ -43,6 +44,8 @@ const socialLinks = [
 ];
 
 const ContactPage = () => {
+  const { t } = useI18n();
+
   return (
     <>
       <DateTime />
@@ -72,7 +75,7 @@ const ContactPage = () => {
                     className="text-[66px] sm:text-[96px] md:text-[132px] lg:text-[180px] font-extrabold uppercase text-amber-50/50 select-none pr-8"
                     style={{ WebkitTextStroke: "2px rgba(255,255,255,0.6)" }}
                   >
-                    Contact with Harry
+                    {t.contact.marquee}
                   </h2>
                   <span className="text-[66px] sm:text-[96px] md:text-[132px] lg:text-[180px] font-extrabold uppercase text-amber-50/30 select-none pr-8 shrink-0">
                     .
@@ -84,7 +87,7 @@ const ContactPage = () => {
 
           <div className=" space-y-3">
             <p className="font-mono text-[13px] text-white/70 uppercase tracking-[0.1em]">
-              Have a question or want to work together? Give me a connection and your feelings. I&apos;d love to hear from you
+              {t.contact.subtitle}
             </p>
             <div className="w-full h-[1px] bg-white/40 mb-20" />
           </div>
@@ -113,9 +116,9 @@ const ContactPage = () => {
 
                 <div className="grid grid-cols-1 gap-7 xl:grid-cols-[1fr_1.28fr]">
                 <div className="space-y-5">
-                    <h3 className="mb-4 text-2xl font-semibold text-white">Contact Information</h3>
+                  <h3 className="mb-4 text-2xl font-semibold text-white">{t.contact.contactInfo}</h3>
                     <div className="rounded-2xl border border-accent/10 bg-secondary/65 p-6 md:p-7">
-                    <p className="mb-8 text-lg text-white/65">Fill up the form and I&apos;ll get back to you as soon as possible.</p>
+                  <p className="mb-8 text-lg text-white/65">{t.contact.formHint}</p>
 
                     <div className="space-y-6">
                         <div className="flex items-start gap-4">
@@ -123,7 +126,7 @@ const ContactPage = () => {
                             <Mail size={26} />
                         </span>
                         <div>
-                            <p className="font-semibold text-white">Email</p>
+                          <p className="font-semibold text-white">{t.contact.email}</p>
                             <p className="text-white/70">baohuynh4107@gmail.com</p>
                         </div>
                         </div>
@@ -133,7 +136,7 @@ const ContactPage = () => {
                             <Phone size={26} />
                         </span>
                         <div>
-                            <p className="font-semibold text-white">Phone</p>
+                          <p className="font-semibold text-white">{t.contact.phone}</p>
                             <p className="text-white/70">+84 349 869 243</p>
                         </div>
                         </div>
@@ -143,7 +146,7 @@ const ContactPage = () => {
                             <MapPin size={26} />
                         </span>
                         <div>
-                            <p className="font-semibold text-white">Location</p>
+                          <p className="font-semibold text-white">{t.contact.location}</p>
                             <p className="text-white/70">An Hội Đông Ward, Hồ Chí Minh City</p>
                         </div>
                         </div>
@@ -151,7 +154,7 @@ const ContactPage = () => {
                     </div>
 
                     <div>
-                    <h4 className="mb-4 text-2xl font-semibold text-white">Connect with me</h4>
+                    <h4 className="mb-4 text-2xl font-semibold text-white">{t.contact.connectWithMe}</h4>
                     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-3 2xl:grid-cols-5">
                         {socialLinks.map((item) => {
                         const Icon = item.icon;
@@ -177,36 +180,36 @@ const ContactPage = () => {
                     <form className="space-y-6">
                     <div>
                         <label className="mb-2 block font-semibold text-white" htmlFor="name">
-                        Name
+                      {t.contact.name}
                         </label>
                         <input
                         id="name"
                         type="text"
-                        placeholder="Your Name"
+                      placeholder={t.contact.yourName}
                         className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white placeholder:text-white/45 outline-none transition-colors focus:border-accent/80"
                         />
                     </div>
 
                     <div>
                         <label className="mb-2 block font-semibold text-white" htmlFor="email">
-                        Email
+                      {t.contact.email}
                         </label>
                         <input
                         id="email"
                         type="email"
-                        placeholder="Your Email"
+                      placeholder={t.contact.yourEmail}
                         className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white placeholder:text-white/45 outline-none transition-colors focus:border-accent/80"
                         />
                     </div>
 
                     <div>
                         <label className="mb-2 block font-semibold text-white" htmlFor="message">
-                        Message
+                      {t.contact.message}
                         </label>
                         <textarea
                         id="message"
                         rows={6}
-                        placeholder="Your Message"
+                      placeholder={t.contact.yourMessage}
                         className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white placeholder:text-white/45 outline-none transition-colors focus:border-accent/80"
                         />
                     </div>
@@ -216,7 +219,7 @@ const ContactPage = () => {
                         className="flex w-full items-center justify-center gap-3 rounded-xl bg-accent px-5 py-3 text-lg font-semibold text-primary transition-all hover:bg-white  hover:-translate-y-2 duration-200"
                     >
                         <Send size={18} />
-                        Send Message
+                      {t.contact.sendMessage}
                     </button>
                     </form>
                 </div>

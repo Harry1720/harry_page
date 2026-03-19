@@ -93,3 +93,22 @@ btn-tertiary {
   background: linear-gradient(180deg, rgba(188, 165, 255, 0) 0%,rgba(64, 196, 184, 0.4) 100%);
   filter: blur(123px);
 }
+
+/* Tùy chỉnh thanh cuộn cho toàn bộ trang */
+::-webkit-scrollbar {
+  width: 8px; /* Độ rộng của thanh cuộn dọc */
+  height: 8px; /* Độ cao của thanh cuộn ngang (nếu có) */
+}
+
+/* Rãnh thanh cuộn (Track) */
+::-webkit-scrollbar-track {
+  background: #121212;
+}
+
+/* Phần tay cầm thanh cuộn (Thumb) */
+::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(180deg, rgba(0,0,0,0.2), var(--color-accent-hover), var(--color-accent), rgb(255,255,255));
+  border-radius: 4px;
+  border: 2px solid transparent; /* Tạo khoảng cách (padding) giả giúp thanh cuộn trông mỏng hơn */
+  background-clip: content-box; 
+}
