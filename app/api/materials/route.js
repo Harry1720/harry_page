@@ -32,6 +32,44 @@ const getLocalizedField = (row, baseName, locale, fallback = "") => {
   );
 };
 
+const tagTranslationsVi = {
+  Vietnamese: "Tiếng Việt",
+  "Course Materials Compilation": "Tổng hợp tài liệu môn học",
+  Guide: "Hướng dẫn",
+  "Web Dev": "Phát triển web",
+  FE: "Front-end",
+  HTML: "HTML",
+  CSS: "CSS",
+  Handwriting: "Ghi tay",
+  DSA: "DSA",
+  SQL: "SQL",
+  Compilation: "Tổng hợp",
+  "IT Subjects": "Môn CNTT",
+  "Other Subjects": "Môn khác",
+  Supplementary: "Bổ trợ kiến thức",
+};
+
+const getLocalizedTags = (row, locale) => {
+  const localizedRaw =
+    locale === "vi"
+      ? getCell(row, ["tags_vi", "tagsVi"])
+      : getCell(row, ["tags_en", "tagsEn"]);
+
+  const fallbackRaw = getCell(row, ["tags"]);
+  const raw = localizedRaw || fallbackRaw;
+
+  const parsed = String(raw)
+    .split("|")
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+  if (locale !== "vi") {
+    return parsed;
+  }
+
+  return parsed.map((tag) => tagTranslationsVi[tag] || tag);
+};
+
 const pickSourceFile = async () => {
   for (const fileName of sourceCandidates) {
     const filePath = path.join(dataDir, fileName);
@@ -50,10 +88,7 @@ const pickSourceFile = async () => {
 const normalizeCourse = (row, fallbackId, locale) => {
   const id = Number(row.id) || fallbackId;
   const pages = Number(row.pages) || 0;
-  const tags = String(row.tags || "")
-    .split("|")
-    .map((item) => item.trim())
-    .filter(Boolean);
+  const tags = getLocalizedTags(row, locale);
 
   return {
     id,
@@ -79,8 +114,9 @@ export async function GET(request) {
       return NextResponse.json({ courses: [] });
     }
 
-    const buffer = await fs.readFile(source.filePath);
-    const workbook = XLSX.read(buffer, { type: "buffer" });
+    const workbook = source.fileName.endsWith(".csv")
+      ? XLSX.read(await fs.readFile(source.filePath, "utf8"), { type: "string" })
+      : XLSX.read(await fs.readFile(source.filePath), { type: "buffer" });
     const firstSheetName = workbook.SheetNames[0];
 
     if (!firstSheetName) {

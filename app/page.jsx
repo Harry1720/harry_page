@@ -124,7 +124,7 @@ const Home = () => {
           opacity:1,
           transition:{delay:1, duration:0.4, ease:"easeIn"}
         }}
-        className="flex flex-col relative xl:mt-29 md:mt-25 mt-30 overflow-hidden"
+        className="flex flex-col relative xl:mt-29 md:mt-25 mt-15 overflow-hidden"
       >
         {/* Main Content */}
         <div className="flex-1 flex flex-col xl:flex-row items-center xl:items-start gap-18">

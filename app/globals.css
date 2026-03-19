@@ -17,7 +17,7 @@
   --color-tertiary:       #162a2a;
   --color-tertiary-hover: #1e3636;
   /* fonts */
-  --font-primary: var(--font-sora);
+  --font-primary: var(--font-space-grotesk);
   --font-mono: var(--font-jetbrains-mono);
 }
 

@@ -26,13 +26,13 @@ export const messages = {
       gmt: "(GMT+7)",
     },
     home: {
-      introPrefix: "HUỲNH",
-      introPostfix: "BẢO",
+      introPrefix: "TÔI LÀ",
+      introPostfix: "HARRY",
       role1: "LẬP TRÌNH VIÊN WEBSITE",
       role2: "LẬP TRÌNH VIÊN FRONT-END",
     //   roles: ["LẬP TRÌNH VIÊN WEB", 2000, "LẬP TRÌNH VIÊN FRONT-END", 2000],
       description:
-        "Xây dựng website hoạt động tốt và ấn tượng, tập trung vào sự mượt mà cùng trải nghiệm mang tính thực tiễn cao.",
+        "Tên 'trên giấy tờ' là Huỳnh Nguyễn Quốc Bảo. Tôi thích xây dựng các website hoạt động tốt và ấn tượng, tập trung vào sự mượt mà cùng trải nghiệm mang tính thực tiễn cao",
       viewResume: "Em gửi CV ạ!",
       viewWork: "Dự án đã làm",
       stats: {
@@ -319,7 +319,7 @@ export const messages = {
       role2: "FRONT-END DEVELOPER",
     //   roles: ["WEB DEVELOPER", 2000, "FRONT-END DEVELOPER", 2000],
       description:
-        "Building stable and visually engaging websites, focusing on seamless functionality and practical UI/UX.",
+        "My 'origignal' name is Huỳnh Nguyễn Quốc Bảo. I like building stable and visually engaging websites, focusing on seamless functionality and practical UI/UX.",
       viewResume: "View My Resume",
       viewWork: "View My Work",
       stats: {

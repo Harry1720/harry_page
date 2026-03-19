@@ -1,29 +1,29 @@
 id,code,title,title_vi,category,format,pages,tags,year,driveId
-1,01,Computer Network,M?ng m�y t�nh,IT Subjects,PDF,286,Vietnamese|Course Materials Compilation,2026,1AtIE62DliIIYj6hVAUPzKPlPA_DPvMQd
-2,02,Computer Vision and Image Processing,X? l� ?nh v� th? gi�c m�y t�nh,IT Subjects,PDF,170,Vietnamese|Course Materials Compilation,2026,1iXH-BO6mrBx0U2WwXFZxO2BiTjIo-dAC
-3,03,C/C++ Programming Techniques,K? thu?t l?p tr�nh (C/C++),IT Subjects,PDF,430,Vietnamese|Course Materials Compilation,2026,1IkZuuhg0QhdkJhmg5AnezzNVgRbnFC9u
-4,04,Data Mining,Khai th�c d? li?u,IT Subjects,PDF,267,Vietnamese|Course Materials Compilation,2026,1QTTGwAguQ77H9ElG2DN_jxSoyjcSSHpk
-5,05,Discrete Mathematics,To�n r?i r?c,IT Subjects,PDF,104,Vietnamese|Course Materials Compilation,2026,1Y2CHorQwkUZOPfXD4nhCuOn8ei85WWSj
-6,06,Graph Theory,L� thuy?t ?? th?,IT Subjects,PDF,152,Vietnamese|Course Materials Compilation,2026,1ZKPVpTvdqFcP2cmCalZZZZQVU5v8Iavo
-7,07,Information Security,An to�n th�ng tin,IT Subjects,PDF,183,Vietnamese|Course Materials Compilation,2026,1mTHPF5jSkEEkq_J4d73T5E1Eww_pu0GJ
-8,08,Introduction to Information Technology & Python Programming,Nh?p m�n CNTT & L?p tr�nh Python,IT Subjects,PDF,106,Vietnamese|Course Materials Compilation,2026,1JI4m4Ja3-_url66JEGGoRKFawGkEcZV8
-9,09,Object Oriented Programming,L?p tr�nh h??ng ??i t??ng,IT Subjects,PDF,188,Vietnamese|Course Materials Compilation,2026,1P9iwV6Q1cZBL2_44A_HewQwI5sU0aH1_
-10,10,Software Verification,Ki?m ch?ng ph?n m?m,IT Subjects,PDF,72,Vietnamese|Course Materials Compilation,2026,1zw7TTBwz_8W_uIwk53-4CnSI9B4n4gZU
-11,11,Marxist-Leninist Philosophy,Tri?t h?c M�c-L�nin,Other Subjects,PDF,95,Vietnamese|Course Materials Compilation,2026,1B9hrXJU0Ymi4Bi04Rp4ZRMFugr0Vl7cE
-12,12,Marxist-Leninist Political Economy,Kinh t? ch�nh tr? M�c-L�nin,Other Subjects,PDF,77,Vietnamese|Course Materials Compilation,2026,1x31YVC4OdPqYey8-lqQ_tynwHN5lTDn2
-13,13,Scientific Socialism,Ch? ngh?a x� h?i khoa h?c,Other Subjects,PDF,120,Vietnamese|Course Materials Compilation,2026,1JdZT6g17Syg3oPwZseuPKVCGthfzyCPx
-14,14,Information Technology Project Management,Qu?n tr? d? �n CNTT,Other Subjects,PDF,77,Vietnamese|Course Materials Compilation,2026,1f4qHZ_fVXweaaqYnq9bamqkncDH0aeOo
-15,15,Software Project Management,Qu?n tr? d? �n ph?n m?m,Other Subjects,PDF,135,Vietnamese|Course Materials Compilation,2026,1wdFik7cnQ3MS9c3cpcII_WpfctrXfMZL
-16,16,Git Command Usage Guide,H??ng d?n s? d?ng c�c l?nh Git,Supplementary,PDF,44,Vietnamese|Guide|Git,2025,121opi8E2Ncbtp7jOsMo74GveH4elzHgz
-17,17,Semantic element in HTML5,C�c ph?n t? ng? ngh?a trong HTML5,Supplementary,PDF,10,Vietnamese|Web Dev|FE|HTML,2025,18XPkX-bVn6nThOCLLS7eeXcdAsxdmpRt
+1,01,Computer Network,Mạng máy tính,IT Subjects,PDF,286,Vietnamese|Course Materials Compilation,2026,1AtIE62DliIIYj6hVAUPzKPlPA_DPvMQd
+2,02,Computer Vision and Image Processing,Xử lý ảnh và thị giác máy tính,IT Subjects,PDF,170,Vietnamese|Course Materials Compilation,2026,1iXH-BO6mrBx0U2WwXFZxO2BiTjIo-dAC
+3,03,C/C++ Programming Techniques,Kỹ thuật lập trình (C/C++),IT Subjects,PDF,430,Vietnamese|Course Materials Compilation,2026,1IkZuuhg0QhdkJhmg5AnezzNVgRbnFC9u
+4,04,Data Mining,Khai thác dữ liệu,IT Subjects,PDF,267,Vietnamese|Course Materials Compilation,2026,1QTTGwAguQ77H9ElG2DN_jxSoyjcSSHpk
+5,05,Discrete Mathematics,Toán rời rạc,IT Subjects,PDF,104,Vietnamese|Course Materials Compilation,2026,1Y2CHorQwkUZOPfXD4nhCuOn8ei85WWSj
+6,06,Graph Theory,Lý thuyết đồ thị,IT Subjects,PDF,152,Vietnamese|Course Materials Compilation,2026,1ZKPVpTvdqFcP2cmCalZZZZQVU5v8Iavo
+7,07,Information Security,An toàn thông tin,IT Subjects,PDF,183,Vietnamese|Course Materials Compilation,2026,1mTHPF5jSkEEkq_J4d73T5E1Eww_pu0GJ
+8,08,Introduction to Information Technology & Python Programming,Nhập môn CNTT & Lập trình Python,IT Subjects,PDF,106,Vietnamese|Course Materials Compilation,2026,1JI4m4Ja3-_url66JEGGoRKFawGkEcZV8
+9,09,Object Oriented Programming,Lập trình hướng đối tượng,IT Subjects,PDF,188,Vietnamese|Course Materials Compilation,2026,1P9iwV6Q1cZBL2_44A_HewQwI5sU0aH1_
+10,10,Software Verification,Kiểm chứng phần mềm,IT Subjects,PDF,72,Vietnamese|Course Materials Compilation,2026,1zw7TTBwz_8W_uIwk53-4CnSI9B4n4gZU
+11,11,Marxist-Leninist Philosophy,Triết học Mác-Lênin,Other Subjects,PDF,95,Vietnamese|Course Materials Compilation,2026,1B9hrXJU0Ymi4Bi04Rp4ZRMFugr0Vl7cE
+12,12,Marxist-Leninist Political Economy,Kinh tế chính trị Mác-Lênin,Other Subjects,PDF,77,Vietnamese|Course Materials Compilation,2026,1x31YVC4OdPqYey8-lqQ_tynwHN5lTDn2
+13,13,Scientific Socialism,Chủ nghĩa xã hội khoa học,Other Subjects,PDF,120,Vietnamese|Course Materials Compilation,2026,1JdZT6g17Syg3oPwZseuPKVCGthfzyCPx
+14,14,Information Technology Project Management,Quản trị dự án CNTT,Other Subjects,PDF,77,Vietnamese|Course Materials Compilation,2026,1f4qHZ_fVXweaaqYnq9bamqkncDH0aeOo
+15,15,Software Project Management,Quản trị dự án phần mềm,Other Subjects,PDF,135,Vietnamese|Course Materials Compilation,2026,1wdFik7cnQ3MS9c3cpcII_WpfctrXfMZL
+16,16,Git Command Usage Guide,Hướng dẫn sử dụng các lệnh Git,Supplementary,PDF,44,Vietnamese|Guide|Git,2025,121opi8E2Ncbtp7jOsMo74GveH4elzHgz
+17,17,Semantic element in HTML5,Các phần tử ngữ nghĩa trong HTML5,Supplementary,PDF,10,Vietnamese|Web Dev|FE|HTML,2025,18XPkX-bVn6nThOCLLS7eeXcdAsxdmpRt
 18,18,CSS Grid,CSS Grid,Supplementary,PDF,14,Vietnamese|Web Dev|FE|CSS,2026,12A7EKfATMWyo7gqQb4Vj5c9hLxGJavZ7
 19,19,"Token, cookie, session, storage","Token, cookie, session, storage",Supplementary,PDF,17,Vietnamese|Web Dev|Handwriting,2026,1zA0t3kcfa8qaStowHuBrcPKOuioGakTI
 20,20,"Microservices, Micro-frontend, Micro-backend","Microservices, Micro-frontend, Micro-backend",Supplementary,PDF,17,Vietnamese|Web Dev,2025,1xR-uWnTC_8BjDM8UlcQddad6iQpTnNXX
-21,21,Search Algorithm,Thu?t to�n t�m ki?m,Supplementary,PDF,4,Vietnamese|DSA,2025,14DHhz1oCRo2RdxS-s2Sqv2Umx6JlHutw
-22,22,Sort Algorithm,Thu?t to�n s?p x?p,Supplementary,PDF,32,Vietnamese|DSA,2025,1izghk5XqSeNGZYYzSJr88Rb3ZapiavRc
-23,23,Singly Linked List,Danh s�ch li�n k?t ??n,Supplementary,PDF,48,Vietnamese|DSA,2024,1yRCaXcFWgVZAzGQMzJ-xfViqN2RYyg08
-24,24,SQL-Structured Query Language,Ng�n ng? truy v?n c� c?u tr�c SQL,Supplementary,PDF,55,Vietnamese|SQL,2025,1TDuMLCmVDntkSKIXaPKeYiiEfdTjQLRZ
-25,25,Key in Database Management,Kh�a trong qu?n tr? CSDL,Supplementary,PDF,4,Vietnamese|SQL,2025,1qNDayp0fTW27kplXPQ3ksLRw_yXcZMFL
-26,26,SQL Server Topics,C�c ch? ?? v? SQL Server,Supplementary,PDF,80,Vietnamese|SQL,2025,1ozsP1OtYuKqTiO1QIFSESlJeJDjvS4kQ
+21,21,Search Algorithm,Thuật toán tìm kiếm,Supplementary,PDF,4,Vietnamese|DSA,2025,14DHhz1oCRo2RdxS-s2Sqv2Umx6JlHutw
+22,22,Sort Algorithm,Thuật toán sắp xếp,Supplementary,PDF,32,Vietnamese|DSA,2025,1izghk5XqSeNGZYYzSJr88Rb3ZapiavRc
+23,23,Singly Linked List,Danh sách liên kết đơn,Supplementary,PDF,48,Vietnamese|DSA,2024,1yRCaXcFWgVZAzGQMzJ-xfViqN2RYyg08
+24,24,SQL-Structured Query Language,Ngôn ngữ truy vấn có cấu trúc SQL,Supplementary,PDF,55,Vietnamese|SQL,2025,1TDuMLCmVDntkSKIXaPKeYiiEfdTjQLRZ
+25,25,Key in Database Management,Khóa trong quản trị CSDL,Supplementary,PDF,4,Vietnamese|SQL,2025,1qNDayp0fTW27kplXPQ3ksLRw_yXcZMFL
+26,26,SQL Server Topics,Các chủ đề về SQL Server,Supplementary,PDF,80,Vietnamese|SQL,2025,1ozsP1OtYuKqTiO1QIFSESlJeJDjvS4kQ
 27,27,NoSQL,NoSQL,Supplementary,PDF,14,Vietnamese|SQL,2025,1_nY2bPtpvXIf_IAyvLG0lddt8AEfjDXy
-28,28,Some topics in many aspects,T�i li?u h?n h?p,Supplementary,PDF,59,Vietnamese|Compilation,2025,1gty4lkQ__HMnimmY3ngaOPOcEopJiEuT
+28,28,Some topics in many aspects,Tài liệu hỗn hợp,Supplementary,PDF,59,Vietnamese|Compilation,2025,1gty4lkQ__HMnimmY3ngaOPOcEopJiEuT
