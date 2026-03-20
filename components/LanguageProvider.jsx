@@ -29,18 +29,24 @@ const detectBrowserLocale = () => {
 };
 
 export const LanguageProvider = ({ children }) => {
-  const [locale, setLocale] = useState(() => {
-    if (typeof window === "undefined") {
-      return DEFAULT_LOCALE;
-    }
+  // Keep first render stable between server and client, then hydrate preferred locale.
+  const [locale, setLocale] = useState(DEFAULT_LOCALE);
 
+  useEffect(() => {
     const savedLocale = window.localStorage.getItem(STORAGE_KEY);
-    if (savedLocale && SUPPORTED_LOCALES.includes(savedLocale)) {
-      return savedLocale;
-    }
+    const resolvedLocale =
+      savedLocale && SUPPORTED_LOCALES.includes(savedLocale)
+        ? savedLocale
+        : detectBrowserLocale();
 
-    return detectBrowserLocale();
-  });
+    if (resolvedLocale !== DEFAULT_LOCALE) {
+      queueMicrotask(() => {
+        setLocale((currentLocale) =>
+          currentLocale === resolvedLocale ? currentLocale : resolvedLocale
+        );
+      });
+    }
+  }, []);
 
   useEffect(() => {
     document.documentElement.lang = locale;

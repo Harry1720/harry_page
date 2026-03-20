@@ -120,6 +120,7 @@ const Home = () => {
             src="/image/homeBg.png"
             alt="Background"
             fill
+            sizes="100vw"
             className="object-cover opacity-35"
             priority
             quality={[100,75]}
@@ -163,7 +164,7 @@ const Home = () => {
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
               <div className="flex flex-col sm:flex-row gap-6 xl:mt-3">
                 <Link 
-                  href="/about"
+                  href="/"
                   className="px-8 py-4 bg-white text-secondary font-semibold rounded-lg hover:bg-accent transition-all text-center"
                 >
                   {t.home.viewResume}
@@ -171,7 +172,6 @@ const Home = () => {
                 <Link 
                   href="/work"
                   className="px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:text-accent hover:border-accent transition-all text-center"
-
                 >
                   {t.home.viewWork}
                 </Link>

@@ -154,7 +154,7 @@ const ContactPage = () => {
         className="relative z-10 min-h-screen py-12 2xl:py-24"
       >
         <div className="container mx-auto">
-          <div className="relative overflow-hidden -mt-20">
+          <div className="relative overflow-hidden -mt-15">
             <motion.div
               className="flex whitespace-nowrap"
               animate={{ x: [0, -1920] }}
@@ -210,143 +210,143 @@ const ContactPage = () => {
                 </div> */}
 
                 <div className="grid grid-cols-1 gap-7 xl:grid-cols-[1fr_1.28fr]">
-                <div className="space-y-5">
-                  <h3 className="mb-4 text-2xl font-semibold text-white">{t.contact.contactInfo}</h3>
+                  <div className="space-y-5">
+                    <h3 className="mb-4 text-2xl font-semibold text-white">{t.contact.contactInfo}</h3>
                     <div className="rounded-2xl border border-accent/10 bg-secondary/65 p-6 md:p-7">
-                  <p className="mb-8 text-lg text-white/65">{t.contact.formHint}</p>
+                      <p className="mb-8 text-lg text-white/65">{t.contact.formHint}</p>
 
-                    <div className="space-y-6">
+                      <div className="space-y-6">
                         <div className="flex items-start gap-4">
-                        <span className="mt-1 text-accent">
-                            <Mail size={26} />
-                        </span>
-                        <div>
-                          <p className="font-semibold text-white">{t.contact.email}</p>
-                            <p className="text-white/70">baohuynh4107@gmail.com</p>
-                        </div>
-                        </div>
-
-                        <div className="flex items-start gap-4">
-                        <span className="mt-1 text-accent">
-                            <Phone size={26} />
-                        </span>
-                        <div>
-                          <p className="font-semibold text-white">{t.contact.phone}</p>
-                            <p className="text-white/70">+84 349 869 243</p>
-                        </div>
+                          <span className="mt-1 text-accent">
+                              <Mail size={26} />
+                          </span>
+                          <div>
+                            <p className="font-semibold text-white">{t.contact.email}</p>
+                              <p className="text-white/70 sm:text-[16px] text-[13px]">baohuynh4107@gmail.com</p>
+                          </div>
                         </div>
 
                         <div className="flex items-start gap-4">
-                        <span className="mt-1 text-accent">
-                            <MapPin size={26} />
-                        </span>
-                        <div>
-                          <p className="font-semibold text-white">{t.contact.location}</p>
-                            <p className="text-white/70">An Hội Đông Ward, Hồ Chí Minh City</p>
+                          <span className="mt-1 text-accent">
+                              <Phone size={26} />
+                          </span>
+                          <div>
+                            <p className="font-semibold text-white">{t.contact.phone}</p>
+                              <p className="text-white/70 sm:text-[16px] text-[13px]">+84 349 869 243</p>
+                          </div>
                         </div>
+
+                        <div className="flex items-start gap-4">
+                          <span className="mt-1 text-accent">
+                              <MapPin size={26} />
+                          </span>
+                          <div>
+                            <p className="font-semibold text-white">{t.contact.location}</p>
+                              <p className="text-white/70 sm:text-[16px] text-[13px]">An Hội Đông Ward, Hồ Chí Minh City</p>
+                          </div>
                         </div>
-                    </div>
-                    </div>
-
-                    <div>
-                    <h4 className="mb-4 text-2xl font-semibold text-white">{t.contact.connectWithMe}</h4>
-                    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-3 2xl:grid-cols-5">
-                        {socialLinks.map((item) => {
-                        const Icon = item.icon;
-
-                        return (
-                            <Link
-                            key={item.name}
-                            href={item.href}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="group rounded-2xl border border-white/10 bg-secondary/65 px-4 py-5 text-center transition-all hover:-translate-y-1 hover:border-accent/60"
-                            >
-                            <Icon className="mx-auto mb-2 text-2xl text-accent transition-transform group-hover:scale-110" />
-                            <span className="text-sm font-medium text-white/80">{item.name}</span>
-                            </Link>
-                        );
-                        })}
-                    </div>
-                    </div>
-                </div>
-
-                <div className="rounded-2xl border border-accent/10 bg-secondary/65 p-6 md:p-8">
-                  <form className="space-y-6" onSubmit={handleSubmit}>
-                    <div>
-                        <label className="mb-2 block font-semibold text-white" htmlFor="name">
-                      {t.contact.name}
-                        </label>
-                        <input
-                        id="name"
-                        name="name"
-                        type="text"
-                        required
-                      placeholder={t.contact.yourName}
-                        className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white placeholder:text-white/45 outline-none transition-colors focus:border-accent/80"
-                        />
+                      </div>
                     </div>
 
                     <div>
-                        <label className="mb-2 block font-semibold text-white" htmlFor="email">
-                      {t.contact.email}
-                        </label>
-                        <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                      placeholder={t.contact.yourEmail}
-                        className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white placeholder:text-white/45 outline-none transition-colors focus:border-accent/80"
-                        />
+                      <h4 className="mb-4 text-2xl font-semibold text-white">{t.contact.connectWithMe}</h4>
+                      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-3 2xl:grid-cols-5">
+                          {socialLinks.map((item) => {
+                          const Icon = item.icon;
+
+                          return (
+                              <Link
+                              key={item.name}
+                              href={item.href}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="group rounded-2xl border border-white/10 bg-secondary/65 px-4 py-5 text-center transition-all hover:-translate-y-1 hover:border-accent/60"
+                              >
+                              <Icon className="mx-auto mb-2 text-2xl text-accent transition-transform group-hover:scale-110" />
+                              <span className="text-sm font-medium text-white/80">{item.name}</span>
+                              </Link>
+                          );
+                          })}
+                      </div>
                     </div>
+                  </div>
 
-                    <div>
-                        <label className="mb-2 block font-semibold text-white" htmlFor="message">
-                      {t.contact.message}
-                        </label>
-                        <textarea
-                        id="message"
-                        name="message"
-                        rows={6}
-                        required
-                      placeholder={t.contact.yourMessage}
-                        className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white placeholder:text-white/45 outline-none transition-colors focus:border-accent/80"
-                        />
-                    </div>
+                  <div className="rounded-2xl border border-accent/10 bg-secondary/65 p-6 md:p-8">
+                    <form className="space-y-6" onSubmit={handleSubmit}>
+                      <div>
+                          <label className="mb-2 block font-semibold text-white" htmlFor="name">
+                        {t.contact.name}
+                          </label>
+                          <input
+                          id="name"
+                          name="name"
+                          type="text"
+                          required
+                        placeholder={t.contact.yourName}
+                          className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white placeholder:text-white/45 outline-none transition-colors focus:border-accent/80"
+                          />
+                      </div>
 
-                    <input
-                      type="checkbox"
-                      name="botcheck"
-                      className="hidden"
-                      tabIndex={-1}
-                      autoComplete="off"
-                    />
+                      <div>
+                          <label className="mb-2 block font-semibold text-white" htmlFor="email">
+                        {t.contact.email}
+                          </label>
+                          <input
+                          id="email"
+                          name="email"
+                          type="email"
+                          required
+                        placeholder={t.contact.yourEmail}
+                          className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white placeholder:text-white/45 outline-none transition-colors focus:border-accent/80"
+                          />
+                      </div>
 
-                    {formStatus.message && (
-                      <p
-                        className={`rounded-xl border px-4 py-3 text-sm ${
-                          formStatus.type === "success"
-                            ? "border-emerald-400/35 bg-emerald-400/10 text-emerald-200"
-                            : formStatus.type === "error"
-                            ? "border-red-400/35 bg-red-400/10 text-red-200"
-                            : "border-sky-400/35 bg-sky-400/10 text-sky-200"
-                        }`}
+                      <div>
+                          <label className="mb-2 block font-semibold text-white" htmlFor="message">
+                        {t.contact.message}
+                          </label>
+                          <textarea
+                          id="message"
+                          name="message"
+                          rows={6}
+                          required
+                        placeholder={t.contact.yourMessage}
+                          className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white placeholder:text-white/45 outline-none transition-colors focus:border-accent/80"
+                          />
+                      </div>
+
+                      <input
+                        type="checkbox"
+                        name="botcheck"
+                        className="hidden"
+                        tabIndex={-1}
+                        autoComplete="off"
+                      />
+
+                      {formStatus.message && (
+                        <p
+                          className={`rounded-xl border px-4 py-3 text-sm ${
+                            formStatus.type === "success"
+                              ? "border-emerald-400/35 bg-emerald-400/10 text-emerald-200"
+                              : formStatus.type === "error"
+                              ? "border-red-400/35 bg-red-400/10 text-red-200"
+                              : "border-sky-400/35 bg-sky-400/10 text-sky-200"
+                          }`}
+                        >
+                          {formStatus.message}
+                        </p>
+                      )}
+
+                      <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="flex w-full items-center justify-center gap-3 rounded-xl bg-accent px-5 py-3 text-lg font-semibold text-primary transition-all hover:bg-white  hover:-translate-y-2 duration-200"
                       >
-                        {formStatus.message}
-                      </p>
-                    )}
-
-                    <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="flex w-full items-center justify-center gap-3 rounded-xl bg-accent px-5 py-3 text-lg font-semibold text-primary transition-all hover:bg-white  hover:-translate-y-2 duration-200"
-                    >
-                        <Send size={18} />
-                      {isSubmitting ? t.contact.sending : t.contact.sendMessage}
-                    </button>
-                    </form>
-                </div>
+                          <Send size={18} />
+                        {isSubmitting ? t.contact.sending : t.contact.sendMessage}
+                      </button>
+                      </form>
+                  </div>
                 </div>
             </div>
           </div>

@@ -101,7 +101,7 @@ const WorkPage = () => {
 
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 clear-both">
-            {projects.map((project) => (
+            {projects.map((project, index) => (
               <button
                 key={project.id}
                 type="button"
@@ -113,6 +113,8 @@ const WorkPage = () => {
                     src={project.image}
                     alt={project.title}
                     fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    loading={index < 4 ? "eager" : "lazy"}
                     className="object-cover transition-all duration-500 group-hover:scale-[1.05] group-hover:opacity-60"
                   />
                 </div>
@@ -157,6 +159,7 @@ const WorkPage = () => {
                 src={activeProject.image}
                 alt={activeProject.title}
                 fill
+                sizes="100vw"
                 className="object-cover"
               />
 

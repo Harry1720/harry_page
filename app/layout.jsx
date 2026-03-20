@@ -36,8 +36,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
-      <body className="font-primary antialiased cursor-none">
+    <html suppressHydrationWarning lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
+      <body suppressHydrationWarning className="font-primary antialiased cursor-none">
         <LanguageProvider>
           <CustomCursor />
           <RectangleTransition />

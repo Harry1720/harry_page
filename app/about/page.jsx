@@ -111,6 +111,7 @@ const ImageModal = ({ src, alt, onClose }) => {
           src={src}
           alt={alt}
           fill
+          sizes="90vw"
           className="object-contain"
         />
       </motion.div>
@@ -363,6 +364,7 @@ const AboutPage = () => {
   }, []);
 
   const activeFact = funFacts[activeFactIndex];
+  const isLcpFunFactImage = activeFact?.image === "/image/HCM_night.png";
 
   const handleWordHover = (factIndex) => {
     if (!isTouchDevice) {
@@ -401,8 +403,8 @@ const AboutPage = () => {
         }}
         className="relative z-10 min-h-screen py-12 2xl:py-24 overflow-hidden"
       >
-        <div className="container mx-auto">
-          <div className="relative overflow-hidden -mt-20">
+        <div className="container mx-auto w-full">
+          <div className="relative overflow-hidden -mt-15">
             <motion.div
               className="flex whitespace-nowrap"
               animate={{ x: [0, -1920] }}
@@ -506,6 +508,7 @@ const AboutPage = () => {
                           src={edu.image}
                           alt={edu.school}
                           fill
+                          sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
                           className="object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                         
@@ -540,7 +543,7 @@ const AboutPage = () => {
                   initial={{x: -50, opacity:0}}
                   whileInView={{x:0, opacity:1}}
                   viewport={{ once: true }}
-                  transition={{delay:index * 0.2, duration:0.5}}
+                  transition={{delay:index * 0.1, duration:0.1}}
                   whileHover={{x: 8}}
                   className="bg-gradient-to-r from-secondary/60 to-secondary/30 backdrop-blur-sm rounded-2xl overflow-hidden hover:from-secondary/80 transition-all group border border-accent/10"
                 >
@@ -554,6 +557,7 @@ const AboutPage = () => {
                         src={exp.image || "/placeholder.svg"}
                         alt={exp.title}
                         fill
+                        sizes="(min-width: 1024px) 40vw, 100vw"
                         className="object-cover group-hover:scale-125 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent group-hover:from-black/10 transition-all" />
@@ -563,7 +567,7 @@ const AboutPage = () => {
                     <div className="lg:w-3/5 p-8 lg:p-10 flex flex-col justify-center relative">
                       <div className="absolute top-0 right-0 w-1 h-16 bg-gradient-to-b from-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                       <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-4 gap-2">
-                        <h3 className="h4 text-accent group-hover:translate-x-2 transition-transform">{exp.title}</h3>
+                        <h3 className="h4 text-accent">{exp.title}</h3>
                         <span className="text-white/50 text-sm font-mono">{exp.period}</span>
                       </div>
                       <p className="text-accent/80 font-semibold mb-2">{exp.company}</p>
@@ -655,6 +659,9 @@ const AboutPage = () => {
                       src={activeFact.image}
                       alt={activeFact.title}
                       fill
+                      sizes="(min-width: 1280px) 34vw, 100vw"
+                      loading={isLcpFunFactImage ? "eager" : "lazy"}
+                      priority={isLcpFunFactImage}
                       className="object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
