@@ -10,7 +10,7 @@ Hãy lựa chọn ngôn ngữ mà bạn hiểu (Choose a language that you can u
 <a id="tieng-viet"></a>
 ## Tiếng Việt
 
-Chào mừng bạn đến với những thứ tạo ra **"Nơi chứa đựng các thông tin" của Harry (Bảo Huỳnh)** aka ***source code**.
+Chào mừng bạn đến với những thứ tạo ra **"Nơi chứa đựng các thông tin" của Harry (Bảo Huỳnh)** aka **source code**.
 
 ### Các trang của trang web
 
