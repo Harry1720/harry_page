@@ -358,7 +358,7 @@ export const messages = {
     },
     about: {
       marquee: "About Harry Dev",
-      subtitle: "Explore unexpected and unique things about me",
+      subtitle: "Explore unexpected and weird things about me",
       tocTitle: "Contents",
       sections: {
         skills: "Tech Stack And Tools",
@@ -518,7 +518,7 @@ export const messages = {
       teamSize: "Team size",
       liveProject: "Live Project",
       github: "GitHub Link",
-      techStack: "Tech Stack & Too:",
+      techStack: "Tech Stack & Tools:",
     },
     workData: {
       projects: [

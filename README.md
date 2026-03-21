@@ -97,7 +97,12 @@ public/
 
 Hãy truy cập https://harry-bao.vercel.app/ để xem thành quả của tôi.
 
-Nếu bạn có nhu cầu muốn tự mình deploy, đừng ngần ngại làm theo hướng dẫn trên Internet hoặc nhờ sự "tư vấn" từ các công cụ AI để dễ thực hiện hơn.
+Nếu bạn muốn tự mình deploy một dự án của riêng bạn:
+
+1. Đẩy mã nguồn của bạn lên một repository trên GitHub.
+2. Kết nối repository đó với [Vercel](https://vercel.com).
+3. Thêm các biến môi trường (environment variables) trong dashboard của Vercel nếu có.
+4. Vercel sẽ xử lý phần còn lại. Nó sẽ tự động deploy mỗi khi bạn push code.
 
 ### Tác giả
 
@@ -107,11 +112,12 @@ Nếu bạn có nhu cầu muốn tự mình deploy, đừng ngần ngại làm t
 ---
 **Chân thành cảm ơn bạn đã ghé thăm! Nếu thấy thú vị, hãy dành 1 ngôi sao (star) cho repository này nhé!**
 
+---
 
 <a id="english"></a>
 ## Tiếng Anh/English
 
-Welcome to source code of **Harry's (Bao Huynh's) personal information hub**!!!.
+Welcome to source code of **Harry's personal information "hub"**!!!.
 
 ### Website pages
 
@@ -198,7 +204,12 @@ public/
 
 Visit https://harry-bao.vercel.app/ to see the live website.
 
-If you want to deploy it yourself, feel free to follow online deployment guides or use AI tools for step-by-step support.
+If you want to deploy your own:
+
+1. Push your code to a GitHub repository.
+2. Connect the repository to [Vercel](https://vercel.com).
+3. Add your environment variables in the Vercel dashboard (if needed).
+4. Vercel handles the rest — automatic deployments on every push.
 
 ### Author
 
