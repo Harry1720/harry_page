@@ -66,7 +66,7 @@ export const messages = {
       skillsTitle: "Công nghệ và công cụ",
       educationTitle: "Hành trình học tập",
       activitiesTitle: "Các hoạt động",
-      funFactsTitle: "Những sự thật bạn 'đã biết' & đam mê lạ lùng",
+      funFactsTitle: `Những sự thật bạn "đã biết" & đam mê lạ lùng`,
       funFactsHintHover: "Rê chuột vào một từ khóa để biết thêm chi tiết",
       funFactsHintTap: "Chạm vào từ khóa để biết thêm chi tiết",
       tapImage: "Nhấn vào ảnh để xem rõ hơn",
@@ -134,12 +134,12 @@ export const messages = {
         },
         {
           title: "Nghe nhạc khi code và học bài",
-          description: "Mình thích nghe nhạc khi học tập, đặc biệt những bài hát buồn, 'suy thiệc là suy'. Vì thế mình có thể tự nhận là 'Hoàng tử nhạc suy'.",
+          description: `Mình thích nghe nhạc khi học tập, đặc biệt những bài hát buồn, "suy thiệc là suy". Vì thế mình có thể tự nhận là "Hoàng tử nhạc suy".`,
           image: "/image/sadsong.png",
         },
         {
           title: "Yêu thích game show",
-          description: "Mình thích xem các chương trình truyền hình cũ như Hãy Chọn Giá Đúng, Chiếc nón kỳ diệu, Đường lên đỉnh Olympia, Ai là triệu phú... cũng như các phiên bản nước ngoài. Rồi tự nhiên mình thấy mấy cái vòng quay đó thú vị, thì mình cũng tự làm mấy cái vòng quay 'handmade'. PS: Nhìn ảnh là biết mình làm nhiều đời, nhiều phiên bản rồi ^^.",
+          description: `Mình thích xem các chương trình truyền hình cũ như Hãy Chọn Giá Đúng, Chiếc nón kỳ diệu, Đường lên đỉnh Olympia, Ai là triệu phú... cũng như các phiên bản nước ngoài. Rồi tự nhiên mình thấy mấy cái vòng quay đó thú vị, thì mình cũng tự làm mấy cái vòng quay "handmade". PS: Nhìn ảnh là biết mình làm nhiều đời, nhiều phiên bản rồi ^^.`,
           image: "/image/wheel.png",
         },
         {
@@ -182,7 +182,7 @@ export const messages = {
       titleTag: "Về Bảo Huỳnh",
       title: "Từ sự tò mò đến hành trình tạo nên trải nghiệm số",
       paragraph1:
-        "Hồi nhỏ, mình thích xài máy tính và thiết bị điện tử, biết chỉnh TV đồ cho lớp nè, rồi cái người ta khuyên mình đi học 'I Tờ', cái chọn luôn.",
+        `Hồi nhỏ, mình thích xài máy tính và thiết bị điện tử, biết chỉnh TV đồ cho lớp nè, rồi cái người ta khuyên mình đi học "I Tờ", cái chọn luôn.`,
       paragraph2:
         "Mình thích phát triển web, đặc biệt là FE sau đợt làm GDSC Hackathon. Mình thích xây dựng website đẹp mắt, dịu nhưng thực tế, UI/UX hợp lý để tạo nên không gian nhẹ nhàng & dễ sử dụng.",
       currentFocus: "Hiện tại",
@@ -210,7 +210,7 @@ export const messages = {
     },
     work: {
       marquee: "Dự án",
-      subtitle: "Các dự án 'nổi bật' của mình",
+      subtitle: `Các dự án "nổi bật" của mình`,
       viewAll: "Xem tất cả dự án",
       teamSize: "Số lượng thành viên",
       liveProject: "Xem demo",
@@ -447,7 +447,7 @@ export const messages = {
         },
         {
           title: "Course Materials",
-          description: "I regularly create lecture notes for my subjects and share them both with my classmates and on my GitHub repository named 'Course Materials'.",
+          description: `I regularly create lecture notes for my subjects and share them both with my classmates and on my GitHub repository named "Course Materials".`,
           image: "/image/courses_material.png",
         },
         {

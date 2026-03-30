@@ -167,12 +167,12 @@ const ContactPage = () => {
               {[...Array(8)].map((_, i) => (
                 <div key={i} className="flex items-center shrink-0">
                   <h2
-                    className="text-[66px] sm:text-[96px] md:text-[132px] lg:text-[180px] font-extrabold uppercase text-amber-50/50 select-none pr-8"
+                    className="text-[66px] sm:text-[96px] md:text-[120px] font-extrabold uppercase text-amber-50/50 select-none pr-8"
                     style={{ WebkitTextStroke: "2px rgba(255,255,255,0.6)" }}
                   >
                     {t.contact.marquee}
                   </h2>
-                  <span className="text-[66px] sm:text-[96px] md:text-[132px] lg:text-[180px] font-extrabold uppercase text-amber-50/30 select-none pr-8 shrink-0">
+                  <span className="text-[66px] sm:text-[96px] md:text-[120px] font-extrabold uppercase text-amber-50/30 select-none pr-8 shrink-0">
                     .
                   </span>
                 </div>
@@ -188,7 +188,7 @@ const ContactPage = () => {
           </div>
 
           <div className="space-y-6 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm ">
-            <div className="relative border-b border-white/10 bg-black/20 px-4 py-3 sm:px-5">
+            <div className="relative border-b rounded-t-3xl border-white/10 bg-black/20 px-4 py-3 sm:px-5">
                 <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2">
                     <span className="h-3 w-3 rounded-full bg-red-500 shadow-sm shadow-red-500/40" />
@@ -209,7 +209,7 @@ const ContactPage = () => {
                 </p>
                 </div> */}
 
-                <div className="grid grid-cols-1 gap-7 xl:grid-cols-[1fr_1.28fr]">
+                <div className="grid grid-cols-1 gap-7 xl:grid-cols-[1fr_1.28fr] -mt-5 md:-mt-10 md:-mb-1">
                   <div className="space-y-5">
                     <h3 className="mb-4 text-2xl font-semibold text-white">{t.contact.contactInfo}</h3>
                     <div className="rounded-2xl border border-accent/10 bg-secondary/65 p-6 md:p-7">

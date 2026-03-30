@@ -67,12 +67,12 @@ const WorkPage = () => {
               {[...Array(8)].map((_, i) => (
                 <div key={i} className="flex items-center shrink-0">
                   <h2
-                    className="text-[66px] sm:text-[96px] md:text-[132px] lg:text-[180px] font-extrabold uppercase text-amber-50/50 select-none pr-8"
+                    className="text-[66px] sm:text-[96px] md:text-[120px] font-extrabold uppercase text-amber-50/50 select-none pr-8"
                     style={{ WebkitTextStroke: "2px rgba(255,255,255,0.6)" }}
                   >
                     {t.work.marquee}
                   </h2>
-                  <span className="text-[66px] sm:text-[96px] md:text-[132px] lg:text-[180px] font-extrabold uppercase text-amber-50/30 select-none pr-8 shrink-0">
+                  <span className="text-[66px] sm:text-[96px] md:text-[120px] font-extrabold uppercase text-amber-50/30 select-none pr-8 shrink-0">
                     .
                   </span>
                 </div>
@@ -87,7 +87,7 @@ const WorkPage = () => {
             <div className="w-full h-[1px] bg-white/40 mb-10" />
           </div>
 
-          <div className="mb-10 flex justify-end relative z-40 pointer-events-auto">
+          <div className="mb-10 flex justify-end relative z-30 pointer-events-auto">
             <a
               href={moreProjects}
               target="_blank"
@@ -106,7 +106,7 @@ const WorkPage = () => {
                 key={project.id}
                 type="button"
                 onClick={() => setActiveProject(project)}
-                className='group relative text-left rounded-2xl overflow-hidden min-h-[480px] sm:min-h-[520px] border border-accent/20 bg-gradient-to-b from-accent/30 to-white/60'
+                className='group relative text-left rounded-2xl overflow-hidden min-h-[480px] sm:min-h-[520px] border border-accent/20 bg-linear-to-b from-accent/10 to-black/40'
               >
                 <div className="relative h-full overflow-hidden">
                   <Image
@@ -115,11 +115,11 @@ const WorkPage = () => {
                     fill
                     sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                     loading={index < 4 ? "eager" : "lazy"}
-                    className="object-cover transition-all duration-500 group-hover:scale-[1.05] group-hover:opacity-60"
+                    className="object-cover brightness-[0.82] transition-all duration-500 group-hover:scale-[1.05] group-hover:brightness-[0.68]"
                   />
                 </div>
 
-                <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-black/20" />
+                <div className="absolute inset-0 bg-linear-to-b from-black/0 via-black/35 to-black" />
 
                 <div className="absolute left-3 right-3 bottom-2 z-10">
                   <p className="text-white/95 text-[120px] md:text-[136px] font-extrabold leading-[1.0] tracking-[-0.06em]">
@@ -153,7 +153,7 @@ const WorkPage = () => {
               exit={{ y: 20, opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.24 }}
               onClick={(event) => event.stopPropagation()}
-              className="mx-auto relative w-full max-w-6xl h-[86vh] rounded-2xl border border-white/15 overflow-hidden"
+              className="mx-auto relative w-full max-w-6xl h-[86vh] rounded-2xl border border-white/15 overflow-hidden translate-y-1/30 sm:mt-0"
             >
               <Image
                 src={activeProject.image}
@@ -163,7 +163,7 @@ const WorkPage = () => {
                 className="object-cover"
               />
 
-              <div className="absolute inset-0 bg-black/62" />
+              <div className="absolute inset-0 bg-linear-to-b from-black/35 via-black/86 to-black" />
 
               <button
                 type="button"
@@ -174,8 +174,9 @@ const WorkPage = () => {
                 <X size={18} />
               </button>
 
-              <div className="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-8 lg:p-10">
-                <div className="max-w-4xl text-white">
+              <div className="absolute inset-0 z-10 overflow-y-auto overscroll-contain">
+                <div className="flex min-h-full items-end p-8  lg:p-10">
+                  <div className="max-w-4xl text-white">
                   <h3 className="text-[34px] md:text-[48px] font-extrabold leading-[1.02] mb-2">
                     {activeProject.title}
                   </h3>
@@ -228,6 +229,7 @@ const WorkPage = () => {
                     ))}
                   </ul>
                 </div>
+              </div>
               </div>
             </motion.div>
           </motion.div>

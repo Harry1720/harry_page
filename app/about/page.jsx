@@ -417,12 +417,12 @@ const AboutPage = () => {
               {[...Array(8)].map((_, i) => (
                 <div key={i} className="flex items-center shrink-0">
                   <h2
-                    className="text-[66px] sm:text-[96px] md:text-[132px] lg:text-[180px] font-extrabold uppercase text-amber-50/50 select-none pr-8"
+                    className="text-[66px] sm:text-[96px] md:text-[120px] font-extrabold uppercase text-amber-50/50 select-none pr-8"
                     style={{ WebkitTextStroke: "2px rgba(255,255,255,0.6)" }}
                   >
                     {t.about.marquee}
                   </h2>
-                  <span className="text-[66px] sm:text-[96px] md:text-[132px] lg:text-[180px] font-extrabold uppercase text-amber-50/30 select-none pr-8 shrink-0">
+                  <span className="text-[66px] sm:text-[96px] md:text-[120px] font-extrabold uppercase text-amber-50/30 select-none pr-8 shrink-0">
                     .
                   </span>
                 </div>

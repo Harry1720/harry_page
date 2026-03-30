@@ -199,38 +199,38 @@ const Home = () => {
           </div>
 
           {/* Right Side - Stats */}
-          <div className="flex xl:flex-col gap-8 xl:gap-21 justify-center xl:justify-start xl:ml-0">
+          <div className="grid w-full max-w-xl grid-cols-3 gap-4 xl:flex xl:w-auto xl:max-w-none xl:flex-col xl:gap-21 xl:justify-start xl:ml-0">
             <div className="text-center xl:text-right">
-              <div className="text-4xl md:text-5xl xl:text-6xl font-bold text-accent mb-2">
+              <div className="text-3xl md:text-5xl xl:text-6xl font-bold text-accent mb-2 leading-none">
                 <AnimatedStatValue
                   finalValue="100%"
                   generateRandom={() => `${Math.floor(Math.random() * 100)}%`}
                   trigger={statsTrigger}
                 />
               </div>
-              <div className="text-sm md:text-base text-white/60">{t.home.stats.ready}</div>
+              <div className="text-xs md:text-base text-white/60">{t.home.stats.ready}</div>
             </div>
             
             <div className="text-center xl:text-right">
-              <div className="text-4xl md:text-5xl xl:text-6xl font-bold text-accent mb-2">
+              <div className="text-3xl md:text-5xl xl:text-6xl font-bold text-accent mb-2 leading-none">
                 <AnimatedStatValue
                   finalValue="7+"
                   generateRandom={() => `${Math.floor(Math.random() * 9) + 1}+`}
                   trigger={statsTrigger}
                 />
               </div>
-              <div className="text-sm md:text-base text-white/60">{t.home.stats.projects}</div>
+              <div className="text-xs md:text-base text-white/60">{t.home.stats.projects}</div>
             </div>
             
             <div className="text-center xl:text-right">
-              <div className="text-4xl md:text-5xl xl:text-6xl font-bold text-accent mb-2">
+              <div className="text-3xl md:text-5xl xl:text-6xl font-bold text-accent mb-2 leading-none">
                 <AnimatedStatValue
                   finalValue="300+"
                   generateRandom={() => `${Math.floor(Math.random() * 1000) + 2}+`}
                   trigger={statsTrigger}
                 />
               </div>
-              <div className="text-sm md:text-base text-white/60">{t.home.stats.github}</div>
+              <div className="text-xs md:text-base text-white/60">{t.home.stats.github}</div>
             </div>
           </div>
         </div>
