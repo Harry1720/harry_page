@@ -1,15 +1,12 @@
 import { NextResponse } from "next/server";
-import fs from "node:fs/promises";
-import path from "node:path";
-import * as XLSX from "xlsx";
+import clientPromise from "@/lib/mongodb";
 
-const dataDir = path.join(process.cwd(), "data");
-const sourceCandidates = ["materials.xlsx", "materials.csv"];
-
-const getCell = (row, candidates) => {
+const getCell = (doc, candidates) => {
   for (const key of candidates) {
-    if (row[key] !== undefined && row[key] !== null && String(row[key]).trim() !== "") {
-      return String(row[key]).trim();
+    const value = doc[key];
+
+    if (value !== undefined && value !== null && String(value).trim() !== "") {
+      return String(value).trim();
     }
   }
 
@@ -70,37 +67,22 @@ const getLocalizedTags = (row, locale) => {
   return parsed.map((tag) => tagTranslationsVi[tag] || tag);
 };
 
-const pickSourceFile = async () => {
-  for (const fileName of sourceCandidates) {
-    const filePath = path.join(dataDir, fileName);
-
-    try {
-      await fs.access(filePath);
-      return { fileName, filePath };
-    } catch {
-      // Continue until we find the first available source file.
-    }
-  }
-
-  return null;
-};
-
-const normalizeCourse = (row, fallbackId, locale) => {
-  const id = Number(row.id) || fallbackId;
-  const pages = Number(row.pages) || 0;
-  const tags = getLocalizedTags(row, locale);
+const normalizeCourse = (doc, fallbackId, locale) => {
+  const id = Number(doc.id) || fallbackId;
+  const pages = Number(doc.pages) || 0;
+  const tags = getLocalizedTags(doc, locale);
 
   return {
     id,
-    code: String(row.code || id),
-    title: getLocalizedField(row, "title", locale, "Untitled"),
-    categoryKey: String(row.category || "Other Subjects"),
-    category: getLocalizedField(row, "category", locale, "Other Subjects"),
-    format: String(row.format || "PDF"),
+    code: String(doc.code || id),
+    title: getLocalizedField(doc, "title", locale, "Untitled"),
+    categoryKey: String(doc.category || "Other Subjects"),
+    category: getLocalizedField(doc, "category", locale, "Other Subjects"),
+    format: String(doc.format || "PDF"),
     pages,
     tags,
-    year: String(row.year || ""),
-    driveId: String(row.driveId || ""),
+    year: String(doc.year || ""),
+    driveId: String(doc.driveId || ""),
   };
 };
 
@@ -108,29 +90,17 @@ export async function GET(request) {
   try {
     const rawLang = request.nextUrl.searchParams.get("lang") || "en";
     const locale = rawLang.toLowerCase().startsWith("vi") ? "vi" : "en";
-    const source = await pickSourceFile();
+    const client = await clientPromise;
+    const db = client.db(process.env.MONGODB_DB || "harry_page");
+    const docs = await db.collection("materials").find({}).sort({ id: 1, _id: 1 }).toArray();
 
-    if (!source) {
+    if (!docs.length) {
       return NextResponse.json({ courses: [] });
     }
 
-    const workbook = source.fileName.endsWith(".csv")
-      ? XLSX.read(await fs.readFile(source.filePath, "utf8"), { type: "string" })
-      : XLSX.read(await fs.readFile(source.filePath), { type: "buffer" });
-    const firstSheetName = workbook.SheetNames[0];
+    const courses = docs.map((doc, index) => normalizeCourse(doc, index + 1, locale));
 
-    if (!firstSheetName) {
-      return NextResponse.json({ courses: [] });
-    }
-
-    const rows = XLSX.utils.sheet_to_json(workbook.Sheets[firstSheetName], {
-      raw: false,
-      defval: "",
-    });
-
-    const courses = rows.map((row, index) => normalizeCourse(row, index + 1, locale));
-
-    return NextResponse.json({ courses, source: source.fileName, locale });
+    return NextResponse.json({ courses, source: "mongodb", locale });
   } catch (error) {
     return NextResponse.json(
       { message: "Failed to load materials", details: error.message },
