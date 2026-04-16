@@ -7,7 +7,6 @@ import DesignCredit from "@/components/DesignCredit";
 import { ArrowUpRight, X, ExternalLink, FileText } from "lucide-react";
 import { useI18n } from "@/components/LanguageProvider";
 
-const categories = ["All", "IT Subjects", "Other Subjects", "Supplementary"];
 const fullMaterialsUrl = "https://github.com/Harry1720/Courses_Material";
 
 // ─── Row item ──────────────────────────────────────────────────────────────────
@@ -137,16 +136,29 @@ const CoursesPage = () => {
       item.category === activeCategory
   );
 
-  const localizedCategories = {
-    All: t.materials.all,
-    "IT Subjects": t.materials.itSubjects,
-    "Other Subjects": t.materials.otherSubjects,
-    Supplementary: t.materials.supplementary,
-  };
+  const categoryOptions = [
+    { value: "All", label: t.materials.all },
+    ...Array.from(
+      new Map(
+        courses
+          .filter((item) => item.categoryKey || item.category)
+          .map((item) => [item.categoryKey || item.category, item.category || item.categoryKey])
+      ),
+      ([value, label]) => ({ value, label })
+    ),
+  ];
+
+  useEffect(() => {
+    const hasActiveCategory = categoryOptions.some((option) => option.value === activeCategory);
+
+    if (!hasActiveCategory) {
+      setActiveCategory("All");
+    }
+  }, [activeCategory, categoryOptions]);
 
   const filteredCoursesWithLabels = filteredCourses.map((course) => ({
     ...course,
-    category: course.category || localizedCategories[course.categoryKey] || localizedCategories[course.category] || course.category,
+    category: course.category || course.categoryKey,
     pageLabel: t.materials.pages,
   }));
 
@@ -199,20 +211,20 @@ const CoursesPage = () => {
           <div className="relative z-20 mb-10 ">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
               <div className="flex flex-wrap gap-3 sm:gap-4">
-                {categories.map((category) => {
-                  const isActive = activeCategory === category;
+                {categoryOptions.map((option) => {
+                  const isActive = activeCategory === option.value;
                   return (
                     <button
-                      key={category}
+                      key={option.value}
                       type="button"
-                      onClick={() => setActiveCategory(category)}
+                      onClick={() => setActiveCategory(option.value)}
                       className={`px-4 sm:px-6 py-2 rounded-full font-mono text-xs sm:text-sm transition-all duration-300 ${
                         isActive
                           ? "bg-accent text-primary font-bold shadow-[0_0_15px_rgba(64,196,184,0.3)]"
                           : "border border-white/20 text-white/60 hover:border-accent hover:text-white"
                       }`}
                     >
-                      {localizedCategories[category] || category}
+                      {option.label || option.value}
                     </button>
                   );
                 })}
