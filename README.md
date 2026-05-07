@@ -1,5 +1,7 @@
 # Harry's Portfolio
 
+![Harry's Portfolio](./app/opengraph-image.png)
+
 ## Ngôn ngữ/Languages
 
 Hãy lựa chọn ngôn ngữ mà bạn hiểu (Choose a language that you can understand)
