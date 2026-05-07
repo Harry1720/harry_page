@@ -8,6 +8,7 @@ import RectangleTransition from "@/components/RectangleTransition";
 import CustomCursor from "@/components/CustomCursor";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { Analytics } from "@vercel/analytics/next"
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -60,6 +61,7 @@ export default function RootLayout({ children }) {
             <FloatingDock />
           </PageTransition>
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
