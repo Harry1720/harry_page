@@ -1,4 +1,5 @@
 import { useI18n } from "@/components/LanguageProvider";
+import Image from "next/image";
 
 const terminalLines = [
     {
@@ -97,8 +98,8 @@ const TerminalAbout = () => {
         </div>
       </div>
 
-      <div className="relative grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.05fr_0.95fr] lg:p-10">
-        <div className="space-y-5">
+      <div className="relative flex flex-col lg:flex-row gap-8 p-6 sm:p-8 lg:p-10">
+        <div className="space-y-5 flex-1 transition-all duration-500 ease-in-out">
           <div className="space-y-3">
             <p className="font-mono text-xs uppercase tracking-[0.34em] text-accent/80">
               {t.terminalAbout.titleTag}
@@ -133,39 +134,53 @@ const TerminalAbout = () => {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-white/10 bg-gray-900/40 shadow-xl backdrop-blur-md">
-          <div className="flex items-center border-b border-white/10 bg-white/5 px-4 py-3">
-            <div className="flex space-x-2">
-              <div className="h-3 w-3 rounded-full bg-red-500 shadow-sm" />
-              <div className="h-3 w-3 rounded-full bg-yellow-500 shadow-sm" />
-              <div className="h-3 w-3 rounded-full bg-green-500 shadow-sm" />
-            </div>
-            <div className="flex-1 text-center font-mono text-xs text-gray-400">
-              developer@portfolio: ~
-            </div>
+        <div className="group relative w-full lg:w-[280px] xl:w-[320px] lg:hover:w-[500px] xl:hover:w-[600px] shrink-0 transition-all duration-500 ease-in-out rounded-2xl border border-white/10 bg-gray-900/40 shadow-xl backdrop-blur-md overflow-hidden">
+          {/* Avatar Image (Visible when not hovered) */}
+          <div className="absolute inset-0 transition-opacity duration-500 ease-in-out group-hover:opacity-0 pointer-events-auto group-hover:pointer-events-none z-20">
+            <Image
+              src="/image/avatar.png"
+              alt="Avatar"
+              fill
+              className="object-contain object-top"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           </div>
 
-          <div className="space-y-2 p-6 font-mono text-sm text-gray-300 md:text-[15px]">
-            <p>
-              <span className="text-teal-300">const</span>{' '}
-              <span className="text-sky-300">harry_information</span>{' '}
-              <span className="text-white/75">=</span>{' '}
-              <span className="text-white/85">{'{'}</span>
-            </p>
-
-            <div className="space-y-2 pl-5">
-              {terminalLines.map((line, index) => (
-                <p key={line.key} className="leading-relaxed wrap-break-word">
-                  <span className="text-sky-300">&quot;{renderKey(line, t)}&quot;</span>
-                  <span className="text-white/65">: </span>
-                  {renderValue(line, t)}
-                  {index < terminalLines.length - 1 ? <span className="text-white/55">,</span> : null}
-                </p>
-              ))}
+          {/* Terminal Code (Visible on hover) */}
+          <div className="relative z-10 transition-opacity duration-500 ease-in-out opacity-0 group-hover:opacity-100 w-full lg:w-[500px] xl:w-[600px]">
+            <div className="flex items-center border-b border-white/10 bg-white/5 px-4 py-3">
+              <div className="flex space-x-2">
+                <div className="h-3 w-3 rounded-full bg-red-500 shadow-sm" />
+                <div className="h-3 w-3 rounded-full bg-yellow-500 shadow-sm" />
+                <div className="h-3 w-3 rounded-full bg-green-500 shadow-sm" />
+              </div>
+              <div className="flex-1 text-center font-mono text-xs text-gray-400">
+                developer@portfolio: ~
+              </div>
             </div>
 
-            <p className="text-white/85">{'}'}</p>
+            <div className="space-y-2 p-6 font-mono text-sm text-gray-300 md:text-[15px]">
+              <p>
+                <span className="text-teal-300">const</span>{' '}
+                <span className="text-sky-300">harry_information</span>{' '}
+                <span className="text-white/75">=</span>{' '}
+                <span className="text-white/85">{'{'}</span>
+              </p>
 
+              <div className="space-y-2 pl-5">
+                {terminalLines.map((line, index) => (
+                  <p key={line.key} className="leading-relaxed wrap-break-word">
+                    <span className="text-sky-300">&quot;{renderKey(line, t)}&quot;</span>
+                    <span className="text-white/65">: </span>
+                    {renderValue(line, t)}
+                    {index < terminalLines.length - 1 ? <span className="text-white/55">,</span> : null}
+                  </p>
+                ))}
+              </div>
+
+              <p className="text-white/85">{'}'}</p>
+
+            </div>
           </div>
         </div>
       </div>

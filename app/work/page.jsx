@@ -163,7 +163,7 @@ const WorkPage = () => {
                 className="object-cover"
               />
 
-              <div className="absolute inset-0 bg-linear-to-b from-black/35 via-black/86 to-black" />
+              <div className="absolute inset-0 bg-linear-to-b from-black/55 via-black/76 to-black/95 backdrop-blur-[1.75px]" />
 
               <button
                 type="button"

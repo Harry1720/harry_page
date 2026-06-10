@@ -134,10 +134,10 @@ const Home = () => {
           opacity:1,
           transition:{delay:1, duration:0.4, ease:"easeIn"}
         }}
-        className="flex flex-col relative xl:mt-29 md:mt-25 mt-12 overflow-hidden 2xl:mx-15"
+        className="flex flex-col justify-center relative min-h-[calc(100vh-176px)] md:min-h-[calc(100vh-128px)] overflow-hidden 2xl:mx-15"
       >
         {/* Main Content */}
-        <div className="flex-1 flex flex-col xl:flex-row items-center xl:items-start gap-18">
+        <div className="flex flex-col xl:flex-row items-center xl:items-start gap-18">
           {/* Left Side - Name and Title */}
           <div className=" w-full">
             <h1 className="text-5xl md:text-8xl xl:text-[120px] font-bold mb-6 font-mono">

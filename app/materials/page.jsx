@@ -218,7 +218,7 @@ const CoursesPage = () => {
                       key={option.value}
                       type="button"
                       onClick={() => setActiveCategory(option.value)}
-                      className={`px-4 sm:px-6 py-2 rounded-full font-mono text-xs sm:text-sm transition-all duration-300 ${
+                      className={`px-4 py-2 rounded-full font-mono text-xs sm:text-sm transition-all duration-300 ${
                         isActive
                           ? "bg-accent text-primary font-bold shadow-[0_0_15px_rgba(64,196,184,0.3)]"
                           : "border border-white/20 text-white/60 hover:border-accent hover:text-white"
