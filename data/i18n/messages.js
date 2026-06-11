@@ -312,7 +312,7 @@ export const messages = {
         "Rèn kỹ năng lập trình, học về UI/UX và bổ túc kiến thức các công nghệ web hiện đại.",
       workStyle: "Phong cách làm việc",
       workStyleDesc:
-        "Người ta nói mình làm việc cẩn trọng, chi tiết và tô<i></i> cũng ưu tiên trải nghiệm người dùng mượt mà.",
+        "Người ta nói mình làm việc cẩn trọng, chi tiết và tôi cũng ưu tiên trải nghiệm người dùng mượt mà.",
       lines: {
         nationality: "Việt Nam",
         home: "TP. Hồ Chí Minh",
@@ -456,8 +456,8 @@ export const messages = {
           description:
             "Nền tảng chia sẻ sách đa nền tảng gồm ứng dụng di động cho người dùng và trang quản trị dành cho quản trị viên. Hệ thống cho phép đăng tải, tìm kiếm, đánh giá và tương tác với sách, đồng thời tích hợp thông báo thời gian thực, quản lý báo cáo nội dung và phân quyền người dùng thông qua kiến trúc Client-Server hiện đại.",
           image: "/image/book_forum.png",
-          github: "YOUR_GITHUB_URL",
-          link: "",
+          github: "https://github.com/Harry1720/Book_Forum",
+          link: "/",
           teamSize: 5,
           tech: [
             "React Native",
@@ -979,8 +979,8 @@ export const messages = {
           description:
             "A cross-platform book sharing ecosystem consisting of a mobile application for readers and an admin dashboard for content moderation. The platform enables users to discover, review, publish, and interact with books while providing real-time notifications, reporting workflows, role-based access control, and centralized management through a modern Client-Server architecture.",
           image: "/image/book_forum.png",
-          github: "YOUR_GITHUB_URL",
-          link: "",
+          github: "https://github.com/Harry1720/Book_Forum",
+          link: "/",
           teamSize: 5,
           tech: [
             "React Native",

@@ -242,7 +242,7 @@ const ContactPage = () => {
                           </span>
                           <div>
                             <p className="font-semibold text-white">{t.contact.location}</p>
-                              <p className="text-white/70 sm:text-[16px] text-[13px]">An Hội Đông Ward, Hồ Chí Minh City</p>
+                              <p className="text-white/70 sm:text-[16px] text-[13px]">Hồ Chí Minh City</p>
                           </div>
                         </div>
                       </div>
